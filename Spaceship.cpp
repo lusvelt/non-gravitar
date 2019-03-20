@@ -3,35 +3,29 @@
 #include <SFML/Window.hpp>
 #include "Declarations.hpp"
 #include "Spaceship.hpp"
-#include "GameController.hpp"
+#include "Game.hpp"
 
 using namespace std;
 using namespace sf;
 
-void Spaceship::buildShape() {
-    shape.setPointCount(4);
+ConvexShape* Spaceship::buildShape() {
+    ConvexShape* shape;
 
-    shape.setPoint(0, Vector2f(-3.f, 0.f));
-    shape.setPoint(1, Vector2f(-10.f, 10.f));
-    shape.setPoint(2, Vector2f(10.f, 0.f));
-    shape.setPoint(3, Vector2f(-10.f, -10.f));
+    shape->setPointCount(4);
 
-    shape.setOutlineThickness(1.f);
-    shape.setOutlineColor(Color::Blue);
-    shape.setFillColor(Color::Black);
-    shape.setPosition(position);
-    shape.setRotation(rotation);
+    shape->setPoint(0, Vector2f(-3.f, 0.f));
+    shape->setPoint(1, Vector2f(-10.f, 10.f));
+    shape->setPoint(2, Vector2f(10.f, 0.f));
+    shape->setPoint(3, Vector2f(-10.f, -10.f));
+
+    shape->setOutlineThickness(1.f);
+    shape->setOutlineColor(Color::Blue);
+    shape->setFillColor(Color::Black);
+
+    return shape;
 }
 
-Spaceship::Spaceship() {
-    position = Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-    rotation = 0.f;
-
-    speed = Vector2f(0.f, 0.f);
-    acceleration = Vector2f(0.f, 0.f);
-    
-    buildShape();
-}
+Spaceship::Spaceship() : Object(Spaceship::buildShape(), Vector2f(0.f, 0.f), 0.f) { }
 
 void Spaceship::resetAccelerationAndAngularSpeed() {
     acceleration.x = 0.f;
@@ -57,9 +51,7 @@ void Spaceship::rotateRight() {
     angularSpeed = ANGULAR_SPEED_MODULE;
 }
 
-void Spaceship::updateTransform() {
-    float deltaTime = GameController::getDeltaTime().asSeconds();
-
+void Spaceship::updateTransform(const float deltaTime) {
     speed.x += acceleration.x * deltaTime;
     speed.y += acceleration.y * deltaTime;
 
@@ -67,11 +59,11 @@ void Spaceship::updateTransform() {
     position.y += speed.y * deltaTime;
     rotation += angularSpeed * deltaTime;
 
-    shape.setPosition(position);
-    shape.setRotation(rotation);
+    shape->setPosition(position);
+    shape->setRotation(rotation);
 }
 
-void Spaceship::update() {
+void Spaceship::update(const float deltaTime) {
     resetAccelerationAndAngularSpeed();
     if (Keyboard::isKeyPressed(Keyboard::Up))
         accelerateForward();
@@ -81,9 +73,5 @@ void Spaceship::update() {
         rotateLeft();
     if (Keyboard::isKeyPressed(Keyboard::Right))
         rotateRight();
-    updateTransform();
-}
-
-ConvexShape Spaceship::getShape() {
-    return shape;
+    updateTransform(deltaTime);
 }
