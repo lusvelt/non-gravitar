@@ -7,7 +7,7 @@
 
 using namespace sf;
 
-class Spaceship : Object {
+class Spaceship : public Object {
     private:
         void resetAccelerationAndAngularSpeed();
         void accelerateForward();

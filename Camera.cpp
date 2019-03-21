@@ -1,9 +1,16 @@
-#include "Camera.hpp"
 #include <SFML/System.hpp>
+#include <vector>
+#include "Object.hpp"
+#include "Camera.hpp"
+#include "Engine.hpp"
 
-Camera::Camera(const void (*updateFunction)(Camera*, const float)) {
+Camera::Camera(const void (*updateFunction)(Camera*, const float, vector<Object*>*)) {
     this->position = Vector2f(0.f, 0.f);
     this->updateFunction = updateFunction;
+}
+
+Vector2f Camera::getPosition() {
+    return this->position;
 }
 
 void Camera::setPosition(Vector2f position) {
@@ -11,5 +18,5 @@ void Camera::setPosition(Vector2f position) {
 }
 
 void Camera::update(const float deltaTime) {
-    this->updateFunction(this, deltaTime);
+    this->updateFunction(this, deltaTime, Engine::getCurrentScene()->getObjects());
 }

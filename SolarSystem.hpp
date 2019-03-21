@@ -1,7 +1,9 @@
 #ifndef _SOLAR_SYSTEM_H_
 #define _SOLAR_SYSTEM_H_
 
-class SolarSystem : Scene {
+#include "Scene.hpp"
+
+class SolarSystem : public Scene {
     public:
         SolarSystem();
 };

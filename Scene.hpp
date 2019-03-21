@@ -13,12 +13,15 @@ class Camera;
 
 class Scene {
     private:
-
-    public:
         Camera* camera;
         vector<Object*> objects;
-        Scene(const void (*cameraFunction)(Camera*, const float));
-        virtual void update(const float deltaTime);
+
+    public:
+        Scene(const void (*cameraFunction)(Camera*, const float, vector<Object*>*));
+        Camera* getCamera();
+        vector<Object*> *getObjects();
+        void addObject(Object*);
+        void update(const float deltaTime);
 };
 
 #endif

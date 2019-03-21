@@ -22,6 +22,8 @@ class Engine {
     public:
         static void initialize(Game&);
         static void run();
+        static void setCurrentScene(Scene*);
+        static Scene* getCurrentScene();
 };
 
 #endif

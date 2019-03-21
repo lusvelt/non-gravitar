@@ -1,7 +1,13 @@
-#include "Engine.hpp"
 #include <SFML/Graphics.hpp>
+#include "Engine.hpp"
 
 using namespace sf;
+
+Clock Engine::clock;
+RenderWindow *Engine::window;
+Scene *Engine::currentScene;
+Camera *Engine::camera;
+Game *Engine::game;
 
 void Engine::initialize(Game& game) {
     Engine::window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
@@ -17,7 +23,31 @@ void Engine::run() {
                 window->close();
 
         float deltaTime = clock.restart().asSeconds();
-        Engine::currentScene->camera->update(deltaTime);
+        
         game->update(deltaTime);
+        Camera* currentCamera = Engine::currentScene->getCamera();
+        currentCamera->update(deltaTime);
+        Vector2f cameraPosition = currentCamera->getPosition();
+
+        vector<Object*> *objects = Engine::currentScene->getObjects();
+        for (vector<Object*>::iterator obj = objects->begin(); obj != objects->end(); ++obj) {
+            Vector2f objPosition = (*obj)->getPosition();
+            (*obj)->update(deltaTime);
+            Shape* objShape = (*obj)->getShape();
+            objShape->setPosition(Vector2f(objPosition - cameraPosition));
+            objShape->setRotation((*obj)->getRotation());
+            window->clear(Color::Black);
+            window->draw(*objShape);
+            window->display();
+        }
+
     }
+}
+
+void Engine::setCurrentScene(Scene* currentScene) {
+    Engine::currentScene = currentScene;
+}
+
+Scene* Engine::getCurrentScene() {
+    return Engine::currentScene;
 }

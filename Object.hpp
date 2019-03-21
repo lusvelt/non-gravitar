@@ -18,8 +18,9 @@ class Object {
     public:
         Object(Shape* shape, Vector2f position, float rotation);
         Vector2f getPosition();
-        virtual Shape* getShape();
-        virtual void update(const float deltaTime);
+        Shape* getShape();
+        float getRotation();
+        virtual void update(const float deltaTime) = 0;
 
 };
 

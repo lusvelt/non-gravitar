@@ -21,3 +21,7 @@ Shape* Object::getShape() {
 Vector2f Object::getPosition() {
     return this->position;
 }
+
+float Object::getRotation() {
+    return this->rotation;
+}

@@ -9,9 +9,7 @@ using namespace std;
 using namespace sf;
 
 ConvexShape* Spaceship::buildShape() {
-    ConvexShape* shape;
-
-    shape->setPointCount(4);
+    ConvexShape* shape = new ConvexShape(4);
 
     shape->setPoint(0, Vector2f(-3.f, 0.f));
     shape->setPoint(1, Vector2f(-10.f, 10.f));
@@ -25,7 +23,7 @@ ConvexShape* Spaceship::buildShape() {
     return shape;
 }
 
-Spaceship::Spaceship() : Object(Spaceship::buildShape(), Vector2f(0.f, 0.f), 0.f) { }
+Spaceship::Spaceship() : Object(Spaceship::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f) { }
 
 void Spaceship::resetAccelerationAndAngularSpeed() {
     acceleration.x = 0.f;

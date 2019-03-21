@@ -1,7 +1,9 @@
 #ifndef _PLANET_H_
 #define _PLANET_H_
 
-class Planet : Scene {
+#include "Scene.hpp"
+
+class Planet : public Scene {
     public:
         Planet();
 };

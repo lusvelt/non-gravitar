@@ -11,5 +11,4 @@ int main() {
     Game game = Game();
     Engine::initialize(game);
     Engine::run();
-    return 0;
 }
