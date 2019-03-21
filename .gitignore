@@ -33,3 +33,4 @@
 
 NonGravitar
 .vscode/ipch
+*.dSYM/

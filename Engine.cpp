@@ -29,6 +29,7 @@ void Engine::run() {
         currentCamera->update(deltaTime);
         Vector2f cameraPosition = currentCamera->getPosition();
 
+        window->clear(Color::Black);
         vector<Object*> *objects = Engine::currentScene->getObjects();
         for (vector<Object*>::iterator obj = objects->begin(); obj != objects->end(); ++obj) {
             Vector2f objPosition = (*obj)->getPosition();
@@ -36,11 +37,10 @@ void Engine::run() {
             Shape* objShape = (*obj)->getShape();
             objShape->setPosition(Vector2f(objPosition - cameraPosition));
             objShape->setRotation((*obj)->getRotation());
-            window->clear(Color::Black);
+            Vector2f shapePosition = objShape->getPosition();
             window->draw(*objShape);
-            window->display();
         }
-
+        window->display();
     }
 }
 
