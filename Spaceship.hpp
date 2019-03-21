@@ -15,7 +15,7 @@ class Spaceship : public Object {
         void rotateLeft();
         void rotateRight();
         void updateTransform(const float deltaTime);
-        static ConvexShape* buildShape();
+        Shape* buildShape();
 
     public:
         Spaceship();

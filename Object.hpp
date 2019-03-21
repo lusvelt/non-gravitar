@@ -14,6 +14,7 @@ class Object {
         float rotation;
         float angularSpeed;
         Shape* shape;
+        virtual Shape* buildShape() = 0;
 
     public:
         Object(Shape* shape, Vector2f position, float rotation);

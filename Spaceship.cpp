@@ -8,7 +8,7 @@
 using namespace std;
 using namespace sf;
 
-ConvexShape* Spaceship::buildShape() {
+Shape* Spaceship::buildShape() {
     ConvexShape* shape = new ConvexShape(4);
 
     shape->setPoint(0, Vector2f(-3.f, 0.f));
