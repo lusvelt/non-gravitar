@@ -5,6 +5,7 @@
 #include "Camera.hpp"
 #include "Scene.hpp"
 #include "Engine.hpp"
+#include "Bunker.hpp"
 
 using namespace sf;
 
@@ -19,9 +20,10 @@ Game::Game() {
     lives = LIVES_START_VALUE;
 
     Spaceship* spaceship = new Spaceship();
-    Spaceship* spaceship2 = new Spaceship();
+    Bunker* bunker = new Bunker();
     Scene* testScene = new Scene(&cameraFunction);
     testScene->addObject(spaceship);
+    testScene->addObject(bunker);
     this->scenes.push_back(testScene);
     Engine::setCurrentScene(testScene);
 }

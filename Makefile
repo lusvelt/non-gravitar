@@ -1,5 +1,8 @@
-non-gravitar: Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o
-	g++ -o NonGravitar Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o -lsfml-graphics -lsfml-window -lsfml-system
+non-gravitar: Bunker.o Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o
+	g++ -o NonGravitar Bunker.o Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o -lsfml-graphics -lsfml-window -lsfml-system
+
+Bunker.o: Bunker.cpp
+	g++ -c Bunker.cpp
 
 Camera.o: Camera.cpp
 	g++ -c Camera.cpp
