@@ -1,21 +1,53 @@
+#include <algorithm>
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "Engine.hpp"
+#include "Object.hpp"
 
 using namespace sf;
+using namespace std;
 
 Clock Engine::clock;
 RenderWindow *Engine::window;
 Scene *Engine::currentScene;
-Camera *Engine::camera;
 Game *Engine::game;
+vector<Object*> Engine::potentialColliders;
 
 void Engine::initialize(Game& game) {
     Engine::window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
     Engine::game = &game;
 }
 
+void Engine::draw(Object* obj) {
+    Vector2f objPosition = obj->getPosition();
+    Vector2f cameraPosition = Engine::currentScene->getCamera()->getPosition();
+    Shape *objShape = obj->getShape();
+    objShape->setPosition(Vector2f(objPosition - cameraPosition));
+    objShape->setRotation(obj->getRotation());
+    Vector2f shapePosition = objShape->getPosition();
+    window->draw(*objShape);
+}
+
+void Engine::checkCollisions(Object* obj) {
+    for (int i = 0; i < potentialColliders.size(); i++) {
+        Object* potentialCollider = potentialColliders.at(i);
+        if (obj->getShape()->getGlobalBounds().intersects(potentialCollider->getShape()->getGlobalBounds())) {
+            obj->onCollisionEnter(potentialCollider);
+            potentialCollider->onCollisionEnter(obj);
+        }
+    }
+    potentialColliders.push_back(obj);
+}
+
+void Engine::drawAndCheckCollisions(Object* obj) {
+    if (!Engine::isOutOfBounds(obj)) {
+        Engine::draw(obj);
+        Engine::checkCollisions(obj);
+    }
+} 
+
 void Engine::run() {
-    Engine::clock.restart();
+    clock.restart();
     while (window->isOpen()) {
         Event event;
         while (window->pollEvent(event))
@@ -25,21 +57,17 @@ void Engine::run() {
         float deltaTime = clock.restart().asSeconds();
         
         game->update(deltaTime);
-        Camera* currentCamera = Engine::currentScene->getCamera();
-        currentCamera->update(deltaTime);
-        Vector2f cameraPosition = currentCamera->getPosition();
+        currentScene->getCamera()->update(deltaTime);
 
         window->clear(Color::Black);
-        vector<Object*> *objects = Engine::currentScene->getObjects();
-        for (vector<Object*>::iterator obj = objects->begin(); obj != objects->end(); ++obj) {
-            Vector2f objPosition = (*obj)->getPosition();
-            (*obj)->update(deltaTime);
-            Shape* objShape = (*obj)->getShape();
-            objShape->setPosition(Vector2f(objPosition - cameraPosition));
-            objShape->setRotation((*obj)->getRotation());
-            Vector2f shapePosition = objShape->getPosition();
-            window->draw(*objShape);
+        vector<Object*> *objects = currentScene->getObjects();
+        for (int i = 0; i < objects->size(); i++) {
+            Object* obj = objects->at(i);
+            obj->update(deltaTime);
+            obj->updateTransform(deltaTime);
+            drawAndCheckCollisions(obj);
         }
+        potentialColliders.clear();
         window->display();
     }
 }
@@ -49,5 +77,27 @@ void Engine::setCurrentScene(Scene* currentScene) {
 }
 
 Scene* Engine::getCurrentScene() {
-    return Engine::currentScene;
+    return currentScene;
+}
+
+void Engine::addObjectToCurrentScene(Object* obj) {
+    currentScene->addObject(obj);
+}
+
+void Engine::removeObjectFromCurrentScene(Object* obj) {
+    vector<Object *> *objects = currentScene->getObjects();
+    objects->erase(remove(objects->begin(), objects->end(), obj), objects->end());
+}
+
+bool Engine::isOutOfBounds(Object* obj) {
+    Vector2f objPosition = obj->getPosition() - currentScene->getCamera()->getPosition();
+    return objPosition.x < -OUT_OF_BOUNDS_OFFSET_X ||
+           objPosition.x > WINDOW_WIDTH + OUT_OF_BOUNDS_OFFSET_X ||
+           objPosition.y < -OUT_OF_BOUNDS_OFFSET_Y ||
+           objPosition.y > WINDOW_HEIGHT + OUT_OF_BOUNDS_OFFSET_Y;
+}
+
+void Engine::checkAndRemoveIfOutOfBounds(Object* obj) {
+    if (isOutOfBounds(obj))
+        delete obj;
 }

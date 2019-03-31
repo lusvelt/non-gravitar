@@ -8,6 +8,7 @@
 #include "Game.hpp"
 #include "Scene.hpp"
 #include "Camera.hpp"
+#include "Object.hpp"
 
 using namespace sf;
 
@@ -16,14 +17,21 @@ class Engine {
         static Clock clock;
         static RenderWindow *window;
         static Scene *currentScene;
-        static Camera *camera;
         static Game *game;
+        static void draw(Object*);
+        static vector<Object*> potentialColliders;
+        static void checkCollisions(Object*);
+        static void drawAndCheckCollisions(Object*);
 
     public:
         static void initialize(Game&);
         static void run();
         static void setCurrentScene(Scene*);
         static Scene* getCurrentScene();
+        static void addObjectToCurrentScene(Object*);
+        static void removeObjectFromCurrentScene(Object*);
+        static bool isOutOfBounds(Object*);
+        static void checkAndRemoveIfOutOfBounds(Object*);
 };
 
 #endif

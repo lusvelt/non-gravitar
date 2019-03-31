@@ -12,7 +12,6 @@ using namespace std;
 Shape* Bunker::buildShape(){
     ConvexShape* shape = new ConvexShape(8);
 
-    //Descriviamo la forma del Bunker.
     shape->setPoint(0, Vector2f(-100.f, -60.f));
     shape->setPoint(1, Vector2f(-60.f, 10.f));
     shape->setPoint(2, Vector2f(-20.f, 20.f));
@@ -29,6 +28,13 @@ Shape* Bunker::buildShape(){
     return shape;
 };
 
-Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f){ }
+Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f) {
+    this->tag = "Bunker";
+}
 
-void Bunker::update(const float deltaTime) {}
+void Bunker::update(const float deltaTime) { }
+
+void Bunker::onCollisionEnter(Object* collider) {
+    if (collider->compareTag("Bullet"))
+        delete this;
+}

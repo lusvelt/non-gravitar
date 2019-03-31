@@ -9,13 +9,14 @@ using namespace sf;
 
 class Spaceship : public Object {
     private:
+        float shootCd;
         void resetAccelerationAndAngularSpeed();
         void accelerateForward();
         void accelerateBackward();
         void rotateLeft();
         void rotateRight();
-        void updateTransform(const float deltaTime);
         Shape* buildShape();
+        void shoot();
 
     public:
         Spaceship();

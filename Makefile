@@ -1,5 +1,8 @@
-non-gravitar: Bunker.o Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o
-	g++ -o NonGravitar Bunker.o Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o -lsfml-graphics -lsfml-window -lsfml-system
+non-gravitar: Bullet.o Bunker.o Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o
+	g++ -o NonGravitar Bullet.o Bunker.o Camera.o Engine.o Game.o NonGravitar.o Object.o Scene.o SolarSystem.o Spaceship.o -lsfml-graphics -lsfml-window -lsfml-system
+
+Bullet.o: Bullet.cpp
+	g++ -c Bullet.cpp
 
 Bunker.o: Bunker.cpp
 	g++ -c Bunker.cpp
@@ -27,6 +30,9 @@ SolarSystem.o: SolarSystem.cpp
 
 Spaceship.o: Spaceship.cpp
 	g++ -c Spaceship.cpp
+
+run:
+	make && ./NonGravitar
 
 debug:
 	g++ -g *.cpp -lsfml-graphics -lsfml-window -lsfml-system

@@ -19,15 +19,11 @@ Game::Game() {
     fuel = FUEL_START_VALUE;
     lives = LIVES_START_VALUE;
 
-    Spaceship* spaceship = new Spaceship();
-    Bunker* bunker = new Bunker();
     Scene* testScene = new Scene(&cameraFunction);
-    testScene->addObject(spaceship);
-    testScene->addObject(bunker);
-    this->scenes.push_back(testScene);
     Engine::setCurrentScene(testScene);
+    Spaceship* spaceship = new Spaceship();
+    // Bunker* bunker = new Bunker();
+    this->scenes.push_back(testScene);
 }
 
-void Game::update(const float deltaTime) {
-
-}
+void Game::update(const float deltaTime) { }

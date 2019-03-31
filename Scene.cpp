@@ -2,6 +2,7 @@
 #include "Camera.hpp"
 #include "Object.hpp"
 #include <vector>
+#include <iostream>
 
 Scene::Scene(const void (*cameraFunction)(Camera*, const float, vector<Object*>*)) {
     this->camera = new Camera(cameraFunction);

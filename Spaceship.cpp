@@ -1,11 +1,11 @@
-#include <iostream>
 #include <cmath>
 #include <SFML/Window.hpp>
 #include "Declarations.hpp"
 #include "Spaceship.hpp"
 #include "Game.hpp"
+#include "Bullet.hpp"
+#include "Engine.hpp"
 
-using namespace std;
 using namespace sf;
 
 Shape* Spaceship::buildShape() {
@@ -23,7 +23,11 @@ Shape* Spaceship::buildShape() {
     return shape;
 }
 
-Spaceship::Spaceship() : Object(Spaceship::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f) { }
+Spaceship::Spaceship():
+    Object(Spaceship::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f) {
+    this->shootCd = 0;
+    this->tag = "Spaceship";
+}
 
 void Spaceship::resetAccelerationAndAngularSpeed() {
     acceleration.x = 0.f;
@@ -49,17 +53,6 @@ void Spaceship::rotateRight() {
     angularSpeed = ANGULAR_SPEED_MODULE;
 }
 
-void Spaceship::updateTransform(const float deltaTime) {
-    speed.x += acceleration.x * deltaTime;
-    speed.y += acceleration.y * deltaTime;
-
-    position.x += speed.x * deltaTime;
-    position.y += speed.y * deltaTime;
-    rotation += angularSpeed * deltaTime;
-
-    shape->setPosition(position);
-    shape->setRotation(rotation);
-}
 
 void Spaceship::update(const float deltaTime) {
     resetAccelerationAndAngularSpeed();
@@ -71,5 +64,15 @@ void Spaceship::update(const float deltaTime) {
         rotateLeft();
     if (Keyboard::isKeyPressed(Keyboard::Right))
         rotateRight();
-    updateTransform(deltaTime);
+    if (Keyboard::isKeyPressed(Keyboard::Space) && shootCd <= 0)
+        shoot();
+    
+    if (shootCd > 0)
+        shootCd -= deltaTime;
+}
+
+void Spaceship::shoot() {
+    Vector2f versor = Vector2f(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
+    Bullet *bullet = new Bullet(this->position + 10.f * versor, BULLET_BASE_SPEED * versor);
+    this->shootCd = SPACESHIP_SHOOT_COOLDOWN;
 }

@@ -14,12 +14,14 @@ using namespace std;
 
 class Bunker : public Object {
     protected:
-        static Shape* buildShape();
+        Shape* buildShape();
         int lifePoints;
+
     public:
         Bunker();
         // virtual vector<Bullet*> shoot();
         virtual void update(const float);
+        virtual void onCollisionEnter(Object*);
 };
 
 #endif
