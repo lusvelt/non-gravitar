@@ -38,4 +38,4 @@ debug:
 	g++ -g *.cpp -lsfml-graphics -lsfml-window -lsfml-system
 
 clean:
-	rm *.o NonGravitar *.exe
+	rm -f *.o NonGravitar *.exe

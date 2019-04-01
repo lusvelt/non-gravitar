@@ -22,7 +22,7 @@ Game::Game() {
     Scene* testScene = new Scene(&cameraFunction);
     Engine::setCurrentScene(testScene);
     Spaceship* spaceship = new Spaceship();
-    // Bunker* bunker = new Bunker();
+    Bunker* bunker = new Bunker();
     this->scenes.push_back(testScene);
 }
 
