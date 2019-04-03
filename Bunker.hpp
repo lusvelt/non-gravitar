@@ -16,10 +16,12 @@ class Bunker : public Object {
     protected:
         Shape* buildShape();
         int lifePoints;
+        int maxLifePoints;
+        float bunkerShootTime;
 
     public:
         Bunker();
-        // virtual vector<Bullet*> shoot();
+        // virtual void shoot();
         virtual void update(const float);
         virtual void onCollisionEnter(Object*);
 };
