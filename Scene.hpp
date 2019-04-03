@@ -17,7 +17,7 @@ class Scene {
         vector<Object*> objects;
 
     public:
-        Scene(const void (*cameraFunction)(Camera*, const float, vector<Object*>*));
+        Scene(const void (*cameraFunction)(Camera*, const float , vector<Object*>*));
         Camera* getCamera();
         vector<Object*> *getObjects();
         void addObject(Object*);
