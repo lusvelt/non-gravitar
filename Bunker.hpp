@@ -2,10 +2,10 @@
 #define _BUNKER_H_
 
 #include <SFML/Graphics.hpp>
-#include <vector>
 #include "Bullet.hpp"
 #include "Object.hpp"
 #include "Declarations.hpp"
+#include "LifePointsBar.hpp"
 
 using namespace sf;
 using namespace std;
@@ -15,11 +15,14 @@ using namespace std;
 class Bunker : public Object {
     protected:
         Shape* buildShape();
-        int lifePoints;
+        LifePointsBar* life;
+        /*int lifePoints;
+        int maxLifePoints;*/
+        float bunkerShootTime;
 
     public:
         Bunker();
-        // virtual vector<Bullet*> shoot();
+        // virtual void shoot();
         virtual void update(const float);
         virtual void onCollisionEnter(Object*);
 };

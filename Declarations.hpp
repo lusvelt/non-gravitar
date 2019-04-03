@@ -14,5 +14,6 @@
 #define OUT_OF_BOUNDS_OFFSET_Y 300
 #define MIN_PLANETS 2
 #define MAX_PLANETS 6
+#define BUNKER_SHOOT_COOLDOWN 0.99f
 
 #endif
