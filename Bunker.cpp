@@ -6,7 +6,7 @@
 #include "Declarations.hpp"
 #include "Bunker.hpp"
 #include "Object.hpp"
-
+#include "LifePointsBar.hpp"
 
 using namespace sf;
 using namespace std;
@@ -33,14 +33,15 @@ Shape* Bunker::buildShape(){
 Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 35.f), 180.f) {
     this->tag = "Bunker";
     this->bunkerShootTime = 0;
-    this->lifePoints = 300;
-    this->maxLifePoints = 300;
+    /*this->lifePoints = 300;
+    this->maxLifePoints = 300;*/
+    this->life = new lifeBar(300);
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
     if (collider->compareTag("Bullet"))
-        lifePoints -= maxLifePoints/4;
-        if(lifePoints <= 0) delete this;
+        life->decreasePoints(life->lifePoints)
+        if((life->lifePoints) <= 0) delete this;
 
 
 }
