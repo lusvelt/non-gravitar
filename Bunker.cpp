@@ -35,7 +35,7 @@ Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(BUNKER_WIDTH, BUNKER_HE
     this->bunkerShootTime = 0;
     /*this->lifePoints = 300;
     this->maxLifePoints = 300;*/
-    this->life = new LifePointsBar(300);
+    this->life = new LifePointsBar();
 }
 
 void Bunker::onCollisionEnter(Object* collider) {

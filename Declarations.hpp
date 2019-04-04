@@ -18,5 +18,6 @@
 #define MAX_LENGTH_LIFE_BARS 100.f
 #define BUNKER_WIDTH 400
 #define BUNKER_HEIGHT 550.f
+#define NUM_COLPI 10.f
 
 #endif

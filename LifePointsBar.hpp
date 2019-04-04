@@ -11,12 +11,11 @@ using namespace std;
 class LifePointsBar : public Object{
     private:
         Shape* buildShape();
-        float lifePoints;
-        float maxLifePoints;
         float length;
+        int hit;
     public:
         void update(const float);
-        LifePointsBar(float points);
+        LifePointsBar();
         void decreasePoints();
         bool controlLife();
 };
