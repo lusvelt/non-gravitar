@@ -12,10 +12,13 @@ class LifePointsBar : public Object{
     private:
         Shape* buildShape();
         float lifePoints;
+        float maxLifePoints;
+        float length;
     public:
         void update(const float);
         LifePointsBar(float points);
-        void decreasePoints(float danger);
+        void decreasePoints();
+        bool controlLife();
 };
 
 #endif

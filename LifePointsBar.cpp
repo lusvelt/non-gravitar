@@ -6,27 +6,33 @@ using namespace sf;
 using namespace std;
 
 Shape* LifePointsBar::buildShape(){
-    ConvexShape* shape = new ConvexShape(4);
-
-    shape->setPoint(0, Vector2f(-50.f, -1.f));
-    shape->setPoint(1, Vector2f(50.f, -1.f));
-    shape->setPoint(2, Vector2f(50.f, 1.f));
-    shape->setPoint(3, Vector2f(-50.f, 1.f));
-
-    shape->setOutlineThickness(1.f);
-    shape->setOutlineColor(Color::Green);
+    RectangleShape* shape = new RectangleShape(Vector2f(MAX_LENGTH_LIFE_BARS,2.f));
     shape->setFillColor(Color::Green);
 
     return shape;
 };
 
-LifePointsBar::LifePointsBar(int points) : Object(LifePointsBar::buildShape(),Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f){
-    this->lifePoints = 300f; //MODIFICA QUANDO AVRAI LE SOTTOCLASSI DEI BUNKER
+LifePointsBar::LifePointsBar(float points) : Object(LifePointsBar::buildShape(),Vector2f(BUNKER_WIDTH- 50.f, BUNKER_HEIGHT + 40.f), 0.f){
+    this->maxLifePoints = 300.f; //MODIFICA QUANDO AVRAI LE SOTTOCLASSI DEI BUNKER
+    this->lifePoints = 300.f;
+    this->length = MAX_LENGTH_LIFE_BARS;
 }
 
-void decreasePointsBar(float damage){
-    this->lifePoints -= damage;
+void LifePointsBar::decreasePoints(){
+    this->lifePoints -= maxLifePoints/4;
+    this->length -= MAX_LENGTH_LIFE_BARS/4;
+    this->shape = new RectangleShape(Vector2f(this->length,2.f));
+    shape->setFillColor(Color::Green);
+
+
+    if(this->controlLife()) delete this;
 }
+
+bool LifePointsBar::controlLife(){
+    if(this->lifePoints == 0) return true;
+    else return false;
+}
+
 
 void LifePointsBar::update(const float deltaTime){ }
 

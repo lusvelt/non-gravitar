@@ -30,20 +30,20 @@ Shape* Bunker::buildShape(){
     return shape;
 };
 
-Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 35.f), 180.f) {
+Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(BUNKER_WIDTH, BUNKER_HEIGHT), 180.f) {
     this->tag = "Bunker";
     this->bunkerShootTime = 0;
     /*this->lifePoints = 300;
     this->maxLifePoints = 300;*/
-    this->life = new lifeBar(300);
+    this->life = new LifePointsBar(300);
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
-    if (collider->compareTag("Bullet"))
-        life->decreasePoints(life->lifePoints)
-        if((life->lifePoints) <= 0) delete this;
+        if (collider->compareTag("Bullet")){
+            this->life->decreasePoints();
+        }
 
-
+        if(this->life->controlLife()) delete this;
 }
 
 /*void Bunker::shoot() {
