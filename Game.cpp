@@ -2,6 +2,7 @@
 
 #include "Object.hpp"
 #include "Game.hpp"
+#include "SolarSystem.hpp"
 #include "Camera.hpp"
 #include "Scene.hpp"
 #include "Engine.hpp"
@@ -19,11 +20,12 @@ Game::Game() {
     fuel = FUEL_START_VALUE;
     lives = LIVES_START_VALUE;
 
-    Scene* testScene = new Scene(&cameraFunction);
+    Scene* testScene = new SolarSystem();
     Engine::setCurrentScene(testScene);
     Spaceship* spaceship = new Spaceship();
     Bunker* bunker = new Bunker();
-    this->scenes.push_back(testScene);
+    this->scenes.push_back(testScene);   
+    
 }
 
 void Game::update(const float deltaTime) { }
