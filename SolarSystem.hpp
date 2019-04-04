@@ -12,7 +12,7 @@
 class SolarSystem : public Scene {
     private:
         Shape* buildShape();
-        vector<Planet*> planets;
+        vector<Planet*> vectorPlanets;;
 
     public:
         SolarSystem();
