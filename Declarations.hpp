@@ -15,5 +15,8 @@
 #define MIN_PLANETS 2
 #define MAX_PLANETS 2
 #define BUNKER_SHOOT_COOLDOWN 0.99f
+#define MAX_LENGTH_LIFE_BARS 100.f
+#define BUNKER_WIDTH 400
+#define BUNKER_HEIGHT 550.f
 
 #endif
