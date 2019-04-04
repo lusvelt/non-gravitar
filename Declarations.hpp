@@ -3,7 +3,7 @@
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
-#define WINDOW_TITLE "Non-Gravitar"
+#define WINDOW_TITLE "Non-Gravitar";
 #define FUEL_START_VALUE 10000
 #define LIVES_START_VALUE 5
 #define ACCELERATION_MODULE 50.f
@@ -13,7 +13,7 @@
 #define OUT_OF_BOUNDS_OFFSET_X 400
 #define OUT_OF_BOUNDS_OFFSET_Y 300
 #define MIN_PLANETS 2
-#define MAX_PLANETS 6
+#define MAX_PLANETS 2
 #define BUNKER_SHOOT_COOLDOWN 0.99f
 
 #endif
