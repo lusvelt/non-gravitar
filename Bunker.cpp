@@ -35,19 +35,25 @@ Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(BUNKER_WIDTH, BUNKER_HE
     this->bunkerShootTime = 0;
     this->life = new LifePointsBar(10.f);
     this->fireAngle = -MAX_RAY;
+    this->orario = true;
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
         if (collider->compareTag("Bullet")){
             this->life->decreasePoints();
         }
-
+        
         if(this->life->controlLife()) delete this;
 }
 
 void Bunker::studyFireAngle(){
-    fireAngle += FATTORE_SPOSTAMENTO_ANGOLARE_SPARO;
-    
+    if(orario){
+        fireAngle += FATTORE_SPOSTAMENTO_ANGOLARE_SPARO;
+        if(fireAngle >= MAX_RAY) orario = false;
+    }else{
+        fireAngle -= FATTORE_SPOSTAMENTO_ANGOLARE_SPARO;
+        if(fireAngle <= -MAX_RAY) orario = true;
+    }
 }
 
 void Bunker::shoot() {

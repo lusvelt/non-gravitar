@@ -18,6 +18,7 @@ class Bunker : public Object {
         LifePointsBar* life;
         float bunkerShootTime;
         float fireAngle;
+        bool orario;
 
     public:
         Bunker();
