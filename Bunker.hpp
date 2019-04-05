@@ -17,12 +17,14 @@ class Bunker : public Object {
         Shape* buildShape();
         LifePointsBar* life;
         float bunkerShootTime;
+        float fireAngle;
 
     public:
         Bunker();
         virtual void shoot();
         virtual void update(const float);
         virtual void onCollisionEnter(Object*);
+        virtual void studyFireAngle();
 };
 
 #endif

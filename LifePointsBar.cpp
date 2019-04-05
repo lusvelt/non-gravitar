@@ -18,6 +18,7 @@ LifePointsBar::LifePointsBar(float life) : Object(LifePointsBar::buildShape(),Ve
     this->length = LIFE_BARS_LENGTH;
     this->hit = 0;
     this->requiredHit = life;
+    this->tag = "lifePointsBar";
 }
 
 void LifePointsBar::decreasePoints(){
