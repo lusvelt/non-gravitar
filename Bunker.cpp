@@ -32,10 +32,13 @@ Shape* Bunker::buildShape(){
 
 Bunker::Bunker() : Object(Bunker::buildShape(), Vector2f(BUNKER_WIDTH, BUNKER_HEIGHT), 180.f) {
     this->tag = "Bunker";
+    this->bunkerCoolDown = 0.33f;
     this->bunkerShootTime = 0;
     this->life = new LifePointsBar(10.f);
-    this->fireAngle = -MAX_RAY;
     this->orario = true;
+    this->maxRay = 0.80f;
+    this->fireAngle = -maxRay;
+    this->angularFactor = 0.10f;
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
@@ -48,18 +51,18 @@ void Bunker::onCollisionEnter(Object* collider) {
 
 void Bunker::studyFireAngle(){
     if(orario){
-        fireAngle += FATTORE_SPOSTAMENTO_ANGOLARE_SPARO;
-        if(fireAngle >= MAX_RAY) orario = false;
+        fireAngle += angularFactor;
+        if(fireAngle >= this->maxRay) orario = false;
     }else{
-        fireAngle -= FATTORE_SPOSTAMENTO_ANGOLARE_SPARO;
-        if(fireAngle <= -MAX_RAY) orario = true;
+        fireAngle -= angularFactor;
+        if(fireAngle <= -this->maxRay) orario = true;
     }
 }
 
 void Bunker::shoot() {
     Vector2f versor = Vector2f(fireAngle, -1);
     Bullet *bullet = new Bullet(this->position + 45.f * versor, BULLET_BASE_SPEED * versor);
-    this->bunkerShootTime = BUNKER_SHOOT_COOLDOWN;
+    this->bunkerShootTime = this->bunkerCoolDown;
     this->studyFireAngle();
 }
 
