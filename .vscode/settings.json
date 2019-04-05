@@ -3,6 +3,8 @@
     "files.associations": {
         "__split_buffer": "cpp",
         "string": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iostream": "cpp",
+        "new": "cpp"
     }
 }

@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include "Declarations.hpp"
 #include "LifePointsBar.hpp"
-#include <iostream>
+//#include <iostream>
+
 
 using namespace sf;
 using namespace std;

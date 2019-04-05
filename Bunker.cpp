@@ -44,13 +44,13 @@ void Bunker::onCollisionEnter(Object* collider) {
         if(this->life->controlLife()) delete this;
 }
 
-/*void Bunker::shoot() {
+void Bunker::shoot() {
     Vector2f versor = Vector2f(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
     Bullet *bullet = new Bullet(this->position + 10.f * versor, this->speed + BULLET_BASE_SPEED * versor);
 }
-*/
+
 void Bunker::update(const float deltaTime) {
-   /* if (bunkerShootTime <= 0) shoot();
+    if (bunkerShootTime <= 0) shoot();
     if (bunkerShootTime > 0)
-        bunkerShootTime -= deltaTime;*/
+        bunkerShootTime -= deltaTime;
 }
