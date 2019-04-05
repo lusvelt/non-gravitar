@@ -1,9 +1,13 @@
 #include "Planet.hpp"
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 #include "Object.hpp"
+#include <vector>
 
 Shape* Planet::buildShape() {
     srand(time(NULL));
-    int diameter= rand()%70 + 10;
+    float diameter= rand()%70 + 10;
     CircleShape* shape= new CircleShape(diameter);
 
     shape->setFillColor(Color(rand()%255, rand()%255, rand()%255));
@@ -20,7 +24,6 @@ const void cameraFunction2(Camera* camera, const float deltaTime, vector<Object*
 
 Planet::Planet(Vector2f position): 
     Object(Planet::buildShape(), position, 0.f),
-    Scene(cameraFunction2) {
-}
+    Scene(cameraFunction2) { }
 
 void Planet::update(const float deltaTime) { }

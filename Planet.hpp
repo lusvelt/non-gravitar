@@ -2,6 +2,8 @@
 #define _PLANET_H_
 #include <SFML/Graphics.hpp>
 #include "Declarations.hpp"
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 #include "Scene.hpp"
 
 class Planet : public Scene, public Object {

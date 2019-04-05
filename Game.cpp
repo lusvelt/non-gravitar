@@ -4,6 +4,7 @@
 #include "Game.hpp"
 #include "SolarSystem.hpp"
 #include "Camera.hpp"
+#include "Planet.hpp"
 #include "Scene.hpp"
 #include "Engine.hpp"
 #include "Bunker.hpp"
@@ -23,7 +24,7 @@ Game::Game() {
     Scene* testScene = new SolarSystem();
     Engine::setCurrentScene(testScene);
     Spaceship* spaceship = new Spaceship();
-    Bunker* bunker = new Bunker();
+    Bunker* bunker = new Bunker();;
     this->scenes.push_back(testScene);   
     
 }

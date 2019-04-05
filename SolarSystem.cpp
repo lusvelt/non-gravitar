@@ -1,10 +1,12 @@
 #include <iostream>
 #include <cmath>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include <vector>
 #include "Camera.hpp"
 #include "Scene.hpp"
 #include "Planet.hpp"
-#include <SFML/Window.hpp>
 #include "Declarations.hpp"
 #include "SolarSystem.hpp"
 
@@ -15,23 +17,20 @@ const void cameraFunction1(Camera* camera, const float deltaTime, vector<Object*
 
 SolarSystem::SolarSystem() : Scene(cameraFunction1){
     srand(time(NULL));
-    int nPlanets = rand()%MIN_PLANETS + MAX_PLANETS;
-    int nColumns = nPlanets;
+    float nPlanets = rand()%MIN_PLANETS + MAX_PLANETS;
+    float nColumns = nPlanets;
     nPlanets = nPlanets * nPlanets ;
-
-    for(int i=0; i<=nPlanets; i++){
-        planets.push_back(new Planet(Vector2f(rand()%WINDOW_WIDTH, rand()%WINDOW_HEIGHT)));
-    }
+    vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
 
 }
 
-const void Division(int nPlanets,int nColumns){
-    int sizeBlockx= WINDOW_WIDTH/nColumns;
-    int sizeBlocky= WINDOW_HEIGHT/nColumns;
-    int xstart=0;
-    int ystart=0;
-    int xend=0;
-    int yend=0;
+/*const void Division(int nPlanets,int nColumns){
+    float sizeBlockx= WINDOW_WIDTH/nColumns;
+    float sizeBlocky= WINDOW_HEIGHT/nColumns;
+    float xstart=0;
+    float ystart=0;
+    float xend=0;
+    float yend=0;
     for(int i=0; i<= nPlanets; i++){
         for(int j=0;j<=nPlanets;j++){
             xstart= j * sizeBlockx;
@@ -39,14 +38,8 @@ const void Division(int nPlanets,int nColumns){
             xend= xstart + sizeBlockx;
             yend= ystart + sizeBlocky; 
         }
-        planets.push_back(new Planet(Vector2f(rand()%xend+xstart, rand()%yend+ystart)));
-
-        
     }
-
-
-
-}
+}*/
 
 void SolarSystem::update(const float deltaTime) { 
 

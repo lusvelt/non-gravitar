@@ -1,6 +1,8 @@
 #ifndef _SOLAR_SYSTEM_H_
 #define _SOLAR_SYSTEM_H_
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/System.hpp>
 #include "Declarations.hpp"
 #include <vector>
 #include "Planet.hpp"
@@ -11,9 +13,7 @@
 
 class SolarSystem : public Scene {
     private:
-        Shape* buildShape();
-        vector<Planet*> planets;
-
+        vector<Planet*> vectorPlanets;
     public:
         SolarSystem();
         virtual void update(const float);
