@@ -20,7 +20,7 @@ SolarSystem::SolarSystem() : Scene(cameraFunction1){
     float nPlanets = rand()%MIN_PLANETS + MAX_PLANETS;
     float nColumns = nPlanets;
     nPlanets = nPlanets * nPlanets ;
-    vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
+    //vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
 
 }
 
