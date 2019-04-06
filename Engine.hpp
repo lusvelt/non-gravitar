@@ -4,6 +4,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <queue>
 #include "Declarations.hpp"
 #include "Game.hpp"
 #include "Scene.hpp"
@@ -18,6 +19,8 @@ class Engine {
         static RenderWindow *window;
         static Scene *currentScene;
         static Game *game;
+        static queue<Object*> objectsQueue;
+        static bool preparingScene;
         static void draw(Object*);
         static vector<Object*> potentialColliders;
         static void checkCollisions(Object*);
@@ -32,6 +35,8 @@ class Engine {
         static void removeObjectFromCurrentScene(Object*);
         static bool isOutOfBounds(Object*);
         static void checkAndRemoveIfOutOfBounds(Object*);
+        static void startPreparingScene();
+
 };
 
 #endif

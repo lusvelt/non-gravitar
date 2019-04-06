@@ -1,10 +1,12 @@
 #include "Scene.hpp"
 #include "Camera.hpp"
 #include "Object.hpp"
+#include "Engine.hpp"
 #include <vector>
 #include <iostream>
 
 Scene::Scene(const void (*cameraFunction)(Camera*, const float, vector<Object*>*)) {
+    Engine::startPreparingScene();
     this->camera = new Camera(cameraFunction);
     this->objects = vector<Object*>();
 }

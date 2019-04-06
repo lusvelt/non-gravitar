@@ -9,6 +9,7 @@
 #include "Planet.hpp"
 #include "Declarations.hpp"
 #include "SolarSystem.hpp"
+#include "Bunker.hpp"
 
 using namespace std;
 using namespace sf;
@@ -17,10 +18,12 @@ const void cameraFunction1(Camera* camera, const float deltaTime, vector<Object*
 
 SolarSystem::SolarSystem() : Scene(cameraFunction1){
     srand(time(NULL));
-    float nPlanets = rand()%MIN_PLANETS + MAX_PLANETS;
+    float nPlanets = rand() % MIN_PLANETS + MAX_PLANETS;
     float nColumns = nPlanets;
-    nPlanets = nPlanets * nPlanets ;
-    //vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
+    nPlanets = nPlanets * nPlanets;
+    this->addObject(new Spaceship());
+    this->addObject(new Bunker());
+    vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
 
 }
 

@@ -23,8 +23,6 @@ Game::Game() {
 
     Scene* testScene = new SolarSystem();
     Engine::setCurrentScene(testScene);
-    Spaceship* spaceship = new Spaceship();
-    Bunker* bunker = new Bunker();;
     this->scenes.push_back(testScene);   
     
 }

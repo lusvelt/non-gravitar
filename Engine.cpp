@@ -9,7 +9,9 @@ using namespace std;
 
 Clock Engine::clock;
 RenderWindow *Engine::window;
-Scene *Engine::currentScene;
+Scene *Engine::currentScene = NULL;
+bool Engine::preparingScene = false;
+queue<Object*> Engine::objectsQueue;
 Game *Engine::game;
 vector<Object*> Engine::potentialColliders;
 
@@ -74,6 +76,11 @@ void Engine::run() {
 
 void Engine::setCurrentScene(Scene* currentScene) {
     Engine::currentScene = currentScene;
+    preparingScene = false;
+    while (!objectsQueue.empty()) {
+        currentScene->addObject(objectsQueue.front());
+        objectsQueue.pop();
+    }
 }
 
 Scene* Engine::getCurrentScene() {
@@ -81,7 +88,10 @@ Scene* Engine::getCurrentScene() {
 }
 
 void Engine::addObjectToCurrentScene(Object* obj) {
-    currentScene->addObject(obj);
+    if (!preparingScene)
+        currentScene->addObject(obj);
+    else
+        objectsQueue.push(obj);
 }
 
 void Engine::removeObjectFromCurrentScene(Object* obj) {
@@ -100,4 +110,8 @@ bool Engine::isOutOfBounds(Object* obj) {
 void Engine::checkAndRemoveIfOutOfBounds(Object* obj) {
     if (isOutOfBounds(obj))
         delete obj;
+}
+
+void Engine::startPreparingScene() {
+    preparingScene = true;
 }
