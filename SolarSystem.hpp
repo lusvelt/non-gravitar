@@ -16,6 +16,7 @@ class SolarSystem : public Scene {
         vector<Planet*> vectorPlanets;
     public:
         SolarSystem();
+        const void Division(int,int);
         virtual void update(const float);
 };
 

@@ -17,33 +17,36 @@ using namespace sf;
 const void cameraFunction1(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {}
 
 SolarSystem::SolarSystem() : Scene(cameraFunction1){
-    srand(time(NULL));
-    float nPlanets = rand() % MIN_PLANETS + MAX_PLANETS;
-    float nColumns = nPlanets;
-    nPlanets = nPlanets * nPlanets;
+    int nPlanets = 9;
+    int nColumns = 3;
     this->addObject(new Spaceship());
     this->addObject(new Bunker());
-    vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
-
+    this->Division(nPlanets,nColumns);
+    //vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
 }
 
-/*const void Division(int nPlanets,int nColumns){
-    float sizeBlockx= WINDOW_WIDTH/nColumns;
-    float sizeBlocky= WINDOW_HEIGHT/nColumns;
-    float xstart=0;
-    float ystart=0;
-    float xend=0;
-    float yend=0;
-    for(int i=0; i<= nPlanets; i++){
-        for(int j=0;j<=nPlanets;j++){
+const void SolarSystem::Division(int nPlanets,int nColumns){
+    int sizeBlockx= WINDOW_WIDTH/nColumns;
+    int sizeBlocky= WINDOW_HEIGHT/nColumns;
+    int xstart=0;
+    int ystart=0;
+    //int xend=0;
+    //int yend=0;
+    for(int i=0; i< nPlanets/nColumns; i++){
+        for(int j=0;j<nPlanets/nColumns;j++){
+            srand(time(NULL));
             xstart= j * sizeBlockx;
             ystart= i * sizeBlocky;
-            xend= xstart + sizeBlockx;
-            yend= ystart + sizeBlocky; 
+            int k= rand();
+            int q=rand();
+            //xend= xstart + sizeBlockx;
+            //yend= ystart + sizeBlocky; 
+            vectorPlanets.push_back(new Planet(Vector2f(xstart + k%sizeBlockx,ystart + q%sizeBlocky)));
         }
     }
-}*/
+} 
 
 void SolarSystem::update(const float deltaTime) { 
 
 };
+ 

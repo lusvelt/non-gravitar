@@ -7,11 +7,11 @@
 
 Shape* Planet::buildShape() {
     srand(time(NULL));
-    float diameter= rand()%70 + 10;
+    float diameter= rand()%20 + 10;
     CircleShape* shape= new CircleShape(diameter);
 
     shape->setFillColor(Color(rand()%255, rand()%255, rand()%255));
-    shape->setOutlineThickness(rand()%20);
+    shape->setOutlineThickness(rand()%8);
     shape->setOutlineColor(Color(rand()%255, rand()%255, rand()%255));
 
     return shape;
