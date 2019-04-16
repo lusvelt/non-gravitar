@@ -1,5 +1,5 @@
-#ifndef _BUNKER_H_
-#define _BUNKER_H_
+#ifndef _BUNKER_H
+#define _BUNKER_H
 
 #include <SFML/Graphics.hpp>
 #include "Bullet.hpp"
@@ -11,24 +11,22 @@ using namespace sf;
 using namespace std;
 
 
-
 class Bunker : public Object {
     protected:
-        Shape* buildShape();
+        virtual Shape* buildShape() = 0;
         LifePointsBar* life;
         float bunkerShootTime;
         float fireAngle;
         float maxRay;
         float angularFactor;
         float bunkerCoolDown;
-        bool orario;
-
     public:
-        Bunker();
-        virtual void shoot();
-        virtual void update(const float);
-        virtual void onCollisionEnter(Object*);
-        virtual void studyFireAngle();
+        Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown);
+        void shoot();
+        void update(const float);
+        void onCollisionEnter(Object*);
+        virtual void studyFireAngle() = 0;
 };
+
 
 #endif

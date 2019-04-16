@@ -33,7 +33,7 @@ void Engine::draw(Object* obj) {
 void Engine::checkCollisions(Object* obj) {
     for (int i = 0; i < potentialColliders.size(); i++) {
         Object* potentialCollider = potentialColliders.at(i);
-        if (obj->getShape()->getGlobalBounds().intersects(potentialCollider->getShape()->getGlobalBounds())) {
+        if (obj != potentialCollider && obj->getShape()->getGlobalBounds().intersects(potentialCollider->getShape()->getGlobalBounds())) {
             obj->onCollisionEnter(potentialCollider);
             potentialCollider->onCollisionEnter(obj);
         }
@@ -97,6 +97,7 @@ void Engine::addObjectToCurrentScene(Object* obj) {
 void Engine::removeObjectFromCurrentScene(Object* obj) {
     vector<Object *> *objects = currentScene->getObjects();
     objects->erase(remove(objects->begin(), objects->end(), obj), objects->end());
+    potentialColliders.erase(remove(objects->begin(), objects->end(), obj), objects->end());
 }
 
 bool Engine::isOutOfBounds(Object* obj) {

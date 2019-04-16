@@ -21,6 +21,6 @@ void Bullet::update(const float deltaTime) {
 
 void Bullet::onCollisionEnter(Object* collider) {
     string x = collider->getTag();
-    if (!collider->compareTag("Spaceship") && !collider->compareTag("lifePointsBar") && !collider->compareTag("Bullet"))
+    if (!collider->compareTag("Spaceship") && !collider->compareTag("LifePointsBar") && !collider->compareTag("Bullet"))
         delete this;
 }
