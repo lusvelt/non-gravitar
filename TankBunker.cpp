@@ -12,7 +12,7 @@
 using namespace std;
 using namespace sf;
 
-TankBunker::TankBunker() : Bunker(buildShape(), 20, 0.30f, 0.50f, 1.f) {}
+TankBunker::TankBunker() : Bunker(buildShape(), 20, 45.f, 45.f, 1.f) {}
 
 Shape* TankBunker::buildShape() {
 
@@ -36,6 +36,6 @@ Shape* TankBunker::buildShape() {
 
 void TankBunker::studyFireAngle() {
     fireAngle += angularFactor;
-    if (abs(fireAngle) > maxRay)
+    if (abs(fireAngle) >= maxRay)
         angularFactor *= (float)(-1);
 }

@@ -1,8 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Declarations.hpp"
 #include "LifePointsBar.hpp"
-#include <iostream>
-
+#include "Engine.hpp"
 
 using namespace sf;
 using namespace std;
@@ -16,20 +15,20 @@ Shape* LifePointsBar::buildShape(){
 
 LifePointsBar::LifePointsBar(int life) : Object(LifePointsBar::buildShape(),Vector2f(BUNKER_WIDTH - 50.f, BUNKER_HEIGHT + 40.f), 0.f){
     this->length = LIFE_BARS_LENGTH;
-    this->hit = 0;
-    this->requiredHit = life;
+    this->hits = 0;
+    this->requiredHits = life;
     this->tag = "LifePointsBar";
 }
 
 void LifePointsBar::decreasePoints(){
-    this->shape->setScale(1-1/(float)(this->requiredHit)-hit/(float)(this->requiredHit),1.f);
-    this->hit++;
-    cout << "Decreasing" << endl;
-    if(this->controlLife()) delete this;
+    this->shape->setScale(1-1/(float)(this->requiredHits)-hits/(float)(this->requiredHits),1.f);
+    this->hits++;
+    if (this->hasEnded())
+        Engine::destroy(this);
 }
 
-bool LifePointsBar::controlLife(){
-    if(this->hit == this->requiredHit) return true;
+bool LifePointsBar::hasEnded(){
+    if (this->hits >= this->requiredHits) return true;
     else return false;
 }
 

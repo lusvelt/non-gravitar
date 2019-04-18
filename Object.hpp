@@ -18,19 +18,22 @@ class Object {
         string tag;
         Shape* shape;
         virtual Shape* buildShape() = 0;
+        Object* prevPointer;
 
     public:
         Object(Shape* shape, Vector2f position, float rotation);
+        Object(Object*);
         virtual ~Object();
         Vector2f getPosition();
         string getTag();
         bool compareTag(string);
         Shape* getShape();
         float getRotation();
+        Object* getPrevPointer();
         virtual void updateTransform(const float);
         virtual void onCollisionEnter(Object*);
         virtual void update(const float deltaTime) = 0;
-
+        bool isAClone();
 };
 
 #endif

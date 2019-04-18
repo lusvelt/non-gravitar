@@ -25,6 +25,9 @@ class Engine {
         static vector<Object*> potentialColliders;
         static void checkCollisions(Object*);
         static void drawAndCheckCollisions(Object*);
+        static vector<Object*> removedObjects;
+        static bool hasJustBeenRemoved(Object*);
+        static void emptyRemovedObjectsVector();
 
     public:
         static void initialize(Game&);
@@ -36,6 +39,7 @@ class Engine {
         static bool isOutOfBounds(Object*);
         static void checkAndRemoveIfOutOfBounds(Object*);
         static void startPreparingScene();
+        static void destroy(Object*);
 
 };
 

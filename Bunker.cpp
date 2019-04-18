@@ -9,6 +9,7 @@
 #include "Bunker.hpp"
 #include "Object.hpp"
 #include "LifePointsBar.hpp"
+#include "Engine.hpp"
 
 using namespace sf;
 using namespace std;
@@ -25,10 +26,12 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
 
 void Bunker::onCollisionEnter(Object* collider) {
         if (collider->compareTag("Bullet")){
-            this->life->decreasePoints();
+            if (((Bullet*) collider)->compareSourceTag("Spaceship"))
+                life->decreasePoints();
         }
         
-        if(this->life->controlLife()) delete this;
+        if (life->hasEnded())
+            Engine::destroy(this);
 }
 
 void Bunker::update(const float deltaTime) {
@@ -37,8 +40,8 @@ void Bunker::update(const float deltaTime) {
 }
 
 void Bunker::shoot() {
-    Vector2f versor = Vector2f(cos(fireAngle), -sin(fireAngle));
-    Bullet *bullet = new Bullet(this->position + 45.f * versor, BULLET_BASE_SPEED * versor);
+    Vector2f versor = Vector2f(cos((fireAngle + 90) * M_PI / 180), -sin((fireAngle + 90) * M_PI / 180));
+    Bullet *bullet = new Bullet(this->position + 45.f * versor, BULLET_BASE_SPEED * versor, tag);
     this->bunkerShootTime = this->bunkerCoolDown;
     this->studyFireAngle();
 }
