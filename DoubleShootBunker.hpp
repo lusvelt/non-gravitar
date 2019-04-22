@@ -1,5 +1,5 @@
-#ifndef _TANK_BUNKER_H
-#define _TANK_BUNKER_H
+#ifndef _DOUBLE_SHOOT_BUNKER_H
+#define _DOUBLE_SHOOT_BUNKER_H
 
 #include <SFML/Window.hpp>
 #include <vector>
@@ -11,11 +11,11 @@
 #include "Object.hpp"
 #include "LifePointsBar.hpp"
 
-class TankBunker : public Bunker{
+class DoubleShootBunker : public Bunker{
     private:
         Shape* buildShape();
     public:
-        TankBunker();
+        DoubleShootBunker();
         float shootPoint();
         void studyFireAngle();
 };

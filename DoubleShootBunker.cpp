@@ -2,19 +2,20 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
-#include "TankBunker.hpp"
+#include "DoubleShootBunker.hpp"
 #include "Bullet.hpp"
 #include "Declarations.hpp"
 #include "Bunker.hpp"
 #include "Object.hpp"
 #include "LifePointsBar.hpp"
+#include "Spaceship.hpp"
 
 using namespace std;
 using namespace sf;
 
-TankBunker::TankBunker() : Bunker(buildShape(), 20, 45.f, 45.f, 1.f) {}
+DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 10.f, 45.f, 0.30f) {}
 
-Shape* TankBunker::buildShape() {
+Shape* DoubleShootBunker::buildShape() {
 
     ConvexShape* shape = new ConvexShape(8);
 
@@ -34,12 +35,11 @@ Shape* TankBunker::buildShape() {
     return shape;
 }
 
-float TankBunker::shootPoint(){
+float DoubleShootBunker::shootPoint(){
+    //TODO PUNTO DA CUI PARTE IL PROIETTILE
     return 45.f;
 }
 
-void TankBunker::studyFireAngle() {
-    fireAngle += angularFactor;
-    if (abs(fireAngle) >= maxRay)
-        angularFactor *= (float)(-1);
+void DoubleShootBunker::studyFireAngle() {
+    this->fireAngle = -(this->fireAngle);
 }

@@ -12,6 +12,9 @@
 #include "SolarSystem.hpp"
 #include "Bunker.hpp"
 #include "TankBunker.hpp"
+#include "CleverBunker.hpp"
+#include "DoubleShootBunker.hpp"
+
 
 using namespace std;
 using namespace sf;
@@ -24,7 +27,8 @@ SolarSystem::SolarSystem() : Scene(cameraFunction1){
     int nPlanets = 9;
     int nColumns = 3;
     this->addObject(new Spaceship());
-    this->addObject(new TankBunker());
+    this->addObject(new DoubleShootBunker());
+    //this->addObject(new TankBunker());
     this->Division(nPlanets,nColumns);
     //vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
 }

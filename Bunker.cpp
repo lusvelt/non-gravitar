@@ -20,7 +20,7 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
     this->bunkerShootTime = 0;
     this->life = new LifePointsBar(lifePoints);
     this->maxRay = maxRay;
-    this->fireAngle = 0;
+    this->fireAngle = this->maxRay;
     this->angularFactor = angularFactor;
 }
 
@@ -41,7 +41,7 @@ void Bunker::update(const float deltaTime) {
 
 void Bunker::shoot() {
     Vector2f versor = Vector2f(cos((fireAngle + 90) * M_PI / 180), -sin((fireAngle + 90) * M_PI / 180));
-    Bullet *bullet = new Bullet(this->position + 45.f * versor, BULLET_BASE_SPEED * versor, tag);
+    Bullet *bullet = new Bullet(this->position + this->shootPoint() * versor, BULLET_BASE_SPEED * versor, tag);
     this->bunkerShootTime = this->bunkerCoolDown;
     this->studyFireAngle();
 }

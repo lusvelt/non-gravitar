@@ -1,5 +1,5 @@
-#ifndef _TANK_BUNKER_H
-#define _TANK_BUNKER_H
+#ifndef _CLEVER_BUNKER_H
+#define _CLEVER_BUNKER_H
 
 #include <SFML/Window.hpp>
 #include <vector>
@@ -10,14 +10,15 @@
 #include "Bunker.hpp"
 #include "Object.hpp"
 #include "LifePointsBar.hpp"
+#include "Spaceship.hpp"
 
-class TankBunker : public Bunker{
+class CleverBunker : public Bunker{
     private:
         Shape* buildShape();
     public:
-        TankBunker();
-        float shootPoint();
+        CleverBunker();
         void studyFireAngle();
+        void shoot();
 };
 
 
