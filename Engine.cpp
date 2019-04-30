@@ -14,6 +14,7 @@ bool Engine::preparingScene = false;
 queue<Object*> Engine::objectsQueue;
 Game *Engine::game;
 vector<Object*> Engine::potentialColliders;
+vector<Object*> Engine::removedObjects;
 
 void Engine::initialize(Game& game) {
     Engine::window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
@@ -31,14 +32,16 @@ void Engine::draw(Object* obj) {
 }
 
 void Engine::checkCollisions(Object* obj) {
-    for (int i = 0; i < potentialColliders.size(); i++) {
+    for (int i = 0; i < potentialColliders.size() && !hasJustBeenRemoved(obj); i++) {
         Object* potentialCollider = potentialColliders.at(i);
-        if (obj->getShape()->getGlobalBounds().intersects(potentialCollider->getShape()->getGlobalBounds())) {
+        if (obj != potentialCollider && obj->getShape()->getGlobalBounds().intersects(potentialCollider->getShape()->getGlobalBounds())) {
             obj->onCollisionEnter(potentialCollider);
             potentialCollider->onCollisionEnter(obj);
         }
     }
-    potentialColliders.push_back(obj);
+    if (!hasJustBeenRemoved(obj))
+        potentialColliders.push_back(obj);
+    emptyRemovedObjectsVector();
 }
 
 void Engine::drawAndCheckCollisions(Object* obj) {
@@ -97,6 +100,7 @@ void Engine::addObjectToCurrentScene(Object* obj) {
 void Engine::removeObjectFromCurrentScene(Object* obj) {
     vector<Object *> *objects = currentScene->getObjects();
     objects->erase(remove(objects->begin(), objects->end(), obj), objects->end());
+    potentialColliders.erase(remove(objects->begin(), objects->end(), obj), objects->end());
 }
 
 bool Engine::isOutOfBounds(Object* obj) {
@@ -109,9 +113,28 @@ bool Engine::isOutOfBounds(Object* obj) {
 
 void Engine::checkAndRemoveIfOutOfBounds(Object* obj) {
     if (isOutOfBounds(obj))
-        delete obj;
+        destroy(obj);
 }
 
 void Engine::startPreparingScene() {
     preparingScene = true;
+}
+
+bool Engine::hasJustBeenRemoved(Object* obj) {
+    return find(removedObjects.begin(), removedObjects.end(), obj) != removedObjects.end();
+}
+
+void Engine::destroy(Object* obj) {
+    if (!obj->isAClone()) {
+        removedObjects.push_back(obj);
+        removeObjectFromCurrentScene(obj);
+    }
+}
+
+void Engine::emptyRemovedObjectsVector() {
+    while (!removedObjects.empty()) {
+        Object* obj = removedObjects.front();
+        removedObjects.erase(remove(removedObjects.begin(), removedObjects.end(), obj), removedObjects.end());
+        delete obj;
+    }
 }

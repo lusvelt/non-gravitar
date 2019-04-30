@@ -9,10 +9,11 @@ Shape* Bullet::buildShape() {
     return shape;
 }
 
-Bullet::Bullet(Vector2f position, Vector2f speed):
+Bullet::Bullet(Vector2f position, Vector2f speed, string sourceTag):
     Object(Bullet::buildShape(), position, 0.f) {
     this->speed = speed;
     this->tag = "Bullet";
+    this->sourceTag = sourceTag;
 }
 
 void Bullet::update(const float deltaTime) {
@@ -20,7 +21,14 @@ void Bullet::update(const float deltaTime) {
 }
 
 void Bullet::onCollisionEnter(Object* collider) {
-    string x = collider->getTag();
-    if (!collider->compareTag("Spaceship") && !collider->compareTag("lifePointsBar") && !collider->compareTag("Bullet"))
-        delete this;
+    if (!this->compareSourceTag(collider->getTag()))
+        Engine::destroy(this);
+}
+
+string Bullet::getSourceTag() {
+    return this->sourceTag;
+}
+
+bool Bullet::compareSourceTag(string tag) {
+    return this->sourceTag == tag;
 }

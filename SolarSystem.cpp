@@ -21,9 +21,7 @@ SolarSystem::SolarSystem() : Scene(cameraFunction1){
     int nPlanets = 9;
     int nColumns = 3;
     this->addObject(new Spaceship());
-    this->addObject(new Bunker());
     this->Division(nPlanets,nColumns);
-    //vectorPlanets.push_back(new Planet(Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)));
 }
 
 const void SolarSystem::Division(int nPlanets,int nColumns){
@@ -37,11 +35,12 @@ const void SolarSystem::Division(int nPlanets,int nColumns){
             ystart= i * sizeBlocky;
             int emptyBlock= rand()%2;
             if((i == 1 && j == 1) || (emptyBlock==0)){  
-                //aggiungere caso in cui i pianeti generati sono 0
+                //aggiungere caso in cui i pianeti sono 0
            }
            else{
            vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ ystart)));
            }
+           //Shape* Planet=new CircleShape;
         }
     }
 } 

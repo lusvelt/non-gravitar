@@ -17,7 +17,16 @@ Object::Object(Shape* shape, Vector2f position, float rotation) {
     this->acceleration = Vector2f(0.f, 0.f);
     this->angularSpeed = 0;
     this->tag = "Object";
+    this->prevPointer = NULL;
 }
+
+Object::Object(Object* obj) {
+    this->position = obj->position;
+    this->tag = obj->tag;
+    this->prevPointer = obj;
+}
+
+Object::~Object() { }
 
 Shape* Object::getShape() {
     return this->shape;
@@ -53,6 +62,10 @@ void Object::updateTransform(const float deltaTime) {
 
 void Object::onCollisionEnter(Object* collider) { }
 
-Object::~Object() {
-    Engine::removeObjectFromCurrentScene(this);
+Object* Object::getPrevPointer() {
+    return this->prevPointer;
+}
+
+bool Object::isAClone() {
+    return this->prevPointer != NULL;
 }

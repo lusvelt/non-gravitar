@@ -12,14 +12,14 @@ class LifePointsBar : public Object{
     private:
         Shape* buildShape();
         float length;
-        int hit;
-        float requiredHit;
+        int hits;
+        int requiredHits;
 
     public:
         void update(const float);
-        LifePointsBar(float life);
+        LifePointsBar(int life);
         void decreasePoints();
-        bool controlLife();
+        bool hasEnded();
 };
 
 #endif

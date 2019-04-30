@@ -73,6 +73,6 @@ void Spaceship::update(const float deltaTime) {
 
 void Spaceship::shoot() {
     Vector2f versor = Vector2f(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
-    Bullet *bullet = new Bullet(this->position + 10.f * versor, this->speed + BULLET_BASE_SPEED * versor);
+    Bullet *bullet = new Bullet(this->position + 10.f * versor, this->speed + BULLET_BASE_SPEED * versor, tag);
     this->shootCd = SPACESHIP_SHOOT_COOLDOWN;
 }
