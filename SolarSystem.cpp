@@ -40,7 +40,6 @@ const void SolarSystem::Division(int nPlanets,int nColumns){
            else{
            vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ ystart)));
            }
-           //Shape* Planet=new CircleShape;
         }
     }
 } 
