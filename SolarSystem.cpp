@@ -17,6 +17,7 @@ using namespace sf;
 const void cameraFunction1(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {}
 
 SolarSystem::SolarSystem() : Scene(cameraFunction1){
+    srand(time(NULL));
     int nPlanets = 9;
     int nColumns = 3;
     this->addObject(new Spaceship());
@@ -30,18 +31,17 @@ const void SolarSystem::Division(int nPlanets,int nColumns){
     int sizeBlocky= WINDOW_HEIGHT/nColumns;
     int xstart=0;
     int ystart=0;
-    //int xend=0;
-    //int yend=0;
     for(int i=0; i< nPlanets/nColumns; i++){
         for(int j=0;j<nPlanets/nColumns;j++){
-            srand(time(NULL));
             xstart= j * sizeBlockx;
             ystart= i * sizeBlocky;
-            int k= rand();
-            int q=rand();
-            //xend= xstart + sizeBlockx;
-            //yend= ystart + sizeBlocky; 
-            vectorPlanets.push_back(new Planet(Vector2f(xstart + k%sizeBlockx,ystart + q%sizeBlocky)));
+            int emptyBlock= rand()%2;
+            if((i == 1 && j == 1) || (emptyBlock==0)){  
+                //aggiungere caso in cui i pianeti generati sono 0
+           }
+           else{
+           vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ ystart)));
+           }
         }
     }
 } 
