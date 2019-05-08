@@ -10,6 +10,7 @@ class Planet : public Scene, public Object {
     private:
         Shape* buildShape();
     public:
+        void onCollisionEnter(Object*);
         Planet(Vector2f);
         void update(const float);
 };

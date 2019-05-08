@@ -1,4 +1,5 @@
 #include "Planet.hpp"
+#include "Engine.hpp"
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -15,6 +16,12 @@ Shape* Planet::buildShape() {
     return shape;
 };
 
+void Planet::onCollisionEnter(Object* collider){
+    if (collider->compareTag("Spaceship")){
+        Engine::setCurrentScene(this);
+    }
+}
+
 const void cameraFunction2(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {
     Vector2f spaceshipPosition = sceneObjects->at(0)->getPosition();
     camera->setPosition(Vector2f(spaceshipPosition.x - WINDOW_WIDTH / 2, spaceshipPosition.y - WINDOW_HEIGHT / 2));
@@ -22,6 +29,8 @@ const void cameraFunction2(Camera* camera, const float deltaTime, vector<Object*
 
 Planet::Planet(Vector2f position): 
     Object(Planet::buildShape(), position, 0.f),
-    Scene(cameraFunction2) { }
+    Scene(cameraFunction2) {
+        this->tag = "Planet";
+     }
 
 void Planet::update(const float deltaTime) { }
