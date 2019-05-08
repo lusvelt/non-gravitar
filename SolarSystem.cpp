@@ -23,6 +23,7 @@ SolarSystem::SolarSystem() : Scene(cameraFunction1){
     int nBlocks = 9;
     int nColumns = 3;
     this->addObject(new Spaceship());
+    this->addObject(new DoubleShootBunker());
     this->Division(nBlocks,nColumns);
 }
 

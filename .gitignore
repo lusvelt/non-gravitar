@@ -32,5 +32,5 @@
 *.app
 
 NonGravitar
-.vscode
+.vscode/
 *.dSYM/

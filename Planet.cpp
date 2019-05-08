@@ -18,6 +18,8 @@ Shape* Planet::buildShape() {
 
 void Planet::onCollisionEnter(Object* collider){
     if (collider->compareTag("Spaceship")){
+        this->addObject(collider);
+        // Aggiungere lineette del pianeta, bunker, fuels e cose varie
         Engine::setCurrentScene(this);
     }
 }
@@ -30,7 +32,8 @@ const void cameraFunction2(Camera* camera, const float deltaTime, vector<Object*
 Planet::Planet(Vector2f position): 
     Object(Planet::buildShape(), position, 0.f),
     Scene(cameraFunction2) {
+        // this->addObject(new Spaceship());
         this->tag = "Planet";
-     }
+    }
 
 void Planet::update(const float deltaTime) { }
