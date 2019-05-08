@@ -138,3 +138,14 @@ void Engine::emptyRemovedObjectsVector() {
         delete obj;
     }
 }
+
+Object* Engine::getObjectByTag(string tag) {
+    int i = 0;
+    Object* obj = NULL;
+    vector<Object*> *objects = currentScene->getObjects();
+    while (i < objects->size() && obj == NULL) {
+        if (objects->at(i)->compareTag(tag))
+            obj = objects->at(i);
+    }
+    return obj;
+}
