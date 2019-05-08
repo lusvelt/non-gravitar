@@ -25,23 +25,23 @@ SolarSystem::SolarSystem() : Scene(cameraFunction1){
 }
 
 const void SolarSystem::Division(int nPlanets,int nColumns){
-    int sizeBlockx= WINDOW_WIDTH/nColumns;
-    int sizeBlocky= WINDOW_HEIGHT/nColumns;
+    int sizeBlockx= (WINDOW_WIDTH/nColumns) - 20;
+    int sizeBlocky= (WINDOW_HEIGHT/nColumns) -20;
     int xstart=0;
     int ystart=0;
     int conteggio=0;
     for(int i=0; i< nPlanets/nColumns; i++){
         for(int j=0;j<nPlanets/nColumns;j++){
-            xstart= j * sizeBlockx;
-            ystart= i * sizeBlocky;
+            xstart= (j * sizeBlockx)+20;
+            ystart= (i * sizeBlocky)+20;
             int emptyBlock= rand()%2;
             if((i == 1 && j == 1) || (emptyBlock==0)){ 
                 conteggio++ ;
                 if(conteggio >5){
-                   vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ ystart)));                }
+                   vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ystart)));                }
            }
            else{
-           vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ ystart)));
+           vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ystart)));
            }
         }
     }
