@@ -29,13 +29,16 @@ const void SolarSystem::Division(int nPlanets,int nColumns){
     int sizeBlocky= WINDOW_HEIGHT/nColumns;
     int xstart=0;
     int ystart=0;
+    int conteggio=0;
     for(int i=0; i< nPlanets/nColumns; i++){
         for(int j=0;j<nPlanets/nColumns;j++){
             xstart= j * sizeBlockx;
             ystart= i * sizeBlocky;
             int emptyBlock= rand()%2;
-            if((i == 1 && j == 1) || (emptyBlock==0)){  
-                //aggiungere caso in cui i pianeti sono 0
+            if((i == 1 && j == 1) || (emptyBlock==0)){ 
+                conteggio++ ;
+                if(conteggio >5){
+                   vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ ystart)));                }
            }
            else{
            vectorPlanets.push_back(new Planet(Vector2f(rand()%sizeBlockx+ xstart,rand()%sizeBlocky+ ystart)));
