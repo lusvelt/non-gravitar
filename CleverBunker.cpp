@@ -9,11 +9,12 @@
 #include "Object.hpp"
 #include "LifePointsBar.hpp"
 #include "Spaceship.hpp"
+#include "Engine.hpp"
 
 using namespace std;
 using namespace sf;
 
-CleverBunker::CleverBunker() : Bunker(buildShape(), 5, 45.f, 45.f, 1.f) {}
+CleverBunker::CleverBunker() : Bunker(buildShape(), 5, 45.f, 45.f, 10000.f) {}
 
 Shape* CleverBunker::buildShape() {
 
@@ -29,10 +30,22 @@ Shape* CleverBunker::buildShape() {
     shape->setPoint(7, Vector2f(50.f, -30.f));
 
     shape->setOutlineThickness(1.f);
-    shape->setOutlineColor(Color::Green);
+    shape->setOutlineColor(Color::Blue);
     shape->setFillColor(Color::Black);
 
     return shape;
 }
 
-void CleverBunker::shoot() {}
+float CleverBunker::shootPoint(){
+    //TODO PUNTO DA CUI PARTE IL PROIETTILE
+    return 45.f;
+}
+
+void CleverBunker::studyFireAngle(){
+    float angle = 90.f;
+    Vector2f spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
+    if(this->position.x != spaceshipPosition.x)
+     angle = (atan(abs((this->position.y - spaceshipPosition.y)/(this->position.x - spaceshipPosition.x)))/M_PI)*180;
+    this->fireAngle -= angle;
+    cout << this->fireAngle << endl;
+}

@@ -13,7 +13,7 @@
 using namespace std;
 using namespace sf;
 
-DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 10.f, 45.f, 0.30f) {}
+DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 30.f, 3.f, 1.f) {}
 
 Shape* DoubleShootBunker::buildShape() {
 
@@ -41,5 +41,6 @@ float DoubleShootBunker::shootPoint(){
 }
 
 void DoubleShootBunker::studyFireAngle() {
+    this->fireAngle += angularFactor;
     this->fireAngle = -(this->fireAngle);
 }
