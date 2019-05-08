@@ -40,6 +40,7 @@ class Engine {
         static void checkAndRemoveIfOutOfBounds(Object*);
         static void startPreparingScene();
         static void destroy(Object*);
+        static Object* getObjectByTag(string);
 
 };
 
