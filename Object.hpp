@@ -4,6 +4,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "Declarations.hpp"
 
 using namespace sf;
 using namespace std;
@@ -32,6 +33,7 @@ class Object {
         Object* getPrevPointer();
         virtual void updateTransform(const float);
         virtual void onCollisionEnter(Object*);
+        virtual void onBoundHit(Bound);
         virtual void update(const float deltaTime) = 0;
         bool isAClone();
 };

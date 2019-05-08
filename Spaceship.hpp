@@ -17,6 +17,7 @@ class Spaceship : public Object {
         void rotateRight();
         Shape* buildShape();
         void shoot();
+        void onBoundHit(Bound);
 
     public:
         Spaceship();

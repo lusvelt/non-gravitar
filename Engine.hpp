@@ -24,7 +24,8 @@ class Engine {
         static void draw(Object*);
         static vector<Object*> potentialColliders;
         static void checkCollisions(Object*);
-        static void drawAndCheckCollisions(Object*);
+        static void checkBoundsHit(Object*);
+        static void process(Object*);
         static vector<Object*> removedObjects;
         static bool hasJustBeenRemoved(Object*);
         static void emptyRemovedObjectsVector();

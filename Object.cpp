@@ -69,3 +69,5 @@ Object* Object::getPrevPointer() {
 bool Object::isAClone() {
     return this->prevPointer != NULL;
 }
+
+void Object::onBoundHit(Bound bound) { }

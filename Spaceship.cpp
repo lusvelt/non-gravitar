@@ -76,3 +76,11 @@ void Spaceship::shoot() {
     Bullet *bullet = new Bullet(this->position + 10.f * versor, this->speed + BULLET_BASE_SPEED * versor, tag);
     this->shootCd = SPACESHIP_SHOOT_COOLDOWN;
 }
+
+void Spaceship::onBoundHit(Bound bound) {
+    if (bound == LEFT_BOUND || bound == RIGHT_BOUND)
+        speed = Vector2f(-speed.x, speed.y);
+    else if (bound == TOP_BOUND || bound == BOTTOM_BOUND)
+        speed = Vector2f(speed.x, -speed.y);
+}
+

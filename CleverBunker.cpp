@@ -36,3 +36,7 @@ Shape* CleverBunker::buildShape() {
 }
 
 void CleverBunker::shoot() {}
+
+void CleverBunker::studyFireAngle() {
+    
+}

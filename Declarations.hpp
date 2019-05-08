@@ -18,4 +18,11 @@
 #define BUNKER_WIDTH 400
 #define BUNKER_HEIGHT 550.f
 
+enum Bound {
+    TOP_BOUND,
+    LEFT_BOUND,
+    BOTTOM_BOUND,
+    RIGHT_BOUND
+};
+
 #endif

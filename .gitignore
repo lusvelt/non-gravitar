@@ -32,5 +32,5 @@
 *.app
 
 NonGravitar
-.vscode/ipch
+.vscode
 *.dSYM/

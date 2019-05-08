@@ -44,10 +44,23 @@ void Engine::checkCollisions(Object* obj) {
     emptyRemovedObjectsVector();
 }
 
-void Engine::drawAndCheckCollisions(Object* obj) {
-    if (!Engine::isOutOfBounds(obj)) {
-        Engine::draw(obj);
-        Engine::checkCollisions(obj);
+void Engine::checkBoundsHit(Object* obj) {
+    FloatRect boundsRect = obj->getShape()->getGlobalBounds();
+    if (boundsRect.left <= 0)
+        obj->onBoundHit(LEFT_BOUND);
+    else if (boundsRect.top <= 0)
+        obj->onBoundHit(TOP_BOUND);
+    else if (boundsRect.left + boundsRect.width >= WINDOW_WIDTH)
+        obj->onBoundHit(RIGHT_BOUND);
+    else if (boundsRect.top + boundsRect.height >= WINDOW_HEIGHT)
+        obj->onBoundHit(BOTTOM_BOUND);
+}
+
+void Engine::process(Object* obj) {
+    if (!isOutOfBounds(obj)) {
+        draw(obj);
+        checkCollisions(obj);
+        checkBoundsHit(obj);
     }
 } 
 
@@ -70,7 +83,7 @@ void Engine::run() {
             Object* obj = objects->at(i);
             obj->update(deltaTime);
             obj->updateTransform(deltaTime);
-            drawAndCheckCollisions(obj);
+            process(obj);
         }
         potentialColliders.clear();
         window->display();
