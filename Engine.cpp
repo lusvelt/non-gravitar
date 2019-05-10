@@ -10,11 +10,11 @@ using namespace std;
 Clock Engine::clock;
 RenderWindow *Engine::window;
 Scene *Engine::currentScene = NULL;
-bool Engine::preparingScene = false;
 queue<Object*> Engine::objectsQueue;
 Game *Engine::game;
 vector<Object*> Engine::potentialColliders;
 vector<Object*> Engine::removedObjects;
+Scene* Engine::preparingScene = NULL;
 
 void Engine::initialize(Game& game) {
     Engine::window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
@@ -92,7 +92,6 @@ void Engine::run() {
 
 void Engine::setCurrentScene(Scene* currentScene) {
     Engine::currentScene = currentScene;
-    preparingScene = false;
     while (!objectsQueue.empty()) {
         currentScene->addObject(objectsQueue.front());
         objectsQueue.pop();
@@ -104,10 +103,7 @@ Scene* Engine::getCurrentScene() {
 }
 
 void Engine::addObjectToCurrentScene(Object* obj) {
-    if (!preparingScene)
-        currentScene->addObject(obj);
-    else
-        objectsQueue.push(obj);
+    currentScene->addObject(obj);
 }
 
 void Engine::removeObjectFromCurrentScene(Object* obj) {
@@ -129,10 +125,6 @@ void Engine::checkAndRemoveIfOutOfBounds(Object* obj) {
         destroy(obj);
 }
 
-void Engine::startPreparingScene() {
-    preparingScene = true;
-}
-
 bool Engine::hasJustBeenRemoved(Object* obj) {
     return find(removedObjects.begin(), removedObjects.end(), obj) != removedObjects.end();
 }
@@ -142,6 +134,17 @@ void Engine::destroy(Object* obj) {
         removedObjects.push_back(obj);
         removeObjectFromCurrentScene(obj);
     }
+}
+
+Object* Engine::instantiate(Object* obj) {
+    currentScene->addObject(obj);
+    return obj;
+}
+
+Object* Engine::instantiate(Object* obj, Scene* scene) {
+    scene->addObject(obj);
+    preparingScene = scene;
+    return obj;
 }
 
 void Engine::emptyRemovedObjectsVector() {
@@ -161,4 +164,8 @@ Object* Engine::getObjectByTag(string tag) {
             obj = objects->at(i);
     }
     return obj;
+}
+
+Scene* Engine::getPreparingScene() {
+    return preparingScene;
 }

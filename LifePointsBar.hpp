@@ -8,7 +8,7 @@
 using namespace sf;
 using namespace std;
 
-class LifePointsBar : public Object{
+class LifePointsBar : public Object {
     private:
         Shape* buildShape();
         float length;

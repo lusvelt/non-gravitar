@@ -20,7 +20,6 @@ class Engine {
         static Scene *currentScene;
         static Game *game;
         static queue<Object*> objectsQueue;
-        static bool preparingScene;
         static void draw(Object*);
         static vector<Object*> potentialColliders;
         static void checkCollisions(Object*);
@@ -29,6 +28,7 @@ class Engine {
         static vector<Object*> removedObjects;
         static bool hasJustBeenRemoved(Object*);
         static void emptyRemovedObjectsVector();
+        static Scene* preparingScene;
 
     public:
         static void initialize(Game&);
@@ -40,8 +40,11 @@ class Engine {
         static bool isOutOfBounds(Object*);
         static void checkAndRemoveIfOutOfBounds(Object*);
         static void startPreparingScene();
+        static Object* instantiate(Object*);
+        static Object* instantiate(Object*, Scene*);
         static void destroy(Object*);
         static Object* getObjectByTag(string);
+        static Scene* getPreparingScene();
 
 };
 

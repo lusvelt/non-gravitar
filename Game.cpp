@@ -8,6 +8,7 @@
 #include "Scene.hpp"
 #include "Engine.hpp"
 #include "Bunker.hpp"
+#include "DoubleShootBunker.hpp"
 
 using namespace sf;
 
@@ -22,6 +23,8 @@ Game::Game() {
     lives = LIVES_START_VALUE;
 
     Scene* testScene = new SolarSystem();
+    Engine::instantiate(new Spaceship(), testScene);
+    Engine::instantiate(new DoubleShootBunker(), testScene);
     Engine::setCurrentScene(testScene);
     this->scenes.push_back(testScene);   
     

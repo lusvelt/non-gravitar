@@ -13,10 +13,10 @@
 
 class SolarSystem : public Scene {
     private:
-        vector<Planet*> vectorPlanets;
+        vector<Planet*> planets;
     public:
         SolarSystem();
-        const void Division(int,int);
+        const void generatePlanets(int,int);
         virtual void update(const float);
 };
 

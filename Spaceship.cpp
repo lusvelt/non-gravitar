@@ -71,9 +71,12 @@ void Spaceship::update(const float deltaTime) {
         shootCd -= deltaTime;
 }
 
+// TODO: mettere 10.f in Declarations
 void Spaceship::shoot() {
     Vector2f versor = Vector2f(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
-    Bullet *bullet = new Bullet(this->position + 10.f * versor, this->speed + BULLET_BASE_SPEED * versor, tag);
+    Vector2f position = this->position + 10.f * versor;
+    Vector2f speed = this->speed + BULLET_BASE_SPEED * versor;
+    Bullet* bullet = (Bullet*) Engine::instantiate(new Bullet(position, speed, tag));
     this->shootCd = SPACESHIP_SHOOT_COOLDOWN;
 }
 

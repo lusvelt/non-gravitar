@@ -9,7 +9,6 @@ using namespace sf;
 using namespace std;
 
 Object::Object(Shape* shape, Vector2f position, float rotation) {
-    Engine::addObjectToCurrentScene(this);
     this->shape = shape;
     this->position = position;
     this->rotation = rotation;
