@@ -17,6 +17,9 @@
 #define LIFE_BARS_LENGTH 100.f
 #define BUNKER_WIDTH 400
 #define BUNKER_HEIGHT 550.f
+#define nBlocks 9
+#define nColumns 3
+#define MARGIN 30
 
 enum Bound {
     TOP_BOUND,

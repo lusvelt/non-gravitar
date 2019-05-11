@@ -16,7 +16,7 @@ class SolarSystem : public Scene {
         vector<Planet*> planets;
     public:
         SolarSystem();
-        const void generatePlanets(int,int);
+        const void generatePlanets();
         virtual void update(const float);
 };
 

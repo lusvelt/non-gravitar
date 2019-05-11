@@ -18,25 +18,23 @@ using namespace sf;
 
 const void cameraFunction1(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {}
 
-// TODO: mettere nBlocks e nColumns in Declarations
+
 SolarSystem::SolarSystem() : Scene(cameraFunction1){
     srand(time(NULL));
-    int nBlocks = 9;
-    int nColumns = 3;
-    this->generatePlanets(nBlocks, nColumns);
+    this->generatePlanets();
 }
 
-// TODO: che cos'è quel 30 ???
-const void SolarSystem::generatePlanets(int nBlocks,int nColumns) {
-    int sizeBlockx = (WINDOW_WIDTH / nColumns) - 30;
-    int sizeBlocky = (WINDOW_HEIGHT / nColumns) - 30;
+
+const void SolarSystem::generatePlanets() {
+    int sizeBlockx = (WINDOW_WIDTH / nColumns) - MARGIN;
+    int sizeBlocky = (WINDOW_HEIGHT / nColumns) - MARGIN;
     int xStart = 0;
     int yStart = 0;
     int count = 0;
     for (int i = 0; i < nBlocks / nColumns; i++) {
         for(int j = 0; j < nBlocks / nColumns; j++) {
-            xStart = (j * sizeBlockx) + 30;
-            yStart = (i * sizeBlocky) + 30;
+            xStart = (j * sizeBlockx) + MARGIN;
+            yStart = (i * sizeBlocky) + MARGIN;
             bool emptyBlock = rand() % 2;
             Vector2f position = Vector2f(rand() % sizeBlockx + xStart, rand() % sizeBlocky + yStart);
             if ((i == 1 && j == 1) || !emptyBlock) { 
