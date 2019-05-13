@@ -169,3 +169,8 @@ Object* Engine::getObjectByTag(string tag) {
 Scene* Engine::getPreparingScene() {
     return preparingScene;
 }
+
+bool Engine::isInCurrentScene(Object* obj) {
+    vector<Object*> objects = *currentScene->getObjects();
+    return find(objects.begin(), objects.end(), obj) != objects.end();
+}
