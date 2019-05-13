@@ -45,6 +45,7 @@ class Engine {
         static void destroy(Object*);
         static Object* getObjectByTag(string);
         static Scene* getPreparingScene();
+        static bool isInCurrentScene(Object*);
 
 };
 
