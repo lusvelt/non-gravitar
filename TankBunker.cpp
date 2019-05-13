@@ -28,7 +28,7 @@ Shape* TankBunker::buildShape() {
     shape->setPoint(7, Vector2f(50.f, -30.f));
 
     shape->setOutlineThickness(1.f);
-    shape->setOutlineColor(Color::Green);
+    shape->setOutlineColor(Color::Magenta);
     shape->setFillColor(Color::Black);
 
     return shape;
