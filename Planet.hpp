@@ -5,9 +5,13 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "Scene.hpp"
+#include "Declarations.hpp"
+#include <cmath>
 
 class Planet : public Scene, public Object {
     private:
+        int radius;
+        vector<Vector2f> points;
         Shape* buildShape();
     public:
         void onCollisionEnter(Object*);

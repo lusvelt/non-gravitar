@@ -21,6 +21,7 @@ class Scene {
         Camera* getCamera();
         vector<Object*> *getObjects();
         void addObject(Object*);
+        void addObject(Object*, Vector2f);
         void update(const float deltaTime);
 };
 

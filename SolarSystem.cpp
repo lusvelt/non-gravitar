@@ -25,13 +25,13 @@ SolarSystem::SolarSystem() : Scene(fixedCamera) {
 
 
 const void SolarSystem::generatePlanets() {
-    int sizeBlockx = (WINDOW_WIDTH / nColumns) - MARGIN;
-    int sizeBlocky = (WINDOW_HEIGHT / nColumns) - MARGIN;
+    int sizeBlockx = (WINDOW_WIDTH / N_COLUMNS) - MARGIN;
+    int sizeBlocky = (WINDOW_HEIGHT / N_COLUMNS) - MARGIN;
     int xStart = 0;
     int yStart = 0;
     int count = 0;
-    for (int i = 0; i < nBlocks / nColumns; i++) {
-        for(int j = 0; j < nBlocks / nColumns; j++) {
+    for (int i = 0; i < N_BLOCKS / N_COLUMNS; i++) {
+        for(int j = 0; j < N_BLOCKS / N_COLUMNS; j++) {
             xStart = (j * sizeBlockx) + MARGIN;
             yStart = (i * sizeBlocky) + MARGIN;
             bool emptyBlock = rand() % 2;
