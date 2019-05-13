@@ -47,6 +47,6 @@ void CleverBunker::studyFireAngle(){
     Vector2f spaceshipPosition = spaceshipShape->getPosition();
     if(this->position.x != spaceshipPosition.x)
      angle = (atan(abs((this->position.y - spaceshipPosition.y)/(this->position.x - spaceshipPosition.x)))/M_PI)*180;
-    this->fireAngle = 180 - angle;
-    
+    this->fireAngle = angle;
+    //SISTEMA CHE SPARA NA VOLTA SOLA
 }

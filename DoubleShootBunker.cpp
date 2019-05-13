@@ -17,7 +17,7 @@ DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 55.f, 10.f, .5f
     this->direction = 1;
     this->fireAngle = 10.f;
     this->absFireAngle = 0;
-    this->shooted = 1;
+    this->shot = 1;
 }
 
 Shape* DoubleShootBunker::buildShape() {
@@ -47,7 +47,7 @@ float DoubleShootBunker::shootPoint(){
 
 void DoubleShootBunker::studyFireAngle() {
     this->direction = -(this->direction);
-    this->fireAngle = this->absFireAngle + this->angularFactor * this->shooted * this->direction;
-    if(abs(this->fireAngle) >= this->maxRay) this->shooted = 0;
-    this->shooted ++;
+    this->fireAngle = this->absFireAngle + this->angularFactor * this->shot * this->direction;
+    if(abs(this->fireAngle) >= this->maxRay) this->shot = 0;
+    this->shot ++;
 }

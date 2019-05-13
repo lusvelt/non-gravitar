@@ -16,7 +16,7 @@ class DoubleShootBunker : public Bunker{
         Shape* buildShape();
         int direction;
         float absFireAngle;
-        int shooted;
+        int shot;
 
     public:
         DoubleShootBunker();
