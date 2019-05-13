@@ -24,15 +24,14 @@ void Planet::onCollisionEnter(Object* collider){
     }
 }
 
-const void cameraFunction2(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {
-    Vector2f spaceshipPosition = sceneObjects->at(0)->getPosition();
+const void followSpaceship(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {
+    Vector2f spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
     camera->setPosition(Vector2f(spaceshipPosition.x - WINDOW_WIDTH / 2, spaceshipPosition.y - WINDOW_HEIGHT / 2));
 }
 
 Planet::Planet(Vector2f position): 
     Object(Planet::buildShape(), position, 0.f),
-    Scene(cameraFunction2) {
-        // this->addObject(new Spaceship());
+    Scene(followSpaceship) {
         this->tag = "Planet";
     }
 

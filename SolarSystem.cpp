@@ -16,10 +16,9 @@
 using namespace std;
 using namespace sf;
 
-const void cameraFunction1(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {}
+const void fixedCamera(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {}
 
-
-SolarSystem::SolarSystem() : Scene(cameraFunction1){
+SolarSystem::SolarSystem() : Scene(fixedCamera) {
     srand(time(NULL));
     this->generatePlanets();
 }
