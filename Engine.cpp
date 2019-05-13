@@ -162,6 +162,7 @@ Object* Engine::getObjectByTag(string tag) {
     while (i < objects->size() && obj == NULL) {
         if (objects->at(i)->compareTag(tag))
             obj = objects->at(i);
+        i++;
     }
     return obj;
 }

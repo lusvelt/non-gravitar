@@ -22,7 +22,7 @@ void Scene::addObject(Object* obj) {
 }
 
 void Scene::addObject(Object* obj, Vector2f position) {
-    obj->setPosition(position);
+    // obj->setPosition(position);
     this->addObject(obj);
 }
 

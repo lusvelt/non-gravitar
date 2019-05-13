@@ -47,7 +47,6 @@ Planet::Planet(Vector2f position):
             float realDistance = radius + offsetDistance;
             Vector2f point = realDistance * Vector2f(cos(realAngle), sin(realAngle));
             this->points.push_back(point);
-            this->addObject(new CircleShape(1.f), point);
         }
         // TODO: creare la classe Line e qua istanziare le linee
     }
