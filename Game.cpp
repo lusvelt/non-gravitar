@@ -8,7 +8,9 @@
 #include "Scene.hpp"
 #include "Engine.hpp"
 #include "Bunker.hpp"
+#include "TankBunker.hpp"
 #include "DoubleShootBunker.hpp"
+#include "CleverBunker.hpp"
 
 using namespace sf;
 
@@ -24,7 +26,7 @@ Game::Game() {
 
     Scene* testScene = new SolarSystem();
     Engine::instantiate(new Spaceship(), testScene);
-    Engine::instantiate(new DoubleShootBunker(), testScene);
+    Engine::instantiate(new TankBunker(), testScene);
     Engine::setCurrentScene(testScene);
     this->scenes.push_back(testScene);   
     

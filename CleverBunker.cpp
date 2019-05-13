@@ -42,10 +42,12 @@ float CleverBunker::shootPoint(){
 }
 
 void CleverBunker::studyFireAngle(){
-    float angle = 90.f;
+    /*float angle = 90.f;
     Vector2f spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
     if(this->position.x != spaceshipPosition.x)
      angle = (atan(abs((this->position.y - spaceshipPosition.y)/(this->position.x - spaceshipPosition.x)))/M_PI)*180;
-    this->fireAngle -= angle;
-    cout << this->fireAngle << endl;
+    this->fireAngle = angle;
+    cout << this->fireAngle << endl;*/
+    Vector2f spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
+    
 }
