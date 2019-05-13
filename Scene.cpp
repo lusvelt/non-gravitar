@@ -7,7 +7,6 @@
 
 Scene::Scene(const void (*cameraFunction)(Camera*, const float, vector<Object*>*)) {
     this->camera = new Camera(cameraFunction);
-    this->objects = vector<Object*>();
 }
 
 Camera* Scene::getCamera() {
@@ -20,6 +19,11 @@ vector<Object*> *Scene::getObjects() {
 
 void Scene::addObject(Object* obj) {
     this->objects.push_back(obj);
+}
+
+void Scene::addObject(Object* obj, Vector2f position) {
+    obj->setPosition(position);
+    this->addObject(obj);
 }
 
 void Scene::update(const float deltaTime) {

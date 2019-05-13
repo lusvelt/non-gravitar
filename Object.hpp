@@ -22,6 +22,7 @@ class Object {
         Object* prevPointer;
 
     public:
+        Object(Vector2f position, float rotation);
         Object(Shape* shape, Vector2f position, float rotation);
         Object(Object*);
         virtual ~Object();

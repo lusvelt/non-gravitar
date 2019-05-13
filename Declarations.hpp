@@ -17,11 +17,15 @@
 #define LIFE_BARS_LENGTH 100.f
 #define BUNKER_WIDTH 400
 #define BUNKER_HEIGHT 550.f
-#define nBlocks 9
-#define nColumns 3
+#define N_BLOCKS 9
+#define N_COLUMNS 3
 #define MARGIN 30
 #define STANDARD_BUNKER_ANGLE 45.f
 
+#define PLANET_SCALE 100
+#define PIXELS_PER_POINT 10
+#define PLANET_POINT_RANGE_SCALE_X 0.8f
+#define PLANET_POINT_RANGE_SCALE_Y 1.2f
 
 enum Bound {
     TOP_BOUND,
