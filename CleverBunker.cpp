@@ -20,14 +20,14 @@ Shape* CleverBunker::buildShape() {
 
     ConvexShape* shape = new ConvexShape(8);
 
-    shape->setPoint(0, Vector2f(-50.f, -30.f));
-    shape->setPoint(1, Vector2f(-30.f, 5.f));
-    shape->setPoint(2, Vector2f(-10.f, 10.f));
-    shape->setPoint(3, Vector2f(-10.f, 30.f));
-    shape->setPoint(4, Vector2f(10.f, 30.f));
-    shape->setPoint(5, Vector2f(10.f, 10.f));
-    shape->setPoint(6, Vector2f(30.f, 5.f));
-    shape->setPoint(7, Vector2f(50.f, -30.f));
+    shape->setPoint(0, Vector2f(-50.f, 30.f));
+    shape->setPoint(1, Vector2f(-30.f, -5.f));
+    shape->setPoint(2, Vector2f(-10.f, -10.f));
+    shape->setPoint(3, Vector2f(-5.f, -30.f));
+    shape->setPoint(4, Vector2f(5.f, -30.f));
+    shape->setPoint(5, Vector2f(10.f, -10.f));
+    shape->setPoint(6, Vector2f(30.f, -5.f));
+    shape->setPoint(7, Vector2f(50.f, 30.f));
 
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::Blue);
@@ -42,12 +42,11 @@ float CleverBunker::shootPoint(){
 }
 
 void CleverBunker::studyFireAngle(){
-    /*float angle = 90.f;
-    Vector2f spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
+    float angle = 90.f;
+    Object* spaceshipShape = Engine::getObjectByTag("Spaceship");
+    Vector2f spaceshipPosition = spaceshipShape->getPosition();
     if(this->position.x != spaceshipPosition.x)
      angle = (atan(abs((this->position.y - spaceshipPosition.y)/(this->position.x - spaceshipPosition.x)))/M_PI)*180;
-    this->fireAngle = angle;
-    cout << this->fireAngle << endl;*/
-    Vector2f spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
+    this->fireAngle = 180 - angle;
     
 }

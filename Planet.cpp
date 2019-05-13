@@ -11,7 +11,7 @@ Shape* Planet::buildShape() {
     CircleShape* shape= new CircleShape(diameter);
 
     shape->setFillColor(Color(rand()%255, rand()%255, rand()%255));
-    shape->setOutlineThickness(rand()%8);
+    shape->setOutlineThickness((rand()%2)+1);
     shape->setOutlineColor(Color(rand()%255, rand()%255, rand()%255));
     return shape;
 };

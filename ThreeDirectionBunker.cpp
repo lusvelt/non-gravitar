@@ -2,7 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
-#include "DoubleShootBunker.hpp"
+#include "ThreeDirectionBunker.hpp"
 #include "Bullet.hpp"
 #include "Declarations.hpp"
 #include "Bunker.hpp"
@@ -13,14 +13,11 @@
 using namespace std;
 using namespace sf;
 
-DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 55.f, 10.f, .5f) {
-    this->direction = 1;
-    this->fireAngle = 10.f;
-    this->absFireAngle = 0;
-    this->shooted = 1;
+ThreeDirectionBunker::ThreeDirectionBunker() : Bunker(buildShape(), 4, 55.f, 10.f, .5f) {
+    srand(time(NULL));
 }
 
-Shape* DoubleShootBunker::buildShape() {
+Shape* ThreeDirectionBunker::buildShape() {
 
     ConvexShape* shape = new ConvexShape(8);
 
@@ -34,20 +31,20 @@ Shape* DoubleShootBunker::buildShape() {
     shape->setPoint(7, Vector2f(50.f, 30.f));
 
     shape->setOutlineThickness(1.f);
-    shape->setOutlineColor(Color::Green);
+    shape->setOutlineColor(Color::White);
     shape->setFillColor(Color::Black);
 
     return shape;
 }
 
-float DoubleShootBunker::shootPoint(){
+float ThreeDirectionBunker::shootPoint(){
     //TODO PUNTO DA CUI PARTE IL PROIETTILE
     return 45.f;
 }
 
-void DoubleShootBunker::studyFireAngle() {
-    this->direction = -(this->direction);
-    this->fireAngle = this->absFireAngle + this->angularFactor * this->shooted * this->direction;
-    if(abs(this->fireAngle) >= this->maxRay) this->shooted = 0;
-    this->shooted ++;
+void ThreeDirectionBunker::studyFireAngle() {
+    int direction = rand()%3;
+    if(direction == 0) this->fireAngle = STANDARD_BUNKER_ANGLE;
+    else if(direction == 1) this->fireAngle = -STANDARD_BUNKER_ANGLE;
+    else this->fireAngle = 0.f;
 }

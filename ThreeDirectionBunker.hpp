@@ -1,5 +1,5 @@
-#ifndef _DOUBLE_SHOOT_BUNKER_H
-#define _DOUBLE_SHOOT_BUNKER_H
+#ifndef _THREE_DIRECTION_BUNKER_H
+#define _THREE_DIRECTION_BUNKER_H
 
 #include <SFML/Window.hpp>
 #include <vector>
@@ -11,15 +11,12 @@
 #include "Object.hpp"
 #include "LifePointsBar.hpp"
 
-class DoubleShootBunker : public Bunker{
+class ThreeDirectionBunker : public Bunker{
     private:
         Shape* buildShape();
-        int direction;
-        float absFireAngle;
-        int shooted;
 
     public:
-        DoubleShootBunker();
+        ThreeDirectionBunker();
         float shootPoint();
         void studyFireAngle();
 };

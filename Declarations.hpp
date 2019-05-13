@@ -20,6 +20,8 @@
 #define nBlocks 9
 #define nColumns 3
 #define MARGIN 30
+#define STANDARD_BUNKER_ANGLE 45.f
+
 
 enum Bound {
     TOP_BOUND,

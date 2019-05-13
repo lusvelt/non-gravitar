@@ -1,5 +1,5 @@
-non-gravitar: Bullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o Game.o LifePointsBar.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o
-	g++ -o NonGravitar Bullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o Game.o LifePointsBar.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o -lsfml-graphics -lsfml-window -lsfml-system
+non-gravitar: Bullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o Game.o LifePointsBar.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o ThreeDirectionBunker.o TwoDirectionBunker.o
+	g++ -o NonGravitar Bullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o Game.o LifePointsBar.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o ThreeDirectionBunker.o TwoDirectionBunker.o -lsfml-graphics -lsfml-window -lsfml-system
 
 Bullet.o: Bullet.cpp
 	g++ -c Bullet.cpp
@@ -45,6 +45,12 @@ Spaceship.o: Spaceship.cpp
 
 TankBunker.o: TankBunker.cpp
 	g++ -c TankBunker.cpp
+
+ThreeDirectionBunker.o: ThreeDirectionBunker.cpp
+	g++ -c ThreeDirectionBunker.cpp
+
+TwoDirectionBunker.o: TwoDirectionBunker.cpp
+	g++ -c TwoDirectionBunker.cpp
 
 run:
 	make && ./NonGravitar
