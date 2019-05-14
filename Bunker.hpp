@@ -21,6 +21,7 @@ class Bunker : public Object {
         float angularFactor;
         float bunkerCoolDown;
         virtual float shootPoint() = 0;
+        float bulletSpeed;
     public:
         Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown);
         void shoot();

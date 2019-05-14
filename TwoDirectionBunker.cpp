@@ -47,7 +47,7 @@ Shape* TwoDirectionBunker::buildShape() {
 }
 
 float TwoDirectionBunker::shootPoint(){
-    return 55.f;
+    return 60.f;
 }
 
 void TwoDirectionBunker::studyFireAngle() {
