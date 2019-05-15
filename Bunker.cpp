@@ -24,6 +24,7 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;
     this->bulletSpeed = BULLET_BASE_SPEED;
+    this->setFireAngleByRotation();
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
@@ -48,4 +49,8 @@ void Bunker::shoot() {
     Bullet *bullet = (Bullet*) Engine::instantiate(new Bullet(this->position + this->shootPoint() * versor, this->bulletSpeed * versor, tag));
     this->bunkerShootTime = this->bunkerCoolDown;
     this->studyFireAngle();
+}
+
+void Bunker::setFireAngleByRotation(){
+    this->fireAngle -= this->getRotation();
 }

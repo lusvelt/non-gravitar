@@ -20,20 +20,22 @@ CleverBunker::CleverBunker() : Bunker(buildShape(), 5, 45.f, 45.f, .10f) {
 
 Shape* CleverBunker::buildShape() {
 
-    ConvexShape* shape = new ConvexShape(11);
+    ConvexShape* shape = new ConvexShape(13);
 
-    shape->setPoint(0, Vector2f(20.f, 30.f));
-    shape->setPoint(1, Vector2f(30.f, -10.f));
-    shape->setPoint(2, Vector2f(50.f, -40.f));
-    shape->setPoint(3, Vector2f(40.f, -40.f));
-    shape->setPoint(4, Vector2f(20.f, -10.f));
-    shape->setPoint(5, Vector2f(0.f, 20.f));
-    shape->setPoint(6, Vector2f(-20.f, -10.f));
-    shape->setPoint(7, Vector2f(-40.f, -40.f));
-    shape->setPoint(8, Vector2f(-50.f, -40.f));
-    shape->setPoint(9, Vector2f(-30.f, -10.f));
-    shape->setPoint(10, Vector2f(-20.f, 30.f));
-    //MODIFICA
+    shape->setPoint(0, Vector2f(7.f, 15.f));
+    shape->setPoint(1, Vector2f(-20.f, 5.f));
+    shape->setPoint(2, Vector2f(-7.f, -12.f));
+    shape->setPoint(3, Vector2f(7.f, -12.f));
+    shape->setPoint(4, Vector2f(20.f, 5.f));
+    shape->setPoint(5, Vector2f(7.f, 15.f));
+    shape->setPoint(6, Vector2f(10.f, 25.f));
+    shape->setPoint(7, Vector2f(30.f, 5.f));
+    shape->setPoint(8, Vector2f(20.f, -15.f));
+    shape->setPoint(9, Vector2f(0.f, -15.f));
+    shape->setPoint(10, Vector2f(-20.f, -15.f));
+    shape->setPoint(11, Vector2f(-30.f, 5.f));
+    shape->setPoint(12, Vector2f(-10.f, 25.f));
+
 
 
     shape->setOutlineThickness(1.f);

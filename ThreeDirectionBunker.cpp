@@ -48,4 +48,5 @@ void ThreeDirectionBunker::studyFireAngle() {
     if(direction == 0) this->fireAngle = STANDARD_BUNKER_ANGLE;
     else if(direction == 1) this->fireAngle = -STANDARD_BUNKER_ANGLE;
     else this->fireAngle = 0.f;
+    Bunker::setFireAngleByRotation();
 }

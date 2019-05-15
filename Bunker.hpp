@@ -22,12 +22,14 @@ class Bunker : public Object {
         float bunkerCoolDown;
         virtual float shootPoint() = 0;
         float bulletSpeed;
+
     public:
         Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown);
         void shoot();
         void update(const float);
         void onCollisionEnter(Object*);
         virtual void studyFireAngle() = 0;
+        void setFireAngleByRotation();
 };
 
 

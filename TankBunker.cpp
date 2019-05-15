@@ -42,4 +42,5 @@ void TankBunker::studyFireAngle() {
     fireAngle += angularFactor;
     if (abs(fireAngle) >= maxRay)
         angularFactor *= (float)(-1);
+    Bunker::setFireAngleByRotation();
 }

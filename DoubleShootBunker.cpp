@@ -50,4 +50,5 @@ void DoubleShootBunker::studyFireAngle() {
     this->fireAngle = this->absFireAngle + this->angularFactor * this->shot * this->direction;
     if(abs(this->fireAngle) >= this->maxRay) this->shot = 0;
     this->shot ++;
+    Bunker::setFireAngleByRotation();
 }
