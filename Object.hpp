@@ -18,7 +18,6 @@ class Object {
         float angularSpeed;
         string tag;
         Shape* shape;
-        virtual Shape* buildShape() = 0;
         Object* prevPointer;
 
     public:
@@ -35,8 +34,10 @@ class Object {
         virtual void updateTransform(const float);
         virtual void onCollisionEnter(Object*);
         virtual void onBoundHit(Bound);
-        virtual void update(const float deltaTime) = 0;
+        virtual void update(const float deltaTime);
         bool isAClone();
+        void setPosition(Vector2f position);
+        void setSpeed(Vector2f speed);
 };
 
 #endif

@@ -80,3 +80,13 @@ bool Object::isAClone() {
 }
 
 void Object::onBoundHit(Bound bound) { }
+
+void Object::update(const float deltaTime) { }
+
+void Object::setPosition(Vector2f position) {
+    this->position = position;
+}
+
+void Object::setSpeed(Vector2f speed) {
+    this->speed = speed;
+}

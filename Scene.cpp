@@ -22,7 +22,8 @@ void Scene::addObject(Object* obj) {
 }
 
 void Scene::addObject(Object* obj, Vector2f position) {
-    // obj->setPosition(position);
+    obj->setPosition(position);
+    obj->setSpeed(Vector2f(0.f, 0.f));
     this->addObject(obj);
 }
 
