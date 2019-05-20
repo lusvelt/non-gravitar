@@ -23,7 +23,7 @@ Game::Game() {
 
     Scene* testScene = new SolarSystem();
     Engine::instantiate(new Spaceship(), testScene);
-    Engine::instantiate(new CleverBunker(), testScene);
+    Engine::instantiate(new TankBunker(), testScene);
     Engine::setCurrentScene(testScene);
     this->scenes.push_back(testScene);   
     

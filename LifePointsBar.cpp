@@ -2,19 +2,20 @@
 #include "Declarations.hpp"
 #include "LifePointsBar.hpp"
 #include "Engine.hpp"
+#include "Bunker.hpp"
 
 using namespace sf;
 using namespace std;
 
 Shape* LifePointsBar::buildShape(){
-    RectangleShape* shape = new RectangleShape(Vector2f(LIFE_BARS_LENGTH,2.f));
+    RectangleShape* shape = new RectangleShape(Vector2f(this->bunkerPointer->getBaseLength(),2.f));
     shape->setFillColor(Color::Green);
 
     return shape;
 };
 
-LifePointsBar::LifePointsBar(int life) : Object(LifePointsBar::buildShape(),Vector2f(BUNKER_WIDTH - 50.f, BUNKER_HEIGHT + 40.f), 0.f){
-    this->length = LIFE_BARS_LENGTH;
+LifePointsBar::LifePointsBar(int life, Bunker* bunker) : Object(LifePointsBar::buildShape(),Vector2f(this->bunkerPointer->getLPBCoordinates().x, this->bunkerPointer->getLPBCoordinates().y + 40.f), this->bunkerPointer->getRotation()){
+    this->bunkerPointer = bunker;
     this->hits = 0;
     this->requiredHits = life;
     this->tag = "LifePointsBar";

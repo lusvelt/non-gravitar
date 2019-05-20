@@ -28,8 +28,9 @@ class Bunker : public Object {
         void shoot();
         void update(const float);
         void onCollisionEnter(Object*);
-        virtual void studyFireAngle() = 0;
-        void setFireAngleByRotation();
+        virtual void studyFireAngle();
+        float getBaseLength();
+        Vector2f getLPBCoordinates();
 };
 
 

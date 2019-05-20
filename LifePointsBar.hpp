@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Declarations.hpp"
 #include "Object.hpp"
+#include "Bunker.hpp"
 
 using namespace sf;
 using namespace std;
@@ -11,13 +12,13 @@ using namespace std;
 class LifePointsBar : public Object {
     private:
         Shape* buildShape();
-        float length;
+        Bunker* bunkerPointer;
         int hits;
         int requiredHits;
 
     public:
         void update(const float);
-        LifePointsBar(int life);
+        LifePointsBar(int life, Bunker* bunker);
         void decreasePoints();
         bool hasEnded();
 };
