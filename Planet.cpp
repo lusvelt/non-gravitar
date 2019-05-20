@@ -4,11 +4,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "Object.hpp"
+#include "Line.hpp"
 #include <vector>
 
-Shape* Planet::buildShape() {
-    float radius = rand() % 20 + 10;
-    CircleShape* shape = new CircleShape(radius);
+Shape* Planet::buildShape(int radius) {
+    CircleShape* shape = new CircleShape(radius / PLANET_SCALE);
 
     shape->setFillColor(Color(rand()%255, rand()%255, rand()%255));
     shape->setOutlineThickness((rand()%2)+1);
@@ -18,7 +18,7 @@ Shape* Planet::buildShape() {
 
 void Planet::onCollisionEnter(Object* collider){
     if (collider->compareTag("Spaceship")){
-        this->addObject(collider, Vector2f(0.f, 0.f));
+        this->addObject(collider, Vector2f(0.f, - (radius + SPACESHIP_DISTANCE_FROM_FLOOR)));
         // Aggiungere lineette del pianeta, bunker, fuels e cose varie
         Engine::setCurrentScene(this);
     }
@@ -30,10 +30,11 @@ const void followSpaceship(Camera* camera, const float deltaTime, vector<Object*
 }
 
 Planet::Planet(Vector2f position): 
-    Object(Planet::buildShape(), position, 0.f),
+    Object(position, 0.f),
     Scene(followSpaceship) {
         this->tag = "Planet";
-        this->radius = ((CircleShape*) this->shape)->getRadius() * PLANET_SCALE;
+        this->radius = rand() % 2000 + 1000;
+        this->shape = buildShape(radius);
         int nPoints = 2 * M_PI * (float) radius / PIXELS_PER_POINT;
         int rangeX = PIXELS_PER_POINT / 2 * PLANET_POINT_RANGE_SCALE_X;
         int rangeY = PIXELS_PER_POINT / 2 * PLANET_POINT_RANGE_SCALE_Y;
@@ -48,7 +49,12 @@ Planet::Planet(Vector2f position):
             Vector2f point = realDistance * Vector2f(cos(realAngle), sin(realAngle));
             this->points.push_back(point);
         }
-        // TODO: creare la classe Line e qua istanziare le linee
+        for (int i = 1; i <= nPoints; i++) {
+            Vector2f start = this->points[(i - 1) % nPoints];
+            Vector2f end = this->points[i % nPoints];
+            Vector2f difference = end - start;
+            Engine::instantiate(new Line(start, difference), this);
+        }
     }
 
 void Planet::update(const float deltaTime) { }
