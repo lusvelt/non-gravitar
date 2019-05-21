@@ -22,6 +22,13 @@ Shape* ThreeDirectionBunker::buildShape() {
     ConvexShape* shape = new ConvexShape(8);
 
     //SHAPE:
+
+    shape->setPoint(0, Vector2f(-10.f, -40.f));
+    shape->setPoint(1, Vector2f(10.f, -40.f));
+    shape->setPoint(2, Vector2f(10.f, 40.f));
+    shape->setPoint(3, Vector2f(-10.f, 40.f));
+
+    /*
     shape->setPoint(0, Vector2f(-50.f, 30.f));
     shape->setPoint(1, Vector2f(50.f, 30.f));
     shape->setPoint(2, Vector2f(-30.f, -30.f));
@@ -30,7 +37,7 @@ Shape* ThreeDirectionBunker::buildShape() {
     shape->setPoint(5, Vector2f(26.f, 0.f));
     shape->setPoint(6, Vector2f(30.f, -30.f));
     //shape->setPoint(7, Vector2f(0.f, 30.f));
-
+*/
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::White);

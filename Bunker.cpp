@@ -19,7 +19,7 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
     this->tag = "Bunker";
     this->bunkerCoolDown = bunkerCoolDown;
     this->bunkerShootTime = 0;
-    this->life = (LifePointsBar*) Engine::instantiate(new LifePointsBar(lifePoints, this), Engine::getPreparingScene());
+    this->life = (LifePointsBar*) Engine::instantiate(new LifePointsBar(lifePoints, Vector2f(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 40.f), this->getRotation()), Engine::getPreparingScene());
     this->maxRay = maxRay;
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;

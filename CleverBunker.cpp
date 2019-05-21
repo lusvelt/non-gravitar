@@ -23,6 +23,13 @@ Shape* CleverBunker::buildShape() {
     ConvexShape* shape = new ConvexShape(12);
 
     //SHAPE:
+
+    shape->setPoint(0, Vector2f(-10.f, -40.f));
+    shape->setPoint(1, Vector2f(10.f, -40.f));
+    shape->setPoint(2, Vector2f(10.f, 40.f));
+    shape->setPoint(3, Vector2f(-10.f, 40.f));
+
+    /*
     shape->setPoint(0, Vector2f(-20.f, -15.f));
     shape->setPoint(1, Vector2f(20.f, -15.f));
     shape->setPoint(2, Vector2f(-30.f, 5.f));
@@ -35,7 +42,7 @@ Shape* CleverBunker::buildShape() {
     shape->setPoint(9, Vector2f(7.f, 15.f));
     shape->setPoint(10, Vector2f(10.f, 25.f));
     shape->setPoint(11, Vector2f(30.f, 5.f));
-
+*/
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::Blue);

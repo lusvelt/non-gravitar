@@ -8,14 +8,13 @@ using namespace sf;
 using namespace std;
 
 Shape* LifePointsBar::buildShape(){
-    RectangleShape* shape = new RectangleShape(Vector2f(this->bunkerPointer->getBaseLength(),2.f));
+    RectangleShape* shape = new RectangleShape(Vector2f(50.f,2.f));
     shape->setFillColor(Color::Green);
 
     return shape;
 };
 
-LifePointsBar::LifePointsBar(int life, Bunker* bunker) : Object(LifePointsBar::buildShape(),Vector2f(this->bunkerPointer->getLPBCoordinates().x, this->bunkerPointer->getLPBCoordinates().y + 40.f), this->bunkerPointer->getRotation()){
-    this->bunkerPointer = bunker;
+LifePointsBar::LifePointsBar(int life, Vector2f startingPosition, float startingRotation) : Object(LifePointsBar::buildShape(), startingPosition,startingRotation){
     this->hits = 0;
     this->requiredHits = life;
     this->tag = "LifePointsBar";

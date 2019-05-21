@@ -12,13 +12,12 @@ using namespace std;
 class LifePointsBar : public Object {
     private:
         Shape* buildShape();
-        Bunker* bunkerPointer;
         int hits;
         int requiredHits;
 
     public:
         void update(const float);
-        LifePointsBar(int life, Bunker* bunker);
+        LifePointsBar(int life, Vector2f, float);
         void decreasePoints();
         bool hasEnded();
 };
