@@ -1,13 +1,4 @@
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <string>
-#include <cmath>
-
 #include "Object.hpp"
-#include "Engine.hpp"
-
-using namespace sf;
-using namespace std;
 
 Object::Object(Shape* shape, Vector2f position, float rotation) {
     this->shape = shape;

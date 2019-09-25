@@ -1,20 +1,6 @@
-#include <iostream>
-#include <cmath>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <vector>
-#include "Camera.hpp"
-#include "Scene.hpp"
-#include "Planet.hpp"
-#include "Declarations.hpp"
 #include "SolarSystem.hpp"
-#include "Bunker.hpp"
-#include "CleverBunker.hpp"
-#include "DoubleShootBunker.hpp"
 
-using namespace std;
-using namespace sf;
+#include "Engine.hpp"
 
 const void fixedCamera(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {}
 

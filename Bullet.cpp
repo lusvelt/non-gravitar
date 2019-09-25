@@ -1,6 +1,5 @@
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
 #include "Bullet.hpp"
+
 #include "Engine.hpp"
 
 Shape* Bullet::buildShape() {

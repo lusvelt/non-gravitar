@@ -1,12 +1,9 @@
 #ifndef _LIFEPOINTSBAR_H_
 #define _LIFEPOINTSBAR_H_
 
-#include <SFML/Graphics.hpp>
 #include "Declarations.hpp"
-#include "Object.hpp"
 
-using namespace sf;
-using namespace std;
+#include "Object.hpp"
 
 class LifePointsBar : public Object {
     private:

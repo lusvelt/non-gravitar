@@ -1,13 +1,8 @@
-#include <cmath>
-#include <SFML/Window.hpp>
-#include "Declarations.hpp"
 #include "Spaceship.hpp"
-#include "Game.hpp"
+
 #include "Bullet.hpp"
 #include "Engine.hpp"
 #include "Planet.hpp"
-
-using namespace sf;
 
 Shape* Spaceship::buildShape() {
     ConvexShape* shape = new ConvexShape(4);

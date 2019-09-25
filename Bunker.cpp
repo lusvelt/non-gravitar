@@ -1,18 +1,7 @@
-
-
-#include <SFML/Window.hpp>
-#include <vector>
-#include <cmath>
-#include <iostream>
-#include "Bullet.hpp"
-#include "Declarations.hpp"
 #include "Bunker.hpp"
-#include "Object.hpp"
-#include "LifePointsBar.hpp"
-#include "Engine.hpp"
 
-using namespace sf;
-using namespace std;
+#include "Bullet.hpp"
+#include "Engine.hpp"
 
 Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown) :
     Object(shape, Vector2f(BUNKER_WIDTH, BUNKER_HEIGHT), 0.f) {

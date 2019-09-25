@@ -1,20 +1,9 @@
-#include <SFML/Graphics.hpp>
-
-#include "Object.hpp"
 #include "Game.hpp"
-#include "SolarSystem.hpp"
-#include "Camera.hpp"
-#include "Planet.hpp"
-#include "Scene.hpp"
-#include "Engine.hpp"
-#include "Bunker.hpp"
-#include "TankBunker.hpp"
-#include "DoubleShootBunker.hpp"
-#include "CleverBunker.hpp"
-#include "TwoDirectionBunker.hpp"
-#include "ThreeDirectionBunker.hpp"
 
-using namespace sf;
+#include "Engine.hpp"
+#include "SolarSystem.hpp"
+#include "Spaceship.hpp"
+#include "TankBunker.hpp"
 
 Game::Game() {
     score = 0;

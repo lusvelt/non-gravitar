@@ -1,17 +1,16 @@
 #ifndef _BULLET_H_
 #define _BULLET_H_
 
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
 #include "Declarations.hpp"
-#include "Object.hpp"
 
-using namespace sf;
+#include "Object.hpp"
 
 class Bullet : public Object {
     private:
         Shape* buildShape();
         string sourceTag;
+
+    protected:
 
     public:
         Bullet(Vector2f position, Vector2f speed, string sourceTag);

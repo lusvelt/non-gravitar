@@ -1,15 +1,12 @@
 #ifndef _SOLAR_SYSTEM_H_
 #define _SOLAR_SYSTEM_H_
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
+
 #include "Declarations.hpp"
-#include <vector>
-#include "Planet.hpp"
-#include "Camera.hpp"
-#include "Object.hpp"
-#include "Engine.hpp"
+
 #include "Scene.hpp"
+#include "Planet.hpp"
+
+class Scene;
 
 class SolarSystem : public Scene {
     private:

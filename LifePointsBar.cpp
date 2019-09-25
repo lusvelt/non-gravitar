@@ -1,11 +1,6 @@
-#include <SFML/Graphics.hpp>
-#include "Declarations.hpp"
 #include "LifePointsBar.hpp"
-#include "Engine.hpp"
-#include "Bunker.hpp"
 
-using namespace sf;
-using namespace std;
+#include "Engine.hpp"
 
 Shape* LifePointsBar::buildShape(){
     RectangleShape* shape = new RectangleShape(Vector2f(50.f,2.f));

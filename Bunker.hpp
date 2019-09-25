@@ -1,15 +1,9 @@
 #ifndef _BUNKER_H
 #define _BUNKER_H
 
-#include <SFML/Graphics.hpp>
-#include "Bullet.hpp"
-#include "Object.hpp"
 #include "Declarations.hpp"
+
 #include "LifePointsBar.hpp"
-
-using namespace sf;
-using namespace std;
-
 
 class Bunker : public Object {
     protected:

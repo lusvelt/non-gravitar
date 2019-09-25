@@ -1,8 +1,8 @@
 #ifndef _GAME_CONTROLLER_H_
 #define _GAME_CONTROLLER_H_
 
-#include <vector>
-#include "Spaceship.hpp"
+#include "Declarations.hpp"
+
 #include "Scene.hpp"
 
 class Game {

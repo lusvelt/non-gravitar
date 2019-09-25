@@ -1,7 +1,5 @@
-#include <SFML/System.hpp>
-#include <vector>
-#include "Object.hpp"
 #include "Camera.hpp"
+
 #include "Engine.hpp"
 
 Camera::Camera(const void (*updateFunction)(Camera*, const float, vector<Object*>*)) {

@@ -1,15 +1,12 @@
 #ifndef _OBJECT_H_
 #define _OBJECT_H_
 
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <string>
 #include "Declarations.hpp"
 
-using namespace sf;
-using namespace std;
-
 class Object {
+
+    private:
+
     protected:
         Vector2f position;
         Vector2f speed;

@@ -1,16 +1,4 @@
-#include <SFML/Window.hpp>
-#include <vector>
-#include <cmath>
-#include <iostream>
 #include "TankBunker.hpp"
-#include "Bullet.hpp"
-#include "Declarations.hpp"
-#include "Bunker.hpp"
-#include "Object.hpp"
-#include "LifePointsBar.hpp"
-
-using namespace std;
-using namespace sf;
 
 TankBunker::TankBunker() : Bunker(buildShape(), 20, 45.f, 45.f, 1.f) {}
 

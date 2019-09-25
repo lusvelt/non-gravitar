@@ -1,12 +1,9 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-#include <SFML/System.hpp>
-#include <vector>
-#include "Object.hpp"
+#include "Declarations.hpp"
 
-using namespace sf;
-using namespace std;
+#include "Object.hpp"
 
 class Camera {
   private:

@@ -1,6 +1,16 @@
 #ifndef _DECLARATIONS_H_
 #define _DECLARATIONS_H_
 
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+
+#include <string>
+#include <cmath>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 #define WINDOW_TITLE "Non-Gravitar"
@@ -21,13 +31,11 @@
 #define MARGIN 30
 #define STANDARD_BUNKER_ANGLE 45.f
 #define PLANET_LINE_THICKNESS 3.f
-
 #define PLANET_SCALE 100
 #define PIXELS_PER_POINT 200
 #define PLANET_POINT_RANGE_SCALE_X 0.8f
 #define PLANET_POINT_RANGE_SCALE_Y 1.2f
 #define SPACESHIP_DISTANCE_FROM_FLOOR 200.f
-
 #define BULLET_DISTANCE_RADIUS 10.f
 #define PLANET_ATMOSPHERE_HEIGHT 500.f
 
@@ -37,5 +45,8 @@ enum Bound {
     BOTTOM_BOUND,
     RIGHT_BOUND
 };
+
+using namespace sf;
+using namespace std;
 
 #endif

@@ -1,10 +1,4 @@
 #include "Scene.hpp"
-#include "Camera.hpp"
-#include "Object.hpp"
-#include "Engine.hpp"
-#include <vector>
-
-using namespace std;
 
 Scene::Scene(const void (*cameraFunction)(Camera*, const float, vector<Object*>*)) {
     this->type = "Scene";

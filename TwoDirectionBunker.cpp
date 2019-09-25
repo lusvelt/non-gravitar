@@ -1,17 +1,4 @@
-#include <SFML/Window.hpp>
-#include <vector>
-#include <cmath>
-#include <iostream>
 #include "TwoDirectionBunker.hpp"
-#include "Bullet.hpp"
-#include "Declarations.hpp"
-#include "Bunker.hpp"
-#include "Object.hpp"
-#include "LifePointsBar.hpp"
-#include "Spaceship.hpp"
-
-using namespace std;
-using namespace sf;
 
 TwoDirectionBunker::TwoDirectionBunker() : Bunker(buildShape(), 4, 55.f, 10.f, .5f) {
     srand(time(NULL));

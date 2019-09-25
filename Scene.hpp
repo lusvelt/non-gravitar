@@ -1,13 +1,10 @@
 #ifndef _SCENE_H_
 #define _SCENE_H_
 
-#include <vector>
-#include "Camera.hpp"
-#include "Scene.hpp"
-#include "Object.hpp"
+#include "Declarations.hpp"
 
-using namespace std;
-using namespace sf;
+#include "Object.hpp"
+#include "Camera.hpp"
 
 class Camera;
 

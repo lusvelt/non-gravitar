@@ -1,18 +1,4 @@
-#include <SFML/Window.hpp>
-#include <vector>
-#include <cmath>
-#include <iostream>
 #include "CleverBunker.hpp"
-#include "Bullet.hpp"
-#include "Declarations.hpp"
-#include "Bunker.hpp"
-#include "Object.hpp"
-#include "LifePointsBar.hpp"
-#include "Spaceship.hpp"
-#include "Engine.hpp"
-
-using namespace std;
-using namespace sf;
 
 CleverBunker::CleverBunker() : Bunker(buildShape(), 5, 45.f, 45.f, 0.50f) {
     this->bulletSpeed = 700.f;

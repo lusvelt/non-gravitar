@@ -1,17 +1,13 @@
 #ifndef _ENGINE_H_
 #define _ENGINE_H_
 
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include <queue>
 #include "Declarations.hpp"
-#include "Game.hpp"
+
 #include "Scene.hpp"
-#include "Camera.hpp"
+#include "Game.hpp"
 #include "Object.hpp"
 
-using namespace sf;
+class Game;
 
 class Engine {
     private:

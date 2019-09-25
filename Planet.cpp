@@ -1,7 +1,9 @@
 #include "Planet.hpp"
+
+#include "Scene.hpp"
 #include "Engine.hpp"
-#include "Object.hpp"
-#include <vector>
+#include "Camera.hpp"
+#include "Line.hpp"
 
 Shape* Planet::buildShape(float radius) {
     CircleShape* shape = new CircleShape(radius / PLANET_SCALE);

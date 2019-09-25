@@ -1,12 +1,6 @@
-#include <algorithm>
-#include <vector>
-#include <SFML/Graphics.hpp>
 #include "Engine.hpp"
-#include "Object.hpp"
-#include "SolarSystem.hpp"
 
-using namespace sf;
-using namespace std;
+#include "Camera.hpp"
 
 Clock Engine::clock;
 RenderWindow *Engine::window;

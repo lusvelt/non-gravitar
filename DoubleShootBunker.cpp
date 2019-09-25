@@ -1,17 +1,4 @@
-#include <SFML/Window.hpp>
-#include <vector>
-#include <cmath>
-#include <iostream>
 #include "DoubleShootBunker.hpp"
-#include "Bullet.hpp"
-#include "Declarations.hpp"
-#include "Bunker.hpp"
-#include "Object.hpp"
-#include "LifePointsBar.hpp"
-#include "Spaceship.hpp"
-
-using namespace std;
-using namespace sf;
 
 DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 55.f, 10.f, .5f) {
     this->direction = 1;
