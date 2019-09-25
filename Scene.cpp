@@ -3,9 +3,11 @@
 #include "Object.hpp"
 #include "Engine.hpp"
 #include <vector>
-#include <iostream>
+
+using namespace std;
 
 Scene::Scene(const void (*cameraFunction)(Camera*, const float, vector<Object*>*)) {
+    this->type = "Scene";
     this->camera = new Camera(cameraFunction);
 }
 
@@ -27,7 +29,19 @@ void Scene::addObject(Object* obj, Vector2f position) {
     this->addObject(obj);
 }
 
-void Scene::update(const float deltaTime) {
+bool Scene::contains(Object* obj) {
+    return count(this->objects.begin(), this->objects.end(), obj);
+}
+
+const void Scene::update(const float deltaTime) {
     for (vector<Object*>::iterator obj = this->objects.begin(); obj != this->objects.end(); ++obj)
         (*obj)->update(deltaTime);
+}
+
+string Scene::getType() {
+    return type;
+}
+
+bool Scene::compareType(string type) {
+    return this->type == type;
 }

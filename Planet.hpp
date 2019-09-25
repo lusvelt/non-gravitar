@@ -11,13 +11,14 @@
 
 class Planet : public Scene, public Object {
     private:
-        int radius;
+        float radius;
         vector<Vector2f> points;
-        Shape* buildShape(int);
+        Shape* buildShape(float);
     public:
         void onCollisionEnter(Object*);
         Planet(Vector2f);
-        void update(const float);
+        float getRadius();
+        void update(float);
 };
 
 #endif

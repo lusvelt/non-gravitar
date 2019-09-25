@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Engine.hpp"
 #include "Object.hpp"
+#include "SolarSystem.hpp"
 
 using namespace sf;
 using namespace std;
@@ -15,9 +16,11 @@ Game *Engine::game;
 vector<Object*> Engine::potentialColliders;
 vector<Object*> Engine::removedObjects;
 Scene* Engine::preparingScene = NULL;
+Scene* Engine::prevScene = NULL;
 
 void Engine::initialize(Game& game) {
     Engine::window = new RenderWindow(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
+    Engine::window->setFramerateLimit(60);
     Engine::game = &game;
 }
 
@@ -62,7 +65,11 @@ void Engine::process(Object* obj) {
         checkCollisions(obj);
         checkBoundsHit(obj);
     }
-} 
+
+    if (obj->compareTag("Spaceship")) {
+        NULL;
+    }
+}
 
 void Engine::run() {
     clock.restart();
@@ -91,7 +98,9 @@ void Engine::run() {
 }
 
 void Engine::setCurrentScene(Scene* currentScene) {
+    Engine::prevScene = Engine::currentScene;
     Engine::currentScene = currentScene;
+
     while (!objectsQueue.empty()) {
         currentScene->addObject(objectsQueue.front());
         objectsQueue.pop();
@@ -171,7 +180,16 @@ Scene* Engine::getPreparingScene() {
     return preparingScene;
 }
 
+void Engine::backToPrevScene() {
+    if (Engine::prevScene != NULL)
+        Engine::setCurrentScene(Engine::prevScene);
+}
+
 bool Engine::isInCurrentScene(Object* obj) {
     vector<Object*> objects = *currentScene->getObjects();
     return find(objects.begin(), objects.end(), obj) != objects.end();
+}
+
+Scene* Engine::getPrevScene() {
+    return prevScene;
 }

@@ -1,13 +1,9 @@
 #include "Planet.hpp"
 #include "Engine.hpp"
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
 #include "Object.hpp"
-#include "Line.hpp"
 #include <vector>
 
-Shape* Planet::buildShape(int radius) {
+Shape* Planet::buildShape(float radius) {
     CircleShape* shape = new CircleShape(radius / PLANET_SCALE);
 
     shape->setFillColor(Color(rand()%255, rand()%255, rand()%255));
@@ -18,6 +14,7 @@ Shape* Planet::buildShape(int radius) {
 
 void Planet::onCollisionEnter(Object* collider){
     if (collider->compareTag("Spaceship")){
+        Engine::removeObjectFromCurrentScene(collider);
         this->addObject(collider, Vector2f(0.f, - (radius + SPACESHIP_DISTANCE_FROM_FLOOR)));
         // Aggiungere lineette del pianeta, bunker, fuels e cose varie
         Engine::setCurrentScene(this);
@@ -29,10 +26,14 @@ const void followSpaceship(Camera* camera, const float deltaTime, vector<Object*
     camera->setPosition(Vector2f(spaceshipPosition.x - WINDOW_WIDTH / 2, spaceshipPosition.y - WINDOW_HEIGHT / 2));
 }
 
+float Planet::getRadius() {
+    return this->radius;
+}
+
 Planet::Planet(Vector2f position): 
     Object(position, 0.f),
     Scene(followSpaceship) {
-        this->tag = "Planet";
+        this->type = this->tag = "Planet";
         this->radius = rand() % 2000 + 1000;
         this->shape = buildShape(radius);
         int nPoints = 2 * M_PI * (float) radius / PIXELS_PER_POINT;

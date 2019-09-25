@@ -5,6 +5,7 @@
 #include "Game.hpp"
 #include "Bullet.hpp"
 #include "Engine.hpp"
+#include "Planet.hpp"
 
 using namespace sf;
 
@@ -66,15 +67,17 @@ void Spaceship::update(const float deltaTime) {
         rotateRight();
     if (Keyboard::isKeyPressed(Keyboard::Space) && shootCd <= 0)
         shoot();
+
+    if (this->isOutOfRadius())
+        this->backToPrevScene();
     
     if (shootCd > 0)
         shootCd -= deltaTime;
 }
 
-// TODO: mettere 10.f in Declarations
 void Spaceship::shoot() {
     Vector2f versor = Vector2f(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
-    Vector2f position = this->position + 10.f * versor;
+    Vector2f position = this->position + BULLET_DISTANCE_RADIUS * versor;
     Vector2f speed = this->speed + BULLET_BASE_SPEED * versor;
     Bullet* bullet = (Bullet*) Engine::instantiate(new Bullet(position, speed, tag));
     this->shootCd = SPACESHIP_SHOOT_COOLDOWN;
@@ -85,5 +88,15 @@ void Spaceship::onBoundHit(Bound bound) {
         speed = Vector2f(-speed.x, speed.y);
     else if (bound == TOP_BOUND || bound == BOTTOM_BOUND)
         speed = Vector2f(speed.x, -speed.y);
+}
+
+bool Spaceship::isOutOfRadius() {
+    return Engine::getCurrentScene()->compareType("Planet") && this->getPolarRadius() > ((Planet*) Engine::getCurrentScene())->getRadius() + PLANET_ATMOSPHERE_HEIGHT;
+}
+
+void Spaceship::backToPrevScene() {
+    Engine::removeObjectFromCurrentScene(this);
+    Engine::getPrevScene()->addObject(this, Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2));
+    Engine::backToPrevScene();
 }
 

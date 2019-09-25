@@ -29,6 +29,7 @@ class Engine {
         static bool hasJustBeenRemoved(Object*);
         static void emptyRemovedObjectsVector();
         static Scene* preparingScene;
+        static Scene* prevScene;
 
     public:
         static void initialize(Game&);
@@ -46,6 +47,8 @@ class Engine {
         static Object* getObjectByTag(string);
         static Scene* getPreparingScene();
         static bool isInCurrentScene(Object*);
+        static void backToPrevScene();
+        static Scene* getPrevScene();
 
 };
 

@@ -26,6 +26,7 @@ class Object {
         Object(Object*);
         virtual ~Object();
         Vector2f getPosition();
+        float getPolarRadius();
         string getTag();
         bool compareTag(string);
         Shape* getShape();

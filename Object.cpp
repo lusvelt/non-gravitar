@@ -1,6 +1,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <cmath>
 
 #include "Object.hpp"
 #include "Engine.hpp"
@@ -43,6 +44,10 @@ Shape* Object::getShape() {
 
 Vector2f Object::getPosition() {
     return this->position;
+}
+
+float Object::getPolarRadius() {
+    return sqrt(pow(this->position.x, 2) + pow(this->position.y, 2));
 }
 
 float Object::getRotation() {

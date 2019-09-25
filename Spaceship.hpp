@@ -18,6 +18,8 @@ class Spaceship : public Object {
         Shape* buildShape();
         void shoot();
         void onBoundHit(Bound);
+        bool isOutOfRadius();
+        void backToPrevScene();
 
     public:
         Spaceship();

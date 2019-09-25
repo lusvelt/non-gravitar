@@ -19,6 +19,7 @@ using namespace sf;
 const void fixedCamera(Camera* camera, const float deltaTime, vector<Object*> *sceneObjects) {}
 
 SolarSystem::SolarSystem() : Scene(fixedCamera) {
+    this->type = "SolarSystem";
     srand(time(NULL));
     this->generatePlanets();
 }

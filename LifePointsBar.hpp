@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include "Declarations.hpp"
 #include "Object.hpp"
-#include "Bunker.hpp"
 
 using namespace sf;
 using namespace std;
