@@ -34,3 +34,5 @@
 NonGravitar
 .vscode/
 *.dSYM/
+out/
+non-gravitar/
