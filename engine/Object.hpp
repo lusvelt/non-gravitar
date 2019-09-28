@@ -35,6 +35,7 @@ class Object {
         virtual void onCollisionEnter(Object*);
         virtual void onBoundHit(Bound);
         virtual void update();
+        virtual bool collidesWith(Object*);
         bool isAClone();
         void setPosition(Vector2f position);
         void setSpeed(Vector2f speed);

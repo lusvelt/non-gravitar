@@ -101,3 +101,10 @@ bool Object::isOutOfBounds() {
 bool Object::shouldBeDeletedIfOutOfBounds() {
     return deleteIfOutOfBounds;
 }
+
+bool Object::collidesWith(Object* obj) {
+    Shape* thisShape = shape;
+    Shape* thatShape = obj->getShape();
+
+    return thisShape->getGlobalBounds().intersects(thatShape->getGlobalBounds());
+}

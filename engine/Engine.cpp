@@ -32,7 +32,7 @@ void Engine::draw(Object* obj) {
 void Engine::checkCollisions(Object* obj) {
     for (int i = 0; i < potentialColliders.size() && !hasJustBeenRemoved(obj); i++) {
         Object* potentialCollider = potentialColliders.at(i);
-        if (obj != potentialCollider && obj->getShape()->getGlobalBounds().intersects(potentialCollider->getShape()->getGlobalBounds())) {
+        if (obj != potentialCollider && obj->collidesWith(potentialCollider)) {
             obj->onCollisionEnter(potentialCollider);
             potentialCollider->onCollisionEnter(obj);
         }
