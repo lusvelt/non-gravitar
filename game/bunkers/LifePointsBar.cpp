@@ -10,11 +10,11 @@ Shape* LifePointsBar::buildShape(){
     return shape;
 };
 
-LifePointsBar::LifePointsBar(int life, Point startingPosition, float startingRotation) : Object(LifePointsBar::buildShape(), startingPosition,startingRotation){
+LifePointsBar::LifePointsBar(int life, Point startingPosition, float startingRotation):
+Object(LifePointsBar::buildShape(), startingPosition, startingRotation){
     this->hits = 0;
     this->requiredHits = life;
     this->tag = "LifePointsBar";
-    this->shape->setPosition(startingPosition);
 }
 
 void LifePointsBar::decreasePoints(){

@@ -12,25 +12,10 @@ Shape* CleverBunker::buildShape() {
 
     //SHAPE:
 
-    shape->setPoint(0, Point(-10.f, -40.f));
-    shape->setPoint(1, Point(10.f, -40.f));
-    shape->setPoint(2, Point(10.f, 40.f));
-    shape->setPoint(3, Point(-10.f, 40.f));
+    for(int i = 0; i <= 5; i = i + 1){
+        shape->setPoint(i, 25.f * Point(-cos((M_PI * i)/5), -sin((M_PI * i)/5)));
+    }
 
-    /*
-    shape->setPoint(0, Point(-20.f, -15.f));
-    shape->setPoint(1, Point(20.f, -15.f));
-    shape->setPoint(2, Point(-30.f, 5.f));
-    shape->setPoint(3, Point(-10.f, 25.f));
-    shape->setPoint(4, Point(7.f, 15.f));
-    shape->setPoint(5, Point(-20.f, 5.f));
-    shape->setPoint(6, Point(-7.f, -12.f));
-    shape->setPoint(7, Point(7.f, -12.f));
-    shape->setPoint(8, Point(20.f, 5.f));
-    shape->setPoint(9, Point(7.f, 15.f));
-    shape->setPoint(10, Point(10.f, 25.f));
-    shape->setPoint(11, Point(30.f, 5.f));
-*/
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::Blue);

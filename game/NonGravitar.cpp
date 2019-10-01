@@ -3,8 +3,7 @@
 #include "../engine/Engine.hpp"
 #include "scenes/SolarSystem.hpp"
 #include "spaceship/Spaceship.hpp"
-#include "bunkers/TankBunker.hpp"
-#include "bunkers/ThreeDirectionBunker.hpp"
+#include "bunkers/DoubleShootBunker.hpp"
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     score = 0;
@@ -13,7 +12,7 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
 
     Scene* testScene = new SolarSystem();
     Engine::instantiate(new Spaceship(), testScene);
-    Engine::instantiate(new ThreeDirectionBunker(), testScene);
+    Engine::instantiate(new DoubleShootBunker(), testScene);
     Engine::setCurrentScene(testScene);
     this->scenes.push_back(testScene);   
 }

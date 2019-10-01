@@ -9,25 +9,17 @@ DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 55.f, 10.f, .5f
 
 Shape* DoubleShootBunker::buildShape() {
 
-    ConvexShape* shape = new ConvexShape(8);
+    ConvexShape* shape = new ConvexShape(5);
 
     //SHAPE:
 
-    shape->setPoint(0, Point(-10.f, -40.f));
-    shape->setPoint(1, Point(10.f, -40.f));
-    shape->setPoint(2, Point(10.f, 40.f));
-    shape->setPoint(3, Point(-10.f, 40.f));
-    
-    /*
-    shape->setPoint(0, Point(-5.f, -30.f));
-    shape->setPoint(1, Point(5.f, -30.f));
-    shape->setPoint(2, Point(10.f, -10.f));
-    shape->setPoint(3, Point(30.f, -5.f));
-    shape->setPoint(4, Point(50.f, 30.f));
-    shape->setPoint(5, Point(-50.f, 30.f));
-    shape->setPoint(6, Point(-30.f, -5.f));
-    shape->setPoint(7, Point(-10.f, -10.f));
-*/
+    shape->setPoint(0, Point(-25.f, 20.f));
+    shape->setPoint(1, Point(25.f, 20.f));
+    shape->setPoint(2, Point(-5.f, 0.f));
+    shape->setPoint(3, Point(0.f, -20.f));
+    shape->setPoint(4, Point(5.f, 0.f));
+
+
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::Green);
