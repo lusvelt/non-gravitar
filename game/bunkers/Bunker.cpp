@@ -4,11 +4,11 @@
 #include "../../engine/Engine.hpp"
 
 Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown) :
-    Object(shape, Point(BUNKER_WIDTH, BUNKER_HEIGHT), 0.f) {
+    Object(shape, Vector2f(15.f, 55.f), 0.f) {
     this->tag = "Bunker";
     this->bunkerCoolDown = bunkerCoolDown;
     this->bunkerShootTime = 0;
-    this->life = (LifePointsBar*) Engine::instantiate(new LifePointsBar(lifePoints, Point(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 40.f), this->getRotation()), Engine::getPreparingScene());
+    this->life = (LifePointsBar*) Engine::instantiate(new LifePointsBar(lifePoints, Vector2f(15.f, 55.f), this->getRotation()), Engine::getPreparingScene());
     this->maxRay = maxRay;
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;
@@ -48,7 +48,7 @@ float Bunker::getBaseLength(){
     return this->shape->getPoint(1).x - this->shape->getPoint(0).x; 
 }
 
-Point Bunker::getLPBCoordinates(){
-    return this->shape->getPoint(1);
+Vector2f Bunker::getLPBCoordinates(){
+    return this->shape->getPoint(0);
     //1 è il punto piu' a destra della base, inoltre la base non è la più larga ma quella più in basso!!!
 }
