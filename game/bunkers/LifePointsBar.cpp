@@ -1,4 +1,5 @@
 #include "LifePointsBar.hpp"
+#include <iostream>
 
 #include "../../engine/Engine.hpp"
 
@@ -13,6 +14,7 @@ LifePointsBar::LifePointsBar(int life, Vector2f startingPosition, float starting
     this->hits = 0;
     this->requiredHits = life;
     this->tag = "LifePointsBar";
+    this->shape->setPosition(startingPosition);
 }
 
 void LifePointsBar::decreasePoints(){
