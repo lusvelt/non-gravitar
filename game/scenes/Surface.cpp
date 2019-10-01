@@ -2,7 +2,7 @@
 
 Shape* Surface::buildShape() {
     float length = segment->getLength();
-    RectangleShape* line = new RectangleShape(Vector2f(length, PLANET_LINE_THICKNESS));
+    RectangleShape* line = new RectangleShape(Point(length, PLANET_LINE_THICKNESS));
     line->setFillColor(Color::Green);
     return line;
 }
@@ -18,18 +18,8 @@ void Surface::update() { }
 
 bool Surface::collidesWith(Object* obj) {
     Point p = obj->getPosition();
-    if (obj->compareTag("Bullet")) {
-        this->getShape()->setFillColor(Color::Yellow);
-        bool hit = segment->getDistance(p) < BULLET_COLLISION_RADIUS && segment->bandContains(p);
-        if (hit) {
-            hit = hit;
-            this->getShape()->setFillColor(Color::Green);
-            return true;
-        } else {
-            this->getShape()->setFillColor(Color::Green);
-            return false;
-        }
-    } 
+    if (obj->compareTag("Bullet"))
+        return segment->getDistance(p) < BULLET_COLLISION_RADIUS && segment->bandContains(p);
     else return Object::collidesWith(obj);
 }
 
