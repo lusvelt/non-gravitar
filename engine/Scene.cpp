@@ -5,7 +5,7 @@ Scene::Scene(Camera* camera) {
     this->camera = camera;
 }
 
-Scene::Scene(Camera* camera, Vector2f entryPoint) {
+Scene::Scene(Camera* camera, Point entryPoint) {
     this->type = "Scene";
     this->camera = camera;
     this->entryPoint = entryPoint;
@@ -23,9 +23,9 @@ void Scene::addObject(Object* obj) {
     this->objects.push_back(obj);
 }
 
-void Scene::addObject(Object* obj, Vector2f position) {
+void Scene::addObject(Object* obj, Point position) {
     obj->setPosition(position);
-    obj->setSpeed(Vector2f(0.f, 0.f));
+    obj->setSpeed(Point(0.f, 0.f));
     this->addObject(obj);
 }
 
@@ -46,6 +46,6 @@ bool Scene::compareType(string type) {
     return this->type == type;
 }
 
-Vector2f Scene::getEntryPoint() {
+Point Scene::getEntryPoint() {
     return entryPoint;
 }

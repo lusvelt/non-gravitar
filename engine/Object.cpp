@@ -2,12 +2,12 @@
 
 #include "Engine.hpp"
 
-Object::Object(Shape* shape, Vector2f position, float rotation) {
+Object::Object(Shape* shape, Point position, float rotation) {
     this->shape = shape;
     this->position = position;
     this->rotation = rotation;
-    this->speed = Vector2f(0.f, 0.f);
-    this->acceleration = Vector2f(0.f, 0.f);
+    this->speed = Point(0.f, 0.f);
+    this->acceleration = Point(0.f, 0.f);
     this->angularSpeed = 0;
     this->tag = "Object";
     this->prevPointer = NULL;
@@ -20,11 +20,11 @@ Object::Object(Object* obj) {
     this->prevPointer = obj;
 }
 
-Object::Object(Vector2f position, float rotation) {
+Object::Object(Point position, float rotation) {
     this->position = position;
     this->rotation = rotation;
-    this->speed = Vector2f(0.f, 0.f);
-    this->acceleration = Vector2f(0.f, 0.f);
+    this->speed = Point(0.f, 0.f);
+    this->acceleration = Point(0.f, 0.f);
     this->angularSpeed = 0;
     this->tag = "Object";
     this->prevPointer = NULL;
@@ -36,7 +36,7 @@ Shape* Object::getShape() {
     return this->shape;
 }
 
-Vector2f Object::getPosition() {
+Point Object::getPosition() {
     return this->position;
 }
 
@@ -81,16 +81,16 @@ void Object::onBoundHit(Bound bound) { }
 
 void Object::update() { }
 
-void Object::setPosition(Vector2f position) {
+void Object::setPosition(Point position) {
     this->position = position;
 }
 
-void Object::setSpeed(Vector2f speed) {
+void Object::setSpeed(Point speed) {
     this->speed = speed;
 }
 
 bool Object::isOutOfBounds() {
-    Vector2f objPosition = this->position - Engine::getCurrentScene()->getCamera()->getPosition();
+    Point objPosition = this->position - Engine::getCurrentScene()->getCamera()->getPosition();
     Game* game = Engine::getGame();
     return objPosition.x < -game->getOutOfBoundsOffsetX() ||
            objPosition.x > game->getViewWidth() + game->getOutOfBoundsOffsetX() ||

@@ -3,7 +3,7 @@
 #include "../../engine/Engine.hpp"
 #include "../cameras/FixedCamera.hpp"
 
-SolarSystem::SolarSystem() : Scene(new FixedCamera(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)) {
+SolarSystem::SolarSystem() : Scene(new FixedCamera(), Point(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)) {
     this->type = "SolarSystem";
     srand(time(NULL));
     this->generatePlanets();
@@ -20,7 +20,7 @@ const void SolarSystem::generatePlanets() {
             xStart = (j * sizeBlockx) + MARGIN;
             yStart = (i * sizeBlocky) + MARGIN;
             bool emptyBlock = rand() % 2;
-            Vector2f position = Vector2f(rand() % (sizeBlockx - MARGIN)+ xStart, rand() % (sizeBlocky - MARGIN) + yStart);
+            Point position = Point(rand() % (sizeBlockx - MARGIN)+ xStart, rand() % (sizeBlocky - MARGIN) + yStart);
             if ((i == 1 && j == 1) || !emptyBlock) { 
                 count++;
                 if (count > 5)

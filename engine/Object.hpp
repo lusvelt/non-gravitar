@@ -8,9 +8,9 @@
 class Object {
 
     protected:
-        Vector2f position;
-        Vector2f speed;
-        Vector2f acceleration;
+        Point position;
+        Point speed;
+        Point acceleration;
         float rotation;
         float angularSpeed;
         string tag;
@@ -19,11 +19,11 @@ class Object {
         bool deleteIfOutOfBounds;
 
     public:
-        Object(Vector2f position, float rotation);
-        Object(Shape* shape, Vector2f position, float rotation);
+        Object(Point position, float rotation);
+        Object(Shape* shape, Point position, float rotation);
         Object(Object*);
         virtual ~Object();
-        Vector2f getPosition();
+        Point getPosition();
         float getPolarRadius();
         string getTag();
         bool compareTag(string);
@@ -37,8 +37,8 @@ class Object {
         virtual void update();
         virtual bool collidesWith(Object*);
         bool isAClone();
-        void setPosition(Vector2f position);
-        void setSpeed(Vector2f speed);
+        void setPosition(Point position);
+        void setSpeed(Point speed);
         bool isOutOfBounds();
         bool shouldBeDeletedIfOutOfBounds();
         

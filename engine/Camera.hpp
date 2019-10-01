@@ -7,12 +7,12 @@
 
 class Camera {
   private:
-    Vector2f position;
+    Point position;
 
   public:
     Camera();
-    Vector2f getPosition();
-    void setPosition(Vector2f position);
+    Point getPosition();
+    void setPosition(Point position);
     virtual void update() = 0;
 };
 

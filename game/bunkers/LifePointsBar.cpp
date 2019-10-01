@@ -1,18 +1,20 @@
 #include "LifePointsBar.hpp"
+#include <iostream>
 
 #include "../../engine/Engine.hpp"
 
 Shape* LifePointsBar::buildShape(){
-    RectangleShape* shape = new RectangleShape(Vector2f(50.f,2.f));
+    RectangleShape* shape = new RectangleShape(Point(50.f,2.f));
     shape->setFillColor(Color::Green);
 
     return shape;
 };
 
-LifePointsBar::LifePointsBar(int life, Vector2f startingPosition, float startingRotation) : Object(LifePointsBar::buildShape(), startingPosition,startingRotation){
+LifePointsBar::LifePointsBar(int life, Point startingPosition, float startingRotation) : Object(LifePointsBar::buildShape(), startingPosition,startingRotation){
     this->hits = 0;
     this->requiredHits = life;
     this->tag = "LifePointsBar";
+    this->shape->setPosition(startingPosition);
 }
 
 void LifePointsBar::decreasePoints(){

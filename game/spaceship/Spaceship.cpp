@@ -1,16 +1,16 @@
 #include "Spaceship.hpp"
 
-#include "Bullet.hpp"
+#include "../bullets/Bullet.hpp"
 #include "../../engine/Engine.hpp"
 #include "../scenes/Planet.hpp"
 
 Shape* Spaceship::buildShape() {
     ConvexShape* shape = new ConvexShape(4);
 
-    shape->setPoint(0, Vector2f(-3.f, 0.f));
-    shape->setPoint(1, Vector2f(-10.f, 10.f));
-    shape->setPoint(2, Vector2f(10.f, 0.f));
-    shape->setPoint(3, Vector2f(-10.f, -10.f));
+    shape->setPoint(0, Point(-3.f, 0.f));
+    shape->setPoint(1, Point(-10.f, 10.f));
+    shape->setPoint(2, Point(10.f, 0.f));
+    shape->setPoint(3, Point(-10.f, -10.f));
 
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::Blue);
@@ -20,7 +20,7 @@ Shape* Spaceship::buildShape() {
 }
 
 Spaceship::Spaceship():
-    Object(Spaceship::buildShape(), Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f) {
+    Object(Spaceship::buildShape(), Point(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f) {
     this->shootCd = 0;
     this->tag = "Spaceship";
 }
@@ -70,18 +70,18 @@ void Spaceship::update() {
 }
 
 void Spaceship::shoot() {
-    Vector2f versor = Vector2f(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
-    Vector2f position = this->position + BULLET_DISTANCE_RADIUS * versor;
-    Vector2f speed = this->speed + BULLET_BASE_SPEED * versor;
+    Point versor = Point(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
+    Point position = this->position + BULLET_DISTANCE_RADIUS * versor;
+    Point speed = this->speed + BULLET_BASE_SPEED * versor;
     Bullet* bullet = (Bullet*) Engine::instantiate(new Bullet(position, speed, tag));
     this->shootCd = SPACESHIP_SHOOT_COOLDOWN;
 }
 
 void Spaceship::onBoundHit(Bound bound) {
     if (bound == LEFT_BOUND || bound == RIGHT_BOUND)
-        speed = Vector2f(-speed.x, speed.y);
+        speed = Point(-speed.x, speed.y);
     else if (bound == TOP_BOUND || bound == BOTTOM_BOUND)
-        speed = Vector2f(speed.x, -speed.y);
+        speed = Point(speed.x, -speed.y);
 }
 
 bool Spaceship::isOutOfRadius() {

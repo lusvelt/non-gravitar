@@ -13,7 +13,7 @@ class LifePointsBar : public Object {
 
     public:
         void update();
-        LifePointsBar(int life, Vector2f, float);
+        LifePointsBar(int life, Point, float);
         void decreasePoints();
         bool hasEnded();
 };

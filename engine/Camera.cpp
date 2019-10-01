@@ -3,13 +3,13 @@
 #include "Engine.hpp"
 
 Camera::Camera() {
-    this->position = Vector2f(0.f, 0.f);
+    this->position = Point(0.f, 0.f);
 }
 
-Vector2f Camera::getPosition() {
+Point Camera::getPosition() {
     return this->position;
 }
 
-void Camera::setPosition(Vector2f position) {
+void Camera::setPosition(Point position) {
     this->position = position;
 }
