@@ -31,6 +31,7 @@ Object::Object(Point position, float rotation) {
 }
 
 Object::Object(Shape* shape) {
+    this->shape = shape;
     this->position = Point(0.f, 0.f);
     this->rotation = 0.f;
     this->speed = Point(0.f, 0.f);
