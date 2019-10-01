@@ -30,6 +30,16 @@ Object::Object(Point position, float rotation) {
     this->prevPointer = NULL;
 }
 
+Object::Object(Shape* shape) {
+    this->position = Point(0.f, 0.f);
+    this->rotation = 0.f;
+    this->speed = Point(0.f, 0.f);
+    this->acceleration = Point(0.f, 0.f);
+    this->angularSpeed = 0;
+    this->tag = "Object";
+    this->prevPointer = NULL;
+}
+
 Object::~Object() { }
 
 Shape* Object::getShape() {

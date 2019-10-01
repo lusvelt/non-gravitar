@@ -4,7 +4,7 @@
 #include "scenes/SolarSystem.hpp"
 #include "spaceship/Spaceship.hpp"
 #include "bunkers/TankBunker.hpp"
-#include "miscellaneous/TractorBeam.hpp"
+#include "spaceship/TractorBeam.hpp"
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     score = 0;

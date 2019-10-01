@@ -3,10 +3,10 @@
 
 class TractorBeam : public Object {
     private:
-    Shape* buildShape();
+        Shape* buildShape();
 
     public:
-    TractorBeam();
-    void update();
+        TractorBeam();
+        void update();
 };
 

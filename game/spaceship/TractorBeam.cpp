@@ -15,7 +15,7 @@ Shape* TractorBeam::buildShape() {
 };
 
 TractorBeam::TractorBeam():
-    Object(TractorBeam::buildShape(),position, rotation){
+    Object(TractorBeam::buildShape()) {
         this->tag = "TractorBeam";
     }
 

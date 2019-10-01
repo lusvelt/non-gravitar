@@ -8,15 +8,12 @@ Segment::Segment(Point p1, Point p2) : Line(p1, p2) {
 bool Segment::bandContains(Point p) {
     Line* l1 = getPerpendicularThroughPoint(p1);
     Line* l2 = getPerpendicularThroughPoint(p2);
-    // We want to assume that l2 is above l1 for each x
-    if (l2->evaluateY(p1.x) < p1.y) {
-        Line* tmp = l1;
-        l1 = l2;
-        l2 = tmp;
-    }
     float y1 = l1->evaluateY(p.x);
     float y2 = l2->evaluateY(p.x);
-    return y1 <= p1.y && p1.y <= p2.y;
+    if (l2->evaluateY(p1.x) >= p1.y)
+        return y1 <= p.y && p.y <= y2;
+    else
+        return y2 <= p.y && p.y <= y1;
 }
 
 Vector2f Segment::getVector() {

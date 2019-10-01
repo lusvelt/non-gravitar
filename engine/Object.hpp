@@ -21,6 +21,7 @@ class Object {
     public:
         Object(Point position, float rotation);
         Object(Shape* shape, Point position, float rotation);
+        Object(Shape* shape);
         Object(Object*);
         virtual ~Object();
         Point getPosition();

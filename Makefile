@@ -61,8 +61,8 @@ TankBunker.o: game/bunkers/TankBunker.cpp
 ThreeDirectionBunker.o: game/bunkers/ThreeDirectionBunker.cpp
 	g++ -c game/bunkers/ThreeDirectionBunker.cpp
 
-TractorBeam.o: game/miscellaneous/TractorBeam.cpp
-	g++ -c game/miscellaneous/TractorBeam.cpp
+TractorBeam.o: game/spaceship/TractorBeam.cpp
+	g++ -c game/spaceship/TractorBeam.cpp
 
 TwoDirectionBunker.o: game/bunkers/TwoDirectionBunker.cpp
 	g++ -c game/bunkers/TwoDirectionBunker.cpp
