@@ -12,24 +12,24 @@ Shape* CleverBunker::buildShape() {
 
     //SHAPE:
 
-    shape->setPoint(0, Vector2f(-10.f, -40.f));
-    shape->setPoint(1, Vector2f(10.f, -40.f));
-    shape->setPoint(2, Vector2f(10.f, 40.f));
-    shape->setPoint(3, Vector2f(-10.f, 40.f));
+    shape->setPoint(0, Point(-10.f, -40.f));
+    shape->setPoint(1, Point(10.f, -40.f));
+    shape->setPoint(2, Point(10.f, 40.f));
+    shape->setPoint(3, Point(-10.f, 40.f));
 
     /*
-    shape->setPoint(0, Vector2f(-20.f, -15.f));
-    shape->setPoint(1, Vector2f(20.f, -15.f));
-    shape->setPoint(2, Vector2f(-30.f, 5.f));
-    shape->setPoint(3, Vector2f(-10.f, 25.f));
-    shape->setPoint(4, Vector2f(7.f, 15.f));
-    shape->setPoint(5, Vector2f(-20.f, 5.f));
-    shape->setPoint(6, Vector2f(-7.f, -12.f));
-    shape->setPoint(7, Vector2f(7.f, -12.f));
-    shape->setPoint(8, Vector2f(20.f, 5.f));
-    shape->setPoint(9, Vector2f(7.f, 15.f));
-    shape->setPoint(10, Vector2f(10.f, 25.f));
-    shape->setPoint(11, Vector2f(30.f, 5.f));
+    shape->setPoint(0, Point(-20.f, -15.f));
+    shape->setPoint(1, Point(20.f, -15.f));
+    shape->setPoint(2, Point(-30.f, 5.f));
+    shape->setPoint(3, Point(-10.f, 25.f));
+    shape->setPoint(4, Point(7.f, 15.f));
+    shape->setPoint(5, Point(-20.f, 5.f));
+    shape->setPoint(6, Point(-7.f, -12.f));
+    shape->setPoint(7, Point(7.f, -12.f));
+    shape->setPoint(8, Point(20.f, 5.f));
+    shape->setPoint(9, Point(7.f, 15.f));
+    shape->setPoint(10, Point(10.f, 25.f));
+    shape->setPoint(11, Point(30.f, 5.f));
 */
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);
@@ -45,7 +45,7 @@ float CleverBunker::shootPoint(){
 
 void CleverBunker::studyFireAngle(){
     float angle = 90.f;
-    Vector2f delta = Engine::getObjectByTag("Spaceship")->getPosition() - this->position;
+    Point delta = Engine::getObjectByTag("Spaceship")->getPosition() - this->position;
     angle = atan(delta.y/delta.x)/M_PI*180;
     this->fireAngle = 270 - angle;
     if(delta.x < 0) this->fireAngle -= 180;

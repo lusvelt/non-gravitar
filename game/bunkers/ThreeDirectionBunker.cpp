@@ -10,20 +10,20 @@ Shape* ThreeDirectionBunker::buildShape() {
 
     //SHAPE:
 
-    shape->setPoint(0, Vector2f(-10.f, -40.f));
-    shape->setPoint(1, Vector2f(10.f, -40.f));
-    shape->setPoint(2, Vector2f(10.f, 40.f));
-    shape->setPoint(3, Vector2f(-10.f, 40.f));
+    shape->setPoint(0, Point(-10.f, -40.f));
+    shape->setPoint(1, Point(10.f, -40.f));
+    shape->setPoint(2, Point(10.f, 40.f));
+    shape->setPoint(3, Point(-10.f, 40.f));
 
     /*
-    shape->setPoint(0, Vector2f(-50.f, 30.f));
-    shape->setPoint(1, Vector2f(50.f, 30.f));
-    shape->setPoint(2, Vector2f(-30.f, -30.f));
-    shape->setPoint(3, Vector2f(-26.f, 0.f));
-    shape->setPoint(4, Vector2f(0.f, -40.f));
-    shape->setPoint(5, Vector2f(26.f, 0.f));
-    shape->setPoint(6, Vector2f(30.f, -30.f));
-    //shape->setPoint(7, Vector2f(0.f, 30.f));
+    shape->setPoint(0, Point(-50.f, 30.f));
+    shape->setPoint(1, Point(50.f, 30.f));
+    shape->setPoint(2, Point(-30.f, -30.f));
+    shape->setPoint(3, Point(-26.f, 0.f));
+    shape->setPoint(4, Point(0.f, -40.f));
+    shape->setPoint(5, Point(26.f, 0.f));
+    shape->setPoint(6, Point(30.f, -30.f));
+    //shape->setPoint(7, Point(0.f, 30.f));
 */
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);

@@ -2,7 +2,7 @@
 
 #include "../engine/Engine.hpp"
 #include "scenes/SolarSystem.hpp"
-#include "miscellaneous/Spaceship.hpp"
+#include "spaceship/Spaceship.hpp"
 #include "bunkers/TankBunker.hpp"
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {

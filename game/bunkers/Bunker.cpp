@@ -1,14 +1,14 @@
 #include "Bunker.hpp"
 
-#include "../miscellaneous/Bullet.hpp"
+#include "../bullets/Bullet.hpp"
 #include "../../engine/Engine.hpp"
 
 Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown) :
-    Object(shape, Vector2f(BUNKER_WIDTH, BUNKER_HEIGHT), 0.f) {
+    Object(shape, Point(BUNKER_WIDTH, BUNKER_HEIGHT), 0.f) {
     this->tag = "Bunker";
     this->bunkerCoolDown = bunkerCoolDown;
     this->bunkerShootTime = 0;
-    this->life = (LifePointsBar*) Engine::instantiate(new LifePointsBar(lifePoints, Vector2f(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 40.f), this->getRotation()), Engine::getPreparingScene());
+    this->life = (LifePointsBar*) Engine::instantiate(new LifePointsBar(lifePoints, Point(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 40.f), this->getRotation()), Engine::getPreparingScene());
     this->maxRay = maxRay;
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;
@@ -35,7 +35,7 @@ void Bunker::update() {
 
 void Bunker::shoot() {
     this->studyFireAngle();
-    Vector2f versor = Vector2f(cos((fireAngle + 90) * M_PI / 180), -sin((fireAngle + 90) * M_PI / 180));
+    Point versor = Point(cos((fireAngle + 90) * M_PI / 180), -sin((fireAngle + 90) * M_PI / 180));
     Bullet *bullet = (Bullet*) Engine::instantiate(new Bullet(this->position + this->shootPoint() * versor, this->bulletSpeed * versor, tag));
     this->bunkerShootTime = this->bunkerCoolDown;
 }
@@ -48,7 +48,7 @@ float Bunker::getBaseLength(){
     return this->shape->getPoint(1).x - this->shape->getPoint(0).x; 
 }
 
-Vector2f Bunker::getLPBCoordinates(){
+Point Bunker::getLPBCoordinates(){
     return this->shape->getPoint(1);
     //1 è il punto piu' a destra della base, inoltre la base non è la più larga ma quella più in basso!!!
 }

@@ -8,7 +8,7 @@ Shape* Bullet::buildShape() {
     return shape;
 }
 
-Bullet::Bullet(Vector2f position, Vector2f speed, string sourceTag):
+Bullet::Bullet(Point position, Point speed, string sourceTag):
     Object(Bullet::buildShape(), position, 0.f) {
     this->speed = speed;
     this->tag = "Bullet";
@@ -19,10 +19,20 @@ Bullet::Bullet(Vector2f position, Vector2f speed, string sourceTag):
 void Bullet::update() { }
 
 void Bullet::onCollisionEnter(Object* collider) {
-    if (!this->compareSourceTag(collider->getTag()))
+    if (!this->compareSourceTag(collider->getTag()) && !this->compareTag(collider->getTag()))
         Engine::destroy(this);
 }
 
 bool Bullet::compareSourceTag(string tag) {
     return this->sourceTag == tag;
+}
+
+void Bullet::onBoundHit(Bound bound) {
+    Engine::destroy(this);
+}
+
+bool Bullet::collidesWith(Object* obj) {
+    if (obj->compareTag("Surface"))
+        return obj->collidesWith(this);
+    else return Object::collidesWith(obj);
 }

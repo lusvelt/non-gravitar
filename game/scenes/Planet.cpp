@@ -3,7 +3,7 @@
 #include "../../engine/Scene.hpp"
 #include "../../engine/Engine.hpp"
 #include "../cameras/FollowCamera.hpp"
-#include "../miscellaneous/Line.hpp"
+#include "../scenes/Surface.hpp"
 
 Shape* Planet::buildShape() {
     CircleShape* shape = new CircleShape(radius / PLANET_SCALE);
@@ -20,20 +20,20 @@ void Planet::onCollisionEnter(Object* collider){
 }
 
 const void followSpaceship(Camera* camera, vector<Object*> *sceneObjects) {
-    Vector2f spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
-    camera->setPosition(Vector2f(spaceshipPosition.x - WINDOW_WIDTH / 2, spaceshipPosition.y - WINDOW_HEIGHT / 2));
+    Point spaceshipPosition = Engine::getObjectByTag("Spaceship")->getPosition();
+    camera->setPosition(Point(spaceshipPosition.x - WINDOW_WIDTH / 2, spaceshipPosition.y - WINDOW_HEIGHT / 2));
 }
 
 float Planet::getRadius() {
     return this->radius;
 }
 
-Planet::Planet(Vector2f position): 
+Planet::Planet(Point position): 
     Object(position, 0.f),
     Scene(new FollowCamera()) {
         this->type = this->tag = "Planet";
         this->radius = rand() % PLANET_RANGE_RADIUS + PLANET_MIN_RADIUS;
-        this->entryPoint = Vector2f(0.f, -(radius + SPACESHIP_DISTANCE_FROM_FLOOR));
+        this->entryPoint = Point(0.f, -(radius + SPACESHIP_DISTANCE_FROM_FLOOR));
         this->shape = buildShape();
         int nPoints = 2 * M_PI * (float) radius / PIXELS_PER_POINT;
         int rangeX = PIXELS_PER_POINT / 2 * PLANET_POINT_RANGE_SCALE_X;
@@ -46,14 +46,14 @@ Planet::Planet(Vector2f position):
             float currentAngle = (float) i * 2 * M_PI / nPoints;
             float realAngle = currentAngle + offsetAngle;
             float realDistance = radius + offsetDistance;
-            Vector2f point = realDistance * Vector2f(cos(realAngle), sin(realAngle));
+            Point point = realDistance * Point(cos(realAngle), sin(realAngle));
             this->points.push_back(point);
         }
         for (int i = 1; i <= nPoints; i++) {
-            Vector2f start = this->points[(i - 1) % nPoints];
-            Vector2f end = this->points[i % nPoints];
-            Vector2f difference = end - start;
-            Engine::instantiate(new Line(start, difference), this);
+            Point start = this->points[(i - 1) % nPoints];
+            Point end = this->points[i % nPoints];
+            Point difference = end - start;
+            Engine::instantiate(new Surface(start, difference), this);
         }
     }
 

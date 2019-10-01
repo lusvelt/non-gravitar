@@ -9,14 +9,14 @@
 class Planet : public Scene, public Object {
     private:
         float radius;
-        vector<Vector2f> points;
+        vector<Point> points;
         Shape* buildShape();
 
     protected:
 
     public:
         void onCollisionEnter(Object*);
-        Planet(Vector2f);
+        Planet(Point);
         float getRadius();
         void update();
 };

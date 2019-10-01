@@ -39,6 +39,7 @@
 #define PLANET_RANGE_RADIUS 4500
 #define PLANET_MIN_RADIUS 500
 #define FRAMERATE_LIMIT 60
+#define BULLET_COLLISION_RADIUS 5
 
 using namespace sf;
 using namespace std;

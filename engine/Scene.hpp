@@ -15,20 +15,20 @@ class Scene {
 
     protected:
         string type;
-        Vector2f entryPoint;
+        Point entryPoint;
 
     public:
         Scene(Camera*);
-        Scene(Camera*, Vector2f);
+        Scene(Camera*, Point);
         Camera* getCamera();
         vector<Object*> *getObjects();
         void addObject(Object*);
-        void addObject(Object*, Vector2f);
+        void addObject(Object*, Point);
         bool contains(Object*);
         string getType();
         bool compareType(string);
         const void update();
-        Vector2f getEntryPoint();
+        Point getEntryPoint();
 };
 
 #endif

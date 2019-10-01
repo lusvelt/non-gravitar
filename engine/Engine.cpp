@@ -20,12 +20,12 @@ void Engine::initialize(Game* game) {
 }
 
 void Engine::draw(Object* obj) {
-    Vector2f objPosition = obj->getPosition();
-    Vector2f cameraPosition = Engine::currentScene->getCamera()->getPosition();
+    Point objPosition = obj->getPosition();
+    Point cameraPosition = Engine::currentScene->getCamera()->getPosition();
     Shape *objShape = obj->getShape();
-    objShape->setPosition(Vector2f(objPosition - cameraPosition));
+    objShape->setPosition(Point(objPosition - cameraPosition));
     objShape->setRotation(obj->getRotation());
-    Vector2f shapePosition = objShape->getPosition();
+    Point shapePosition = objShape->getPosition();
     window->draw(*objShape);
 }
 

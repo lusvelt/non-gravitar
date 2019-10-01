@@ -14,3 +14,5 @@ using namespace sf;
 #define DEFAULT_FRAMERATE 60
 #define OUT_OF_BOUNDS_OFFSET_X 400
 #define OUT_OF_BOUNDS_OFFSET_Y 300
+
+typedef Vector2f Point;
