@@ -1,4 +1,4 @@
-non-gravitar: Main.o Bullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o FixedCamera.o FollowCamera.o Game.o LifePointsBar.o Surface.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o ThreeDirectionBunker.o TwoDirectionBunker.o Line.o Segment.o TractorBeam.o
+non-gravitar: Main.o Bullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o FixedCamera.o FollowCamera.o Fuel.o BigFuel.o SmallFuel.o Game.o LifePointsBar.o Surface.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o ThreeDirectionBunker.o TwoDirectionBunker.o Line.o Segment.o TractorBeam.o
 	g++ -o NonGravitar $^ -lsfml-graphics -lsfml-window -lsfml-system
 
 Main.o: Main.cpp
@@ -27,6 +27,15 @@ FixedCamera.o: game/cameras/FixedCamera.cpp
 
 FollowCamera.o: game/cameras/FollowCamera.cpp
 	g++ -c game/cameras/FollowCamera.cpp
+
+Fuel.o: game/fuel/Fuel.cpp
+	g++ -c game/fuel/Fuel.cpp
+
+BigFuel.o: game/fuel/BigFuel.cpp
+	g++ -c game/fuel/BigFuel.cpp
+
+SmallFuel.o: game/fuel/SmallFuel.cpp
+	g++ -c game/fuel/SmallFuel.cpp
 
 Game.o: engine/Game.cpp
 	g++ -c engine/Game.cpp
