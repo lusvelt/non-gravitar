@@ -35,7 +35,7 @@ void Bunker::update() {
 void Bunker::shoot() {
     this->studyFireAngle();
     Point versor = Point(cos((fireAngle + 90) * M_PI / 180), -sin((fireAngle + 90) * M_PI / 180));
-    Bullet *bullet = (Bullet*) Engine::instantiate(new Bullet(this->position + this->shootPoint(), this->bulletSpeed * versor, tag));
+    BunkerBullet *bullet = (BunkerBullet*) Engine::instantiate(new BunkerBullet(this->position + this->shootPoint(), this->bulletSpeed * versor));
     this->bunkerShootTime = this->bunkerCoolDown;
 }
 
