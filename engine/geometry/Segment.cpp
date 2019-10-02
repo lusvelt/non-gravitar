@@ -16,7 +16,7 @@ bool Segment::bandContains(Point p) {
         return y2 <= p.y && p.y <= y1;
 }
 
-Vector2f Segment::getVector() {
+Vector Segment::getVector() {
     return p2 - p1;
 }
 

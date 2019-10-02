@@ -1,11 +1,11 @@
 #include "Bunker.hpp"
 
-#include "../bullets/Bullet.hpp"
+#include "../bullets/BunkerBullet.hpp"
 #include "../../engine/Engine.hpp"
 #include "../../engine/geometry/Segment.hpp"
 
 Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown) :
-    Object(shape, Vector2f(250.f, 250.f), 0.f) {
+    Object(shape, Point(250.f, 250.f), 0.f) {
     this->tag = "Bunker";
     this->bunkerCoolDown = bunkerCoolDown;
     this->bunkerShootTime = 0;
@@ -18,10 +18,8 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
-        if (collider->compareTag("Bullet")){
-            if (((Bullet*) collider)->compareSourceTag("Spaceship"))
+        if (collider->compareTag("SpaceshipBullet"))
                 life->decreasePoints();
-        }
         
         if (life->hasEnded())
             Engine::destroy(this);

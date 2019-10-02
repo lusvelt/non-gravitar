@@ -1,6 +1,6 @@
 #include "Spaceship.hpp"
 
-#include "../bullets/Bullet.hpp"
+#include "../bullets/SpaceshipBullet.hpp"
 #include "../../engine/Engine.hpp"
 #include "../scenes/Planet.hpp"
 
@@ -17,6 +17,7 @@ Shape* Spaceship::buildShape() {
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::Blue);
     shape->setFillColor(Color::Black);
+    shape->setScale(SPACESHIP_SCALE, SPACESHIP_SCALE);
 
     return shape;
 }
@@ -75,7 +76,7 @@ void Spaceship::shoot() {
     Point versor = Point(cos(this->rotation * M_PI / 180), sin(this->rotation * M_PI / 180));
     Point position = this->position + BULLET_DISTANCE_RADIUS * versor;
     Point speed = this->speed + BULLET_BASE_SPEED * versor;
-    Bullet* bullet = (Bullet*) Engine::instantiate(new Bullet(position, speed, tag));
+    Engine::instantiate(new SpaceshipBullet(position, speed));
     this->shootCd = SPACESHIP_SHOOT_COOLDOWN;
 }
 

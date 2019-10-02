@@ -6,17 +6,9 @@
 #include "../../engine/Object.hpp"
 
 class Bullet : public Object {
-    private:
-        Shape* buildShape();
-        string sourceTag;
-
-    protected:
-
     public:
-        Bullet(Point position, Point speed, string sourceTag);
+        Bullet(Shape*, Point position, Vector speed);
         void update();
-        void onCollisionEnter(Object*);
-        bool compareSourceTag(string tag);
         void onBoundHit(Bound);
         bool collidesWith(Object*);
         

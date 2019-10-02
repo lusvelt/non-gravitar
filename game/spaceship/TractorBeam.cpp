@@ -5,13 +5,14 @@
 
 Shape* TractorBeam::buildShape() {
     ConvexShape* shape = new ConvexShape(4);
-    shape->setPoint(0, Vector2f(-70.f, 20.f));
-    shape->setPoint(1, Vector2f(-70.f, -20.f));
-    shape->setPoint(2, Vector2f(-15.f, -10.f));
-    shape->setPoint(3, Vector2f(-15.f, 10.f));
+    shape->setPoint(0, Point(-70.f, 20.f));
+    shape->setPoint(1, Point(-70.f, -20.f));
+    shape->setPoint(2, Point(-15.f, -10.f));
+    shape->setPoint(3, Point(-15.f, 10.f));
     shape->setFillColor(Color::Transparent);
     shape->setOutlineThickness(2.f);
     shape->setOutlineColor(Color::White);
+    shape->setScale(SPACESHIP_SCALE, SPACESHIP_SCALE);
     return shape;
 };
 
@@ -25,9 +26,6 @@ void TractorBeam::update() {
     this->position = spaceship->getPosition();
     this->rotation = spaceship->getRotation();
 
-    if (Keyboard::isKeyPressed(Keyboard::Key::X))
-        this->show();
-    else
-        this->hide();
-    
- }
+    if (Keyboard::isKeyPressed(Keyboard::X)) this->show();
+    else this->hide();
+}
