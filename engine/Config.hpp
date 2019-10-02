@@ -16,3 +16,4 @@ using namespace sf;
 #define OUT_OF_BOUNDS_OFFSET_Y 300
 
 typedef Vector2f Point;
+typedef Vector2f Vector;

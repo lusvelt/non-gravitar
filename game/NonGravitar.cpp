@@ -4,7 +4,7 @@
 #include "scenes/SolarSystem.hpp"
 #include "spaceship/Spaceship.hpp"
 #include "spaceship/TractorBeam.hpp"
-#include "fuel/SmallFuel.hpp"
+#include "bunkers/CleverBunker.hpp"
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     score = 0;
@@ -17,6 +17,8 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     spaceship->addChild(tractorBeam);
     Engine::instantiate(spaceship, testScene);
     Engine::instantiate(tractorBeam, testScene);
+
+    Engine::instantiate(new CleverBunker(), testScene);
 
     Engine::setCurrentScene(testScene);
     this->scenes.push_back(testScene);   

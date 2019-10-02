@@ -49,9 +49,9 @@ Planet::Planet(Point position):
             Point point = realDistance * Point(cos(realAngle), sin(realAngle));
             this->points.push_back(point);
         }
-        for (int i = 1; i <= nPoints; i++) {
-            Point start = this->points[(i - 1) % nPoints];
-            Point end = this->points[i % nPoints];
+        for (int i = 0; i <= nPoints; i++) {
+            Point start = this->points.at((i + nPoints - 1) % nPoints);
+            Point end = this->points.at(i % nPoints);
             Point difference = end - start;
             Engine::instantiate(new Surface(start, difference), this);
         }

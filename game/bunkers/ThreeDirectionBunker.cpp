@@ -10,13 +10,13 @@ Shape* ThreeDirectionBunker::buildShape() {
 
     //SHAPE:
 
-    shape->setPoint(0, Vector2f(-25.f,20.f));
-    shape->setPoint(1, Vector2f(25.f,20.f));
-    shape->setPoint(2, Vector2f(20.f,-10.f));
-    shape->setPoint(3, Vector2f(10.f,0.f));
-    shape->setPoint(4, Vector2f(0.f,-30.f));
-    shape->setPoint(5, Vector2f(-10.f,0.f));
-    shape->setPoint(6, Vector2f(-20.f,-10.f));
+    shape->setPoint(0, Point(-25.f,20.f));
+    shape->setPoint(1, Point(25.f,20.f));
+    shape->setPoint(2, Point(20.f,-10.f));
+    shape->setPoint(3, Point(10.f,0.f));
+    shape->setPoint(4, Point(0.f,-30.f));
+    shape->setPoint(5, Point(-10.f,0.f));
+    shape->setPoint(6, Point(-20.f,-10.f));
 
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);

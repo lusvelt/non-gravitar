@@ -18,7 +18,7 @@ void Surface::update() { }
 
 bool Surface::collidesWith(Object* obj) {
     Point p = obj->getPosition();
-    if (obj->compareTag("Bullet"))
+    if (obj->compareTag("SpaceshipBullet"))
         return segment->getDistance(p) < BULLET_COLLISION_RADIUS && segment->bandContains(p);
     else return Object::collidesWith(obj);
 }
