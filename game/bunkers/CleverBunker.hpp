@@ -11,7 +11,7 @@ class CleverBunker : public Bunker {
     public:
         CleverBunker();
         void studyFireAngle();
-        float shootPoint();
+        Point shootPoint();
         void shoot();
 };
 

@@ -10,11 +10,11 @@ Shape* TwoDirectionBunker::buildShape() {
 
     //SHAPE:
 
-    shape->setPoint(0, Vector2f(-25.f,10.f));
-    shape->setPoint(1, Vector2f(25.f,10.f));
-    shape->setPoint(2, Vector2f(12.5f,-20.f));
-    shape->setPoint(3, Vector2f(0.f,0.f));
-    shape->setPoint(4, Vector2f(-12.5f,-20.f));
+    shape->setPoint(0, Vector2f(0.f,0.f));
+    shape->setPoint(1, Vector2f(50.f,0.f));
+    shape->setPoint(2, Vector2f(37.5f,-30.f));
+    shape->setPoint(3, Vector2f(25.f,-10.f));
+    shape->setPoint(4, Vector2f(12.5f,-30.f));
 
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);
@@ -24,8 +24,8 @@ Shape* TwoDirectionBunker::buildShape() {
     return shape;
 }
 
-float TwoDirectionBunker::shootPoint(){
-    return 60.f;
+Point TwoDirectionBunker::shootPoint(){
+    return Point(25.f, -20.f);
 }
 
 void TwoDirectionBunker::studyFireAngle() {

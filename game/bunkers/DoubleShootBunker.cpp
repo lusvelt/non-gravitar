@@ -13,11 +13,11 @@ Shape* DoubleShootBunker::buildShape() {
 
     //SHAPE:
 
-    shape->setPoint(0, Point(-25.f, 20.f));
-    shape->setPoint(1, Point(25.f, 20.f));
-    shape->setPoint(2, Point(-5.f, 0.f));
-    shape->setPoint(3, Point(0.f, -20.f));
-    shape->setPoint(4, Point(5.f, 0.f));
+    shape->setPoint(0, Point(0.f, 0.f));
+    shape->setPoint(1, Point(50.f, 0.f));
+    shape->setPoint(2, Point(20.f, -20.f));
+    shape->setPoint(3, Point(25.f, -40.f));
+    shape->setPoint(4, Point(30.f, -20.f));
 
 
     //CONFIGURATION:
@@ -28,9 +28,8 @@ Shape* DoubleShootBunker::buildShape() {
     return shape;
 }
 
-float DoubleShootBunker::shootPoint(){
-    //TODO PUNTO DA CUI PARTE IL PROIETTILE
-    return 45.f;
+Point DoubleShootBunker::shootPoint(){
+    return Point(25.f, -40.f);
 }
 
 void DoubleShootBunker::studyFireAngle() {

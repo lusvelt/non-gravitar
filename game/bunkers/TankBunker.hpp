@@ -12,7 +12,7 @@ class TankBunker : public Bunker {
         Shape* buildShape();
     public:
         TankBunker();
-        float shootPoint();
+        Point shootPoint();
         void studyFireAngle();
 };
 

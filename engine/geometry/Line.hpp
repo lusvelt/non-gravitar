@@ -14,6 +14,7 @@ class Line {
         float getDistance(Point);
         Line* getPerpendicularThroughPoint(Point p);
         float evaluateY(float x);
+        float getM();
         
 };
 

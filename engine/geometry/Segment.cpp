@@ -23,3 +23,12 @@ Vector2f Segment::getVector() {
 float Segment::getLength() {
     return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
 }
+
+Point Segment::getP1(){
+    return this->p1;
+}
+
+Point Segment::getP2(){
+    return this->p2;
+}
+

@@ -13,7 +13,7 @@ Shape* CleverBunker::buildShape() {
     //SHAPE:
 
     for(int i = 0; i <= 5; i = i + 1){
-        shape->setPoint(i, 25.f * Point(-cos((M_PI * i)/5), -sin((M_PI * i)/5)));
+        shape->setPoint(i, 25.f * Point(-cos((M_PI * i)/5) + 1.f, -sin((M_PI * i)/5)));
     }
 
     //CONFIGURATION:
@@ -24,8 +24,8 @@ Shape* CleverBunker::buildShape() {
     return shape;
 }
 
-float CleverBunker::shootPoint(){
-    return 15.f;
+Point CleverBunker::shootPoint(){
+    return Point(25.f, -20.f);
 }
 
 void CleverBunker::studyFireAngle(){

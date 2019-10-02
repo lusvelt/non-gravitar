@@ -23,3 +23,7 @@ Line* Line::getPerpendicularThroughPoint(Point p) {
 float Line::evaluateY(float x) {
     return m * x + q;
 }
+
+float Line::getM(){
+    return this->m;
+}

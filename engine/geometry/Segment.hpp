@@ -13,6 +13,8 @@ class Segment : public Line {
         bool bandContains(Point p);
         Vector2f getVector();
         float getLength();
+        Point getP1();
+        Point getP2();
 };
 
 #endif

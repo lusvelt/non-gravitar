@@ -14,7 +14,7 @@ class DoubleShootBunker : public Bunker{
 
     public:
         DoubleShootBunker();
-        float shootPoint();
+        Point shootPoint();
         void studyFireAngle();
 };
 

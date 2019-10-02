@@ -2,6 +2,7 @@
 #define _BUNKER_H_
 
 #include "../config/Declarations.hpp"
+#include "../../engine/geometry/Segment.hpp"
 
 #include "LifePointsBar.hpp"
 
@@ -14,7 +15,7 @@ class Bunker : public Object {
         float maxRay;
         float angularFactor;
         float bunkerCoolDown;
-        virtual float shootPoint() = 0;
+        virtual Point shootPoint() = 0;
         float bulletSpeed;
 
     public:
@@ -25,6 +26,7 @@ class Bunker : public Object {
         virtual void studyFireAngle();
         float getBaseLength();
         Point getLPBCoordinates();
+        void setPosition(Segment);
 };
 
 

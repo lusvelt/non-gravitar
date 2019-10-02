@@ -11,7 +11,7 @@ class ThreeDirectionBunker : public Bunker {
 
     public:
         ThreeDirectionBunker();
-        float shootPoint();
+        Point shootPoint();
         void studyFireAngle();
 };
 

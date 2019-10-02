@@ -10,24 +10,23 @@ Shape* ThreeDirectionBunker::buildShape() {
 
     //SHAPE:
 
-    shape->setPoint(0, Vector2f(-25.f,20.f));
-    shape->setPoint(1, Vector2f(25.f,20.f));
-    shape->setPoint(2, Vector2f(20.f,-10.f));
-    shape->setPoint(3, Vector2f(10.f,0.f));
-    shape->setPoint(4, Vector2f(0.f,-30.f));
-    shape->setPoint(5, Vector2f(-10.f,0.f));
-    shape->setPoint(6, Vector2f(-20.f,-10.f));
+    shape->setPoint(0, Vector2f(0.f,0.f));
+    shape->setPoint(1, Vector2f(50.f,0.f));
+    shape->setPoint(2, Vector2f(45.f,-30.f));
+    shape->setPoint(3, Vector2f(35.f,-20.f));
+    shape->setPoint(4, Vector2f(25.f,-50.f));
+    shape->setPoint(5, Vector2f(15.f,-20.f));
+    shape->setPoint(6, Vector2f(5.f,-30.f));
 
     //CONFIGURATION:
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::White);
     shape->setFillColor(Color::Black);
-
     return shape;
 }
 
-float ThreeDirectionBunker::shootPoint(){
-    return 45.f;
+Point ThreeDirectionBunker::shootPoint(){
+    return Point(25.f, -50.f);
 }
 
 void ThreeDirectionBunker::studyFireAngle() {
