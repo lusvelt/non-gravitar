@@ -4,7 +4,7 @@
 
 
 Fuel::Fuel(Shape* shape):
-Object(shape, position, rotation){
+Object(shape){
     this->tag= "Fuel";
 }
 
