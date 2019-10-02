@@ -46,6 +46,7 @@ class Engine {
         static void backToPrevScene();
         static Scene* getPrevScene();
         static void moveObjectToAnotherScene(Object*, Scene*);
+        static void moveObjectsToAnotherScene(vector<Object*>, Scene*);
         static void setCurrentSceneKeepingObject(Scene*, Object*);
         static void backToPrevSceneKeepingObject(Object*);
         static float getDeltaTime();

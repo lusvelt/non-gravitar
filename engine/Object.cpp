@@ -11,6 +11,7 @@ Object::Object(Shape* shape, Point position, float rotation) {
     this->angularSpeed = 0;
     this->tag = "Object";
     this->prevPointer = NULL;
+    this->visible = true;
     this->deleteIfOutOfBounds = false;
 }
 
@@ -18,6 +19,7 @@ Object::Object(Object* obj) {
     this->position = obj->position;
     this->tag = obj->tag;
     this->prevPointer = obj;
+    this->visible = true;
 }
 
 Object::Object(Point position, float rotation) {
@@ -28,6 +30,7 @@ Object::Object(Point position, float rotation) {
     this->angularSpeed = 0;
     this->tag = "Object";
     this->prevPointer = NULL;
+    this->visible = true;
 }
 
 Object::Object(Shape* shape) {
@@ -39,6 +42,7 @@ Object::Object(Shape* shape) {
     this->angularSpeed = 0;
     this->tag = "Object";
     this->prevPointer = NULL;
+    this->visible = true;
 }
 
 Object::~Object() { }
@@ -118,4 +122,24 @@ bool Object::collidesWith(Object* obj) {
     Shape* thatShape = obj->getShape();
 
     return thisShape->getGlobalBounds().intersects(thatShape->getGlobalBounds());
+}
+
+vector<Object*> Object::getChildren() {
+    return children;
+}
+
+void Object::addChild(Object* obj) {
+    children.push_back(obj);
+}
+
+void Object::hide() {
+    visible = false;
+}
+
+void Object::show() {
+    visible = true;
+}
+
+bool Object::isVisible() {
+    return visible;
 }

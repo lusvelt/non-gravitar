@@ -5,12 +5,14 @@
 #include "../scenes/Planet.hpp"
 
 Shape* Spaceship::buildShape() {
-    ConvexShape* shape = new ConvexShape(4);
+    ConvexShape* shape = new ConvexShape(6);
 
-    shape->setPoint(0, Point(-3.f, 0.f));
-    shape->setPoint(1, Point(-10.f, 10.f));
-    shape->setPoint(2, Point(10.f, 0.f));
-    shape->setPoint(3, Point(-10.f, -10.f));
+    shape->setPoint(0, Point(-4.f, 0.f));
+    shape->setPoint(1, Point(-8.f, 4.f));
+    shape->setPoint(2, Point(0.f, 12.f));
+    shape->setPoint(3, Point(16.f, 0.f));
+    shape->setPoint(4, Point(0.f, -12.f));
+    shape->setPoint(5, Point(-8.f, -4.f));
 
     shape->setOutlineThickness(1.f);
     shape->setOutlineColor(Color::Blue);

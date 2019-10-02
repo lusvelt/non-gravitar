@@ -12,8 +12,12 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     lives = LIVES_START_VALUE;
 
     Scene* testScene = new SolarSystem();
-    Engine::instantiate(new Spaceship(), testScene);
-    Engine::instantiate(new SmallFuel(), testScene);
+    Spaceship* spaceship = new Spaceship();
+    TractorBeam* tractorBeam = new TractorBeam();
+    spaceship->addChild(tractorBeam);
+    Engine::instantiate(spaceship, testScene);
+    Engine::instantiate(tractorBeam, testScene);
+
     Engine::setCurrentScene(testScene);
     this->scenes.push_back(testScene);   
 }

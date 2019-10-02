@@ -17,6 +17,8 @@ class Object {
         Shape* shape;
         Object* prevPointer;
         bool deleteIfOutOfBounds;
+        vector<Object*> children;
+        bool visible;
 
     public:
         Object(Point position, float rotation);
@@ -42,6 +44,11 @@ class Object {
         void setSpeed(Point speed);
         bool isOutOfBounds();
         bool shouldBeDeletedIfOutOfBounds();
+        vector<Object*> getChildren();
+        void addChild(Object*);
+        void hide();
+        void show();
+        bool isVisible();
         
 };
 

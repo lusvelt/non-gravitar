@@ -59,7 +59,7 @@ void Engine::checkBoundsHit(Object* obj) {
 }
 
 void Engine::process(Object* obj) {
-    if (!obj->isOutOfBounds()) {
+    if (!obj->isOutOfBounds() && obj->isVisible()) {
         draw(obj);
         checkCollisions(obj);
         if (!hasJustBeenRemoved(obj))
@@ -186,8 +186,14 @@ Scene* Engine::getPrevScene() {
 }
 
 void Engine::moveObjectToAnotherScene(Object* obj, Scene* scene) {
+    moveObjectsToAnotherScene(obj->getChildren(), scene);
     Engine::removeObjectFromCurrentScene(obj);
     scene->addObject(obj, scene->getEntryPoint());
+}
+
+void Engine::moveObjectsToAnotherScene(vector<Object *> objects, Scene *scene) {
+    for (int i = 0; i < objects.size(); i++)
+        moveObjectToAnotherScene(objects.at(i), scene);
 }
 
 void Engine::setCurrentSceneKeepingObject(Scene* scene, Object* obj) {
