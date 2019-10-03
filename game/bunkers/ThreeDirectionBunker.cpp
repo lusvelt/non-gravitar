@@ -1,6 +1,7 @@
 #include "ThreeDirectionBunker.hpp"
 
 ThreeDirectionBunker::ThreeDirectionBunker() : Bunker(buildShape(), 4, 55.f, 10.f, .5f) {
+    this->bunkerPoints = 200;
     srand(time(NULL));
 }
 

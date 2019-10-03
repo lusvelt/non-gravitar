@@ -3,6 +3,7 @@
 #include "../../engine/Engine.hpp"
 
 CleverBunker::CleverBunker() : Bunker(buildShape(), 5, 45.f, 45.f, 0.50f) {
+    this->bunkerPoints = 300;
     this->bulletSpeed = 700.f;
 }
 

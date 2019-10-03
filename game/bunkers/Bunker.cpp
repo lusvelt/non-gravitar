@@ -1,4 +1,5 @@
 #include "Bunker.hpp"
+#include <iostream>
 
 #include "../bullets/BunkerBullet.hpp"
 #include "../../engine/Engine.hpp"
@@ -14,15 +15,15 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;
     this->bulletSpeed = BULLET_BASE_SPEED;
-    
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
         if (collider->compareTag("SpaceshipBullet"))
                 life->decreasePoints();
         
-        if (life->hasEnded())
+        if (life->hasEnded()){
             Engine::destroy(this);
+        }
 }
 
 void Bunker::update() {
@@ -41,10 +42,6 @@ void Bunker::shoot() {
 
 void Bunker::studyFireAngle(){
     this->fireAngle -= this->getRotation();
-}
-
-float Bunker::getBaseLength(){
-    return this->shape->getPoint(1).x - this->shape->getPoint(0).x; 
 }
 
 Point Bunker::getLPBCoordinates(){

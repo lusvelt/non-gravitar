@@ -5,6 +5,7 @@ DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 55.f, 10.f, .5f
     this->fireAngle = 10.f;
     this->absFireAngle = 0;
     this->shot = 1;
+    this->bunkerPoints = 200;
 }
 
 Shape* DoubleShootBunker::buildShape() {
