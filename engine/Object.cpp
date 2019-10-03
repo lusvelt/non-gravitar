@@ -20,6 +20,7 @@ Object::Object(Object* obj) {
     this->tag = obj->tag;
     this->prevPointer = obj;
     this->visible = true;
+    this->deleteIfOutOfBounds = false;
 }
 
 Object::Object(Point position, float rotation) {
@@ -31,6 +32,7 @@ Object::Object(Point position, float rotation) {
     this->tag = "Object";
     this->prevPointer = NULL;
     this->visible = true;
+    this->deleteIfOutOfBounds = false;
 }
 
 Object::Object(Shape* shape) {
@@ -43,6 +45,7 @@ Object::Object(Shape* shape) {
     this->tag = "Object";
     this->prevPointer = NULL;
     this->visible = true;
+    this->deleteIfOutOfBounds = false;
 }
 
 Object::~Object() { }
@@ -130,6 +133,7 @@ vector<Object*> Object::getChildren() {
 
 void Object::addChild(Object* obj) {
     children.push_back(obj);
+    obj->setCurrentScene(this->currentScene);
 }
 
 void Object::hide() {
@@ -142,4 +146,16 @@ void Object::show() {
 
 bool Object::isVisible() {
     return visible;
+}
+
+Scene* Object::getCurrentScene() {
+    return currentScene;
+}
+
+void Object::setCurrentScene(Scene* scene) {
+    currentScene = scene;
+}
+
+void Object::setRotation(float rotation) {
+    this->rotation = rotation;
 }

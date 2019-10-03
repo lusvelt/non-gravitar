@@ -26,7 +26,7 @@ class Bunker : public Object {
         void onCollisionEnter(Object*);
         virtual void studyFireAngle();
         Point getLPBCoordinates();
-        void setPosition(Segment);
+        void setPosition(Segment*);
 };
 
 

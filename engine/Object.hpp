@@ -4,6 +4,9 @@
 #include "Config.hpp"
 
 #include "Bound.hpp"
+#include "Scene.hpp"
+
+class Scene;
 
 class Object {
 
@@ -19,6 +22,7 @@ class Object {
         bool deleteIfOutOfBounds;
         vector<Object*> children;
         bool visible;
+        Scene* currentScene;
 
     public:
         Object(Point position, float rotation);
@@ -27,6 +31,7 @@ class Object {
         Object(Object*);
         virtual ~Object();
         Point getPosition();
+        void setRotation(float);
         float getPolarRadius();
         string getTag();
         bool compareTag(string);
@@ -49,6 +54,8 @@ class Object {
         void hide();
         void show();
         bool isVisible();
+        Scene* getCurrentScene();
+        void setCurrentScene(Scene*);
         
 };
 

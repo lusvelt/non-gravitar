@@ -4,6 +4,8 @@
 #include "../../engine/Engine.hpp"
 #include "../cameras/FollowCamera.hpp"
 #include "../scenes/Surface.hpp"
+#include "../bunkers/Bunker.hpp"
+#include "../bunkers/TankBunker.hpp"
 
 Shape* Planet::buildShape() {
     CircleShape* shape = new CircleShape(radius / PLANET_SCALE);
@@ -53,7 +55,14 @@ Planet::Planet(Point position):
             Point start = this->points.at((i + nPoints - 1) % nPoints);
             Point end = this->points.at(i % nPoints);
             Point difference = end - start;
-            Engine::instantiate(new Surface(start, difference), this);
+            Surface* surface = new Surface(start, difference);
+            surfaces.push_back(surface);
+            if (i == 0) {
+                Bunker* bunker = new TankBunker();
+                bunker->setPosition(surface->getSegment());
+                Engine::instantiate(bunker, this);
+            }
+            Engine::instantiate(surface, this);
         }
     }
 

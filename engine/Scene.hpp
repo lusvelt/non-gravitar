@@ -7,6 +7,7 @@
 #include "Camera.hpp"
 
 class Camera;
+class Object;
 
 class Scene {
     private:

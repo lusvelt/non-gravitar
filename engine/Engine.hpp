@@ -27,6 +27,7 @@ class Engine {
         static void emptyRemovedObjectsVector();
         static Scene* preparingScene;
         static Scene* prevScene;
+        static void scanAndProcessObjects(vector<Object*>);
 
     public:
         static void initialize(Game*);

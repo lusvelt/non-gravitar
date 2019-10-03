@@ -61,9 +61,23 @@ void Engine::checkBoundsHit(Object* obj) {
 void Engine::process(Object* obj) {
     if (!obj->isOutOfBounds() && obj->isVisible()) {
         draw(obj);
-        checkCollisions(obj);
+        checkBoundsHit(obj);
         if (!hasJustBeenRemoved(obj))
-            checkBoundsHit(obj);
+            checkCollisions(obj);
+    }
+}
+
+void Engine::scanAndProcessObjects(vector<Object*> objects) {
+    for (int i = 0; i < objects.size(); i++) {
+        Object *obj = objects.at(i);
+        if (obj->isOutOfBounds() && obj->shouldBeDeletedIfOutOfBounds())
+            destroy(obj);
+        else {
+            obj->update();
+            obj->updateTransform();
+            process(obj);
+            scanAndProcessObjects(obj->getChildren());
+        }
     }
 }
 
@@ -81,16 +95,8 @@ void Engine::run() {
 
         window->clear(Color::Black);
         vector<Object*> *objects = currentScene->getObjects();
-        for (int i = 0; i < objects->size(); i++) {
-            Object* obj = objects->at(i);
-            if (obj->isOutOfBounds() && obj->shouldBeDeletedIfOutOfBounds())
-                destroy(obj);
-            else {
-                obj->update();
-                obj->updateTransform();
-                process(obj);
-            }
-        }
+        scanAndProcessObjects(*objects);
+        
         potentialColliders.clear();
         window->display();
     }
@@ -138,11 +144,13 @@ void Engine::destroy(Object* obj) {
 
 Object* Engine::instantiate(Object* obj) {
     currentScene->addObject(obj);
+    obj->setCurrentScene(currentScene);
     return obj;
 }
 
 Object* Engine::instantiate(Object* obj, Scene* scene) {
     scene->addObject(obj);
+    obj->setCurrentScene(scene);
     preparingScene = scene;
     return obj;
 }
@@ -186,9 +194,10 @@ Scene* Engine::getPrevScene() {
 }
 
 void Engine::moveObjectToAnotherScene(Object* obj, Scene* scene) {
-    moveObjectsToAnotherScene(obj->getChildren(), scene);
+    // moveObjectsToAnotherScene(obj->getChildren(), scene);
     Engine::removeObjectFromCurrentScene(obj);
     scene->addObject(obj, scene->getEntryPoint());
+    obj->setCurrentScene(scene);
 }
 
 void Engine::moveObjectsToAnotherScene(vector<Object *> objects, Scene *scene) {

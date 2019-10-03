@@ -10,7 +10,8 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
     this->tag = "Bunker";
     this->bunkerCoolDown = bunkerCoolDown;
     this->bunkerShootTime = 0;
-    this->life = (LifePointsBar*) Engine::instantiate(new LifePointsBar(lifePoints, Point(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 20.f), this->getRotation()), Engine::getPreparingScene());
+    this->life = new LifePointsBar(lifePoints, Point(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 20.f), this->rotation);
+    this->addChild(this->life);
     this->maxRay = maxRay;
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;
@@ -49,8 +50,10 @@ Point Bunker::getLPBCoordinates(){
     //1 è il punto piu' a destra della base, inoltre la base non è la più larga ma quella più in basso!!!
 }
 
-void Bunker::setPosition(Segment s) {
-    //float m = s.getM(); coefficiente angolare segmento s
-    this->position = Point((s.getP1().x + s.getP2().x)/2 + 25.f, (s.getP1().y + s.getP2().y)/2);
-    this->rotation = atan(s.getM());
+void Bunker::setPosition(Segment* s) {
+    Vector difference = Point((s->getP1().x + s->getP2().x) / 2 + 25.f, (s->getP1().y + s->getP2().y) / 2) - this->position;
+    this->position = this->position + difference;
+    this->rotation = atan(s->getM()) * 180 / M_PI;
+    this->life->setPosition(Point(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 20.f));
+    this->life->setRotation(this->rotation);
 }
