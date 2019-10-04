@@ -1,6 +1,13 @@
 #ifndef _SCORE_H_
 #define _SCORE_H_
+#include "../../engine/Info.hpp"
 
-// TODO creare la classe
+class Score: public Info{
+    private:
+
+    public:
+    Score();
+    void update();
+};
 
 #endif

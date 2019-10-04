@@ -6,6 +6,8 @@
 #include "spaceship/TractorBeam.hpp"
 #include "spaceship/MovingLight.hpp"
 #include "info/FuelInfo.hpp"
+#include "info/Lives.hpp"
+#include "info/Score.hpp"
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     score = 0;
@@ -24,4 +26,8 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     this->scenes.push_back(solarSystem);
 
     Engine::addInfo(new FuelInfo());
+    Engine::addInfo(new Score());
+    Engine::addInfo(new Lives());
+
+
 }
