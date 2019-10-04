@@ -11,7 +11,6 @@ class TwoDirectionBunker : public Bunker {
 
     public:
         TwoDirectionBunker();
-        Point shootPoint();
         void studyFireAngle();
 };
 

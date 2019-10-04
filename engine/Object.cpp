@@ -78,8 +78,8 @@ void Object::updateTransform() {
     const float deltaTime = Engine::getDeltaTime();
     
     speed += deltaTime * acceleration;
-    position += deltaTime * speed;
-    rotation += deltaTime * angularSpeed;
+    setPosition(position + deltaTime * speed);
+    setRotation(rotation + deltaTime * angularSpeed);
 
     shape->setPosition(position);
     shape->setRotation(rotation);
@@ -100,7 +100,10 @@ void Object::onBoundHit(Bound bound) { }
 void Object::update() { }
 
 void Object::setPosition(Point position) {
+    Vector difference = position - this->position;
     this->position = position;
+    for (int i = 0; i < children.size(); i++)
+        children.at(i)->setPosition(children.at(i)->getPosition() + difference);
 }
 
 void Object::setSpeed(Point speed) {
@@ -157,5 +160,14 @@ void Object::setCurrentScene(Scene* scene) {
 }
 
 void Object::setRotation(float rotation) {
+    float difference = rotation - this->rotation;
     this->rotation = rotation;
+    for (int i = 0; i < children.size(); i++)
+        children.at(i)->setRotation(children.at(i)->getRotation() + difference);
+}
+
+void Object::moveOf(Vector vector) {
+    setPosition(position + vector);
+    for (int i = 0; i < children.size(); i++)
+        children.at(i)->moveOf(vector);
 }

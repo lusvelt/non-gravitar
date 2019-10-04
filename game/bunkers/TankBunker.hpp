@@ -12,7 +12,6 @@ class TankBunker : public Bunker {
         Shape* buildShape();
     public:
         TankBunker();
-        Point shootPoint();
         void studyFireAngle();
 };
 

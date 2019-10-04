@@ -56,6 +56,7 @@ class Object {
         bool isVisible();
         Scene* getCurrentScene();
         void setCurrentScene(Scene*);
+        void moveOf(Vector);
         
 };
 

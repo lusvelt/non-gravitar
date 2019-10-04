@@ -29,14 +29,9 @@ Shape* DoubleShootBunker::buildShape() {
     return shape;
 }
 
-Point DoubleShootBunker::shootPoint(){
-    return Point(25.f, -40.f);
-}
-
 void DoubleShootBunker::studyFireAngle() {
     this->direction = -(this->direction);
-    this->fireAngle = this->absFireAngle + this->angularFactor * this->shot * this->direction;
+    this->fireAngle = this->angularFactor * this->shot * this->direction;
     if(abs(this->fireAngle) >= this->maxRay) this->shot = 0;
-    this->shot ++;
-    Bunker::studyFireAngle();
+    this->shot++;
 }

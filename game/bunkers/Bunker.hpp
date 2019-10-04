@@ -15,7 +15,7 @@ class Bunker : public Object {
         float maxRay;
         float angularFactor;
         float bunkerCoolDown;
-        virtual Point shootPoint() = 0;
+        Point shootPoint;
         float bulletSpeed;
         int bunkerPoints;
 
@@ -25,8 +25,7 @@ class Bunker : public Object {
         void update();
         void onCollisionEnter(Object*);
         virtual void studyFireAngle();
-        Point getLPBCoordinates();
-        void setPosition(Segment*);
+        void setPosition(Segment*, float);
 };
 
 

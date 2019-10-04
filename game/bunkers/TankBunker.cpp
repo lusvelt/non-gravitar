@@ -27,13 +27,8 @@ Shape* TankBunker::buildShape() {
     return shape;
 }
 
-Point TankBunker::shootPoint(){
-    return Point(25.f, -40.f);
-}
-
 void TankBunker::studyFireAngle() {
     fireAngle += angularFactor;
     if (abs(fireAngle) > maxRay){
         angularFactor *= (float)(-1);}
-    this->fireAngle -= this->getRotation();
 }

@@ -1,11 +1,13 @@
 #include "Planet.hpp"
 
+#include "../../engine/Object.hpp"
 #include "../../engine/Scene.hpp"
 #include "../../engine/Engine.hpp"
 #include "../cameras/FollowCamera.hpp"
 #include "../scenes/Surface.hpp"
 #include "../bunkers/Bunker.hpp"
-#include "../bunkers/TankBunker.hpp"
+#include "../bunkers/DoubleShootBunker.hpp"
+#include "../bullets/BunkerBullet.hpp"
 
 Shape* Planet::buildShape() {
     CircleShape* shape = new CircleShape(radius / PLANET_SCALE);
@@ -57,13 +59,14 @@ Planet::Planet(Point position):
             Point difference = end - start;
             Surface* surface = new Surface(start, difference);
             surfaces.push_back(surface);
-            if (i == 0) {
-                Bunker* bunker = new TankBunker();
-                bunker->setPosition(surface->getSegment());
+            Engine::instantiate(surface, this);
+            if (rand() % 10 > 7) {
+                Bunker *bunker = new DoubleShootBunker();
+                bunker->setPosition(surface->getSegment(), radius);
                 Engine::instantiate(bunker, this);
             }
-            Engine::instantiate(surface, this);
         }
+        
     }
 
 void Planet::update() { }

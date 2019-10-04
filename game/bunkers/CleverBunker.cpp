@@ -25,10 +25,6 @@ Shape* CleverBunker::buildShape() {
     return shape;
 }
 
-Point CleverBunker::shootPoint(){
-    return Point(25.f, -20.f);
-}
-
 void CleverBunker::studyFireAngle(){
     float angle = 90.f;
     Point delta = Engine::getObjectByTag("Spaceship")->getPosition() - this->position;

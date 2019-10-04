@@ -10,12 +10,13 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
     this->tag = "Bunker";
     this->bunkerCoolDown = bunkerCoolDown;
     this->bunkerShootTime = 0;
-    this->life = new LifePointsBar(lifePoints, Point(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 20.f), this->rotation);
+    this->life = new LifePointsBar(lifePoints, Point(0.f, 20.f), this->rotation);
     this->addChild(this->life);
     this->maxRay = maxRay;
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;
     this->bulletSpeed = BULLET_BASE_SPEED;
+    this->shootPoint = Point(0,0);
 }
 
 void Bunker::onCollisionEnter(Object* collider) {
@@ -36,24 +37,39 @@ void Bunker::update() {
 
 void Bunker::shoot() {
     this->studyFireAngle();
-    Point versor = Point(cos((fireAngle + 90) * M_PI / 180), -sin((fireAngle + 90) * M_PI / 180));
-    BunkerBullet *bullet = (BunkerBullet*) Engine::instantiate(new BunkerBullet(this->position + this->shootPoint(), this->bulletSpeed * versor));
+    Vector versor = Vector(cos((fireAngle - rotation + 90) * M_PI / 180), -sin((fireAngle - rotation + 90) * M_PI / 180));
+    BunkerBullet *bullet = (BunkerBullet*) Engine::instantiate(new BunkerBullet(this->shootPoint, this->bulletSpeed * versor));
     this->bunkerShootTime = this->bunkerCoolDown;
 }
 
-void Bunker::studyFireAngle(){
-    this->fireAngle -= this->getRotation();
-}
+void Bunker::studyFireAngle(){ }
 
-Point Bunker::getLPBCoordinates(){
-    return this->position + this->shape->getPoint(0);
-    //1 è il punto piu' a destra della base, inoltre la base non è la più larga ma quella più in basso!!!
-}
+void Bunker::setPosition(Segment* s, float radius) {
+    float l = s->getLength();
+    float m = s->getM();
+    float m2 = m * m;
+    float x1 = s->getP1().x;
+    float y1 = s->getP1().y;
+    float x2 = s->getP2().x;
+    float y2 = s->getP2().y;
+    float xm = (x1 + x2) / 2;
+    float ym = (y1 + y2) / 2;
+    float sg = -1;
+    if (ym >= 0)
+        sg = 1;
 
-void Bunker::setPosition(Segment* s) {
-    Vector difference = Point((s->getP1().x + s->getP2().x) / 2 + 25.f, (s->getP1().y + s->getP2().y) / 2) - this->position;
-    this->position = this->position + difference;
-    this->rotation = atan(s->getM()) * 180 / M_PI;
-    this->life->setPosition(Point(this->getLPBCoordinates().x, this->getLPBCoordinates().y + 20.f));
+    if ((m >= 0 && (xm < 0 && ym < 0 || xm >= 0 && ym >= 0) || m < 0 && (xm < 0 && ym >= 0 || xm >= 0 && ym < 0)) && abs(xm) >= radius - 50.f)
+       sg *= -1;
+    
+    float k = (sg > 0 ? 1 : 0);
+    float xb = ((m2 + 1) * (x1 + x2) + sg * 50 * sqrt(m2 + 1)) / (2 * (m2 + 1));
+    float yb = s->evaluateY(xb);
+    this->position = Point(xb, yb);
+    this->rotation = atan(m) * 180 / M_PI + 180 * k;
+    float xl = sg * 20.f * m / sqrt(m2 + 1);
+    float yl = - xl / m;
+    this->life->setPosition(Point(position.x + xl, position.y + yl));
     this->life->setRotation(this->rotation);
+    Vector versor = Point(xm, ym) / sqrt(xm*xm+ym*ym);
+    this->shootPoint = Point(xm, ym) + versor * 25.f;
 }

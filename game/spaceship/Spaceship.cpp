@@ -23,7 +23,7 @@ Shape* Spaceship::buildShape() {
 }
 
 Spaceship::Spaceship():
-    Object(Spaceship::buildShape(), Point(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 0.f) {
+    Object(Spaceship::buildShape()) {
     this->shootCd = 0;
     this->tag = "Spaceship";
 }

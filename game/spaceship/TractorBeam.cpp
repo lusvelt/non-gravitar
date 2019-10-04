@@ -22,10 +22,6 @@ TractorBeam::TractorBeam():
     }
 
 void TractorBeam::update() {
-    Spaceship* spaceship = (Spaceship*) Engine::getObjectByTag("Spaceship");
-    this->position = spaceship->getPosition();
-    this->rotation = spaceship->getRotation();
-
     if (Keyboard::isKeyPressed(Keyboard::X)) this->show();
     else this->hide();
 }
