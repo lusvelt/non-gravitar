@@ -8,6 +8,7 @@
 Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown) :
     Object(shape, Point(250.f, 250.f), 0.f) {
     this->tag = "Bunker";
+    this->type = "Bunker";
     this->bunkerCoolDown = bunkerCoolDown;
     this->bunkerShootTime = 0;
     this->life = new LifePointsBar(lifePoints, Point(0.f, 20.f), this->rotation);
@@ -44,7 +45,7 @@ void Bunker::shoot() {
 
 void Bunker::studyFireAngle(){ }
 
-void Bunker::setPosition(Segment* s, float radius) {
+void Bunker::setPosition(Segment* s) {
     float l = s->getLength();
     float m = s->getM();
     float m2 = m * m;
@@ -54,11 +55,12 @@ void Bunker::setPosition(Segment* s, float radius) {
     float y2 = s->getP2().y;
     float xm = (x1 + x2) / 2;
     float ym = (y1 + y2) / 2;
+    float norm = sqrt(xm * xm + ym * ym);
     float sg = -1;
     if (ym >= 0)
         sg = 1;
 
-    if ((m >= 0 && (xm < 0 && ym < 0 || xm >= 0 && ym >= 0) || m < 0 && (xm < 0 && ym >= 0 || xm >= 0 && ym < 0)) && abs(xm) >= radius - 50.f)
+    if ((m >= 0 && (xm < 0 && ym < 0 || xm >= 0 && ym >= 0) || m < 0 && (xm < 0 && ym >= 0 || xm >= 0 && ym < 0)) && abs(xm) >= norm - 50.f)
        sg *= -1;
     
     float k = (sg > 0 ? 1 : 0);
@@ -70,6 +72,6 @@ void Bunker::setPosition(Segment* s, float radius) {
     float yl = - xl / m;
     this->life->setPosition(Point(position.x + xl, position.y + yl));
     this->life->setRotation(this->rotation);
-    Vector versor = Point(xm, ym) / sqrt(xm*xm+ym*ym);
+    Vector versor = Point(xm, ym) / norm;
     this->shootPoint = Point(xm, ym) + versor * 25.f;
 }

@@ -26,9 +26,10 @@ Shape* CleverBunker::buildShape() {
 }
 
 void CleverBunker::studyFireAngle(){
-    float angle = 90.f;
     Point delta = Engine::getObjectByTag("Spaceship")->getPosition() - this->position;
-    angle = atan(delta.y/delta.x)/M_PI*180;
-    this->fireAngle = 270 - angle;
-    if(delta.x < 0) this->fireAngle -= 180;
+    float angle = atan(delta.y/delta.x)*180/M_PI;
+    this->fireAngle = 270-angle;
+    if (delta.x < 0)
+        this->fireAngle += 180;
+    this->fireAngle += 90;
 }

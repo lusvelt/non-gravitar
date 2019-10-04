@@ -15,7 +15,7 @@ class Scene {
         vector<Object *> objects;
 
     protected:
-        string type;
+        string sceneType;
         Point entryPoint;
 
     public:

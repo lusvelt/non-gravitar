@@ -22,6 +22,7 @@ class Spaceship : public Object {
     public:
         Spaceship();
         void update();
+        void onCollisionEnter(Object*);
 };
 
 #endif

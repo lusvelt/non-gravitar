@@ -6,6 +6,7 @@
 #include "Scene.hpp"
 #include "Game.hpp"
 #include "Object.hpp"
+#include "Info.hpp"
 
 class Game;
 
@@ -16,8 +17,10 @@ class Engine {
         static Scene *currentScene;
         static Game *game;
         static queue<Object*> objectsQueue;
+        static vector<Info*> info;
         static float deltaTime;
         static void draw(Object*);
+        static void draw(Info*);
         static vector<Object*> potentialColliders;
         static void checkCollisions(Object*);
         static void checkBoundsHit(Object*);
@@ -28,6 +31,7 @@ class Engine {
         static Scene* preparingScene;
         static Scene* prevScene;
         static void scanAndProcessObjects(vector<Object*>);
+        static void scanAndProcessInfo();
 
     public:
         static void initialize(Game*);
@@ -52,6 +56,8 @@ class Engine {
         static void backToPrevSceneKeepingObject(Object*);
         static float getDeltaTime();
         static Game* getGame();
+        static vector<Info*> getInfos();
+        static void addInfo(Info*);
 };
 
 #endif

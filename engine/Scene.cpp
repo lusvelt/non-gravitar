@@ -1,12 +1,12 @@
 #include "Scene.hpp"
 
 Scene::Scene(Camera* camera) {
-    this->type = "Scene";
+    this->sceneType = "Scene";
     this->camera = camera;
 }
 
 Scene::Scene(Camera* camera, Point entryPoint) {
-    this->type = "Scene";
+    this->sceneType = "Scene";
     this->camera = camera;
     this->entryPoint = entryPoint;
 }
@@ -39,11 +39,11 @@ const void Scene::update() {
 }
 
 string Scene::getType() {
-    return type;
+    return sceneType;
 }
 
 bool Scene::compareType(string type) {
-    return this->type == type;
+    return this->sceneType == type;
 }
 
 Point Scene::getEntryPoint() {

@@ -25,3 +25,12 @@ void TractorBeam::update() {
     if (Keyboard::isKeyPressed(Keyboard::X)) this->show();
     else this->hide();
 }
+
+void TractorBeam::onCollisionEnter(Object* obj) {
+    if (obj->compareTag("SmallFuel") || obj->compareTag("BigFuel")) {
+        Spaceship* spaceship = (Spaceship*) Engine::getObjectByTag("Spaceship");
+        // TODO: implementare addFuel(int) in Spaceship e getFuelAmount() in Fuel, ovviamente aggiungendo il campo fuelAmount
+        // spaceship->addFuel(((Fuel*) obj)->getFuelAmount());
+        Engine::destroy(obj);
+    }
+}

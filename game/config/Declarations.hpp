@@ -41,6 +41,10 @@
 #define FRAMERATE_LIMIT 60
 #define BULLET_COLLISION_RADIUS 10
 #define SPACESHIP_SCALE 1.f
+#define SMALL_FUEL_LIKELYHOOD 15
+#define BIG_FUEL_LIKELYHOOD 10
+#define BUNKER_LIKELYHOOD 30
+#define SPACESHIP_COLLISION_RADIUS 8
 
 using namespace sf;
 using namespace std;

@@ -23,6 +23,7 @@ class Object {
         vector<Object*> children;
         bool visible;
         Scene* currentScene;
+        String type;
 
     public:
         Object(Point position, float rotation);
@@ -57,6 +58,7 @@ class Object {
         Scene* getCurrentScene();
         void setCurrentScene(Scene*);
         void moveOf(Vector);
+        bool instanceOf(String);
         
 };
 

@@ -13,6 +13,8 @@ class Planet : public Scene, public Object {
         vector<Point> points;
         vector<Surface*> surfaces;
         Shape* buildShape();
+        void buildSurface();
+        void populateSegment(Segment*);
 
     protected:
 

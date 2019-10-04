@@ -10,6 +10,7 @@ Object::Object(Shape* shape, Point position, float rotation) {
     this->acceleration = Point(0.f, 0.f);
     this->angularSpeed = 0;
     this->tag = "Object";
+    this->type = "Object";
     this->prevPointer = NULL;
     this->visible = true;
     this->deleteIfOutOfBounds = false;
@@ -30,6 +31,7 @@ Object::Object(Point position, float rotation) {
     this->acceleration = Point(0.f, 0.f);
     this->angularSpeed = 0;
     this->tag = "Object";
+    this->type = "Object";
     this->prevPointer = NULL;
     this->visible = true;
     this->deleteIfOutOfBounds = false;
@@ -43,6 +45,7 @@ Object::Object(Shape* shape) {
     this->acceleration = Point(0.f, 0.f);
     this->angularSpeed = 0;
     this->tag = "Object";
+    this->type = "Object";
     this->prevPointer = NULL;
     this->visible = true;
     this->deleteIfOutOfBounds = false;
@@ -170,4 +173,8 @@ void Object::moveOf(Vector vector) {
     setPosition(position + vector);
     for (int i = 0; i < children.size(); i++)
         children.at(i)->moveOf(vector);
+}
+
+bool Object::instanceOf(String type) {
+    return this->type == type;
 }

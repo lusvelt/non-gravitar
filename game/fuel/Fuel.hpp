@@ -2,6 +2,7 @@
 #define _FUEL_H_
 #include "../../engine/Object.hpp"
 #include "../config/Declarations.hpp"
+#include "../../engine/geometry/Segment.hpp"
 
 class Fuel: public Object{
     protected:
@@ -9,6 +10,7 @@ class Fuel: public Object{
     public:
          void update();
          Fuel(Shape* shape);
+         void setPosition(Segment*);
 };
 
 #endif

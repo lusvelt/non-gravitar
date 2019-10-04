@@ -96,3 +96,8 @@ void Spaceship::backToPrevScene() {
     Engine::backToPrevScene();
 }
 
+void Spaceship::onCollisionEnter(Object* obj) {
+    if (obj->instanceOf("Bunker") || obj->compareTag("BunkerBullet") || obj->compareTag("Surface")) {
+        // TODO diminuire una vita e ripartire dall'entryPoint del pianeta, se le vite sono finite rendere invisibile e immanovrabile la spaceship
+    }
+}

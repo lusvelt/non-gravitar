@@ -4,7 +4,7 @@
 #include "../cameras/FixedCamera.hpp"
 
 SolarSystem::SolarSystem() : Scene(new FixedCamera(), Point(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)) {
-    this->type = "SolarSystem";
+    this->sceneType = "SolarSystem";
     srand(time(NULL));
     this->generatePlanets();
 }

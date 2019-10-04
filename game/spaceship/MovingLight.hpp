@@ -1,13 +1,16 @@
+#ifndef _MOVING_LIGHT_H_
+#define _MOVING_LIGHT_H_
+
 #include "../config/Declarations.hpp"
+
 #include "../../engine/Object.hpp"
 
-class TractorBeam : public Object {
+class MovingLight : public Object {
     private:
         Shape* buildShape();
-
     public:
-        TractorBeam();
+        MovingLight();
         void update();
-        void onCollisionEnter(Object*);
 };
 
+#endif

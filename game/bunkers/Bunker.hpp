@@ -25,7 +25,7 @@ class Bunker : public Object {
         void update();
         void onCollisionEnter(Object*);
         virtual void studyFireAngle();
-        void setPosition(Segment*, float);
+        void setPosition(Segment*);
 };
 
 

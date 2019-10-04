@@ -9,6 +9,7 @@ queue<Object*> Engine::objectsQueue;
 Game *Engine::game;
 vector<Object*> Engine::potentialColliders;
 vector<Object*> Engine::removedObjects;
+vector<Info*> Engine::info;
 Scene* Engine::preparingScene = NULL;
 Scene* Engine::prevScene = NULL;
 float Engine::deltaTime = 0;
@@ -27,6 +28,17 @@ void Engine::draw(Object* obj) {
     objShape->setRotation(obj->getRotation());
     Point shapePosition = objShape->getPosition();
     window->draw(*objShape);
+}
+
+void Engine::draw(Info* info) {
+    if (info->getType() == "ObjectInfo") {
+        Shape* objShape = info->getObject()->getShape();
+        objShape->setPosition(info->getObject()->getPosition());
+        window->draw(*objShape);
+    } else if (info->getType() == "TextInfo") {
+        Text* text = info->getText();
+        window->draw(*text);
+    }
 }
 
 void Engine::checkCollisions(Object* obj) {
@@ -81,6 +93,14 @@ void Engine::scanAndProcessObjects(vector<Object*> objects) {
     }
 }
 
+void Engine::scanAndProcessInfo() {
+    for (int i = 0; i < info.size(); i++) {
+        Info* info = Engine::info.at(i);
+        info->update();
+        draw(info);
+    }
+}
+
 void Engine::run() {
     clock.restart();
     while (window->isOpen()) {
@@ -96,6 +116,7 @@ void Engine::run() {
         window->clear(Color::Black);
         vector<Object*> *objects = currentScene->getObjects();
         scanAndProcessObjects(*objects);
+        scanAndProcessInfo();
         
         potentialColliders.clear();
         window->display();
@@ -216,4 +237,12 @@ float Engine::getDeltaTime() {
 
 Game* Engine::getGame() {
     return game;
+}
+
+vector<Info *> Engine::getInfos() {
+    return info;
+}
+
+void Engine::addInfo(Info* info) {
+    Engine::info.push_back(info);
 }
