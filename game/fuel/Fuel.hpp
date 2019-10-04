@@ -6,11 +6,13 @@
 
 class Fuel: public Object{
     protected:
+        int fuelAmount;
 
     public:
          void update();
          Fuel(Shape* shape);
          void setPosition(Segment*);
+         int getFuelAmount();
 };
 
 #endif

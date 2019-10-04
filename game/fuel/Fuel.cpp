@@ -34,3 +34,7 @@ void Fuel::setPosition(Segment* s){
 }
 
 void Fuel::update(){ }
+
+int Fuel::getFuelAmount(){
+    return this->fuelAmount;
+}

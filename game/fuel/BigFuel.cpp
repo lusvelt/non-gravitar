@@ -2,7 +2,9 @@
 #include "../../engine/Engine.hpp"
 #include "../../engine/Object.hpp"
 
-BigFuel::BigFuel(): Fuel(buildShape()){ }
+BigFuel::BigFuel(): Fuel(buildShape()){ 
+    this->fuelAmount = 500;
+}
 
 Shape* BigFuel:: buildShape(){
 

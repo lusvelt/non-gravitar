@@ -101,3 +101,7 @@ void Spaceship::onCollisionEnter(Object* obj) {
         // TODO diminuire una vita e ripartire dall'entryPoint del pianeta, se le vite sono finite rendere invisibile e immanovrabile la spaceship
     }
 }
+
+void Spaceship::getFuel(int newFuel){
+    this->totalFuel += newFuel;
+}

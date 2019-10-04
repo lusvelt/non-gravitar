@@ -18,11 +18,14 @@ class Spaceship : public Object {
         void onBoundHit(Bound);
         bool isOutOfRadius();
         void backToPrevScene();
+        int totalFuel;
+        
 
     public:
         Spaceship();
         void update();
         void onCollisionEnter(Object*);
+        void getFuel(int);
 };
 
 #endif
