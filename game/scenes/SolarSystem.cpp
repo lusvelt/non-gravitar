@@ -10,8 +10,8 @@ SolarSystem::SolarSystem() : Scene(new FixedCamera(), Point(WINDOW_WIDTH / 2, WI
 }
 
 const void SolarSystem::generatePlanets() {
-    int sizeBlockx = (WINDOW_WIDTH / N_COLUMNS) - MARGIN;
-    int sizeBlocky = (WINDOW_HEIGHT / N_COLUMNS) - MARGIN;
+    int sizeBlockx = (WINDOW_WIDTH / N_COLUMNS) - 2*MARGIN;
+    int sizeBlocky = (WINDOW_HEIGHT / N_COLUMNS) -2*MARGIN;
     int xStart = 0;
     int yStart = 0;
     int count = 0;
