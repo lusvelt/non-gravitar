@@ -108,6 +108,10 @@ void Spaceship::onCollisionEnter(Object* obj) {
     }
 }
 
+int Spaceship::getLife(){
+    return this->lifes;
+}
+
 void Spaceship::getFuel(int newFuel){
     this->totalFuel += newFuel;
 }

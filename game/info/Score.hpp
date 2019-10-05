@@ -6,7 +6,7 @@ class Score: public Info{
     private:
 
     public:
-    Score();
+    Score(int);
     void update();
 };
 
