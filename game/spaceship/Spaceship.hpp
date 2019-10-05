@@ -19,6 +19,7 @@ class Spaceship : public Object {
         bool isOutOfRadius();
         void backToPrevScene();
         int totalFuel;
+        int lifes;
         
 
     public:

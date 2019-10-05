@@ -24,6 +24,7 @@ Shape* Spaceship::buildShape() {
 
 Spaceship::Spaceship():
     Object(Spaceship::buildShape()) {
+    this->lifes = 5;
     this->shootCd = 0;
     this->tag = "Spaceship";
 }
@@ -54,20 +55,21 @@ void Spaceship::rotateRight() {
 
 void Spaceship::update() {
     resetAccelerationAndAngularSpeed();
-    if (Keyboard::isKeyPressed(Keyboard::Up))
-        accelerateForward();
-    if (Keyboard::isKeyPressed(Keyboard::Down))
-        accelerateBackward();
-    if (Keyboard::isKeyPressed(Keyboard::Left))
-        rotateLeft();
-    if (Keyboard::isKeyPressed(Keyboard::Right))
-        rotateRight();
-    if (Keyboard::isKeyPressed(Keyboard::Space) && shootCd <= 0)
-        shoot();
+    if(this->lifes > 0){
+        if (Keyboard::isKeyPressed(Keyboard::Up))
+            accelerateForward();
+        if (Keyboard::isKeyPressed(Keyboard::Down))
+            accelerateBackward();
+        if (Keyboard::isKeyPressed(Keyboard::Left))
+            rotateLeft();
+        if (Keyboard::isKeyPressed(Keyboard::Right))
+            rotateRight();
+        if (Keyboard::isKeyPressed(Keyboard::Space) && shootCd <= 0)
+            shoot();
 
-    if (this->isOutOfRadius())
-        this->backToPrevScene();
-    
+        if (this->isOutOfRadius())
+            this->backToPrevScene();
+    }
     if (shootCd > 0)
         shootCd -= Engine::getDeltaTime();
 }
@@ -98,6 +100,10 @@ void Spaceship::backToPrevScene() {
 
 void Spaceship::onCollisionEnter(Object* obj) {
     if (obj->instanceOf("Bunker") || obj->compareTag("BunkerBullet") || obj->compareTag("Surface")) {
+        if(this->lifes > 0){
+            this->lifes--;
+            Engine::moveObjectToAnotherScene(this, Engine::getCurrentScene());
+        }
         // TODO diminuire una vita e ripartire dall'entryPoint del pianeta, se le vite sono finite rendere invisibile e immanovrabile la spaceship
     }
 }
