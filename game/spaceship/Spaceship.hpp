@@ -28,6 +28,8 @@ class Spaceship : public Object {
         void onCollisionEnter(Object*);
         void getFuel(int);
         int getLife();
+        int getScore(int);
+        int scores;
 };
 
 #endif

@@ -24,6 +24,7 @@ Shape* Spaceship::buildShape() {
 
 Spaceship::Spaceship():
     Object(Spaceship::buildShape()) {
+    this->scores=0;
     this->lifes = 5;
     this->shootCd = 0;
     this->tag = "Spaceship";
@@ -114,4 +115,9 @@ int Spaceship::getLife(){
 
 void Spaceship::getFuel(int newFuel){
     this->totalFuel += newFuel;
+}
+
+int Spaceship::getScore(int s){
+    scores=scores+s;
+    return this->scores;
 }

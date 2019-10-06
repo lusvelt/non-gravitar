@@ -1,6 +1,5 @@
 #include "Bunker.hpp"
 #include <iostream>
-
 #include "../bullets/BunkerBullet.hpp"
 #include "../../engine/Engine.hpp"
 #include "../../engine/geometry/Segment.hpp"
@@ -25,6 +24,7 @@ void Bunker::onCollisionEnter(Object* collider) {
                 life->decreasePoints();
         
         if (life->hasEnded()){
+            ((Spaceship*) Engine::getObjectByTag("Spaceschip"))->getScore(this->bunkerPoints);
             Engine::destroy(this);
         }
 }
