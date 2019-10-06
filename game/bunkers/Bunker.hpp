@@ -2,6 +2,7 @@
 #define _BUNKER_H_
 
 #include "../config/Declarations.hpp"
+#include "../spaceship/Spaceship.hpp"
 #include "../../engine/geometry/Segment.hpp"
 
 #include "LifePointsBar.hpp"
