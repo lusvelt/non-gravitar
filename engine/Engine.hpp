@@ -16,8 +16,7 @@ class Engine {
         static RenderWindow *window;
         static Scene *currentScene;
         static Game *game;
-        static queue<Object*> objectsQueue;
-        static vector<Info*> info;
+        static vector<Info*> infoVector;
         static float deltaTime;
         static void draw(Object*);
         static void draw(Info*);
@@ -41,7 +40,6 @@ class Engine {
         static void addObjectToCurrentScene(Object*);
         static void removeObjectFromCurrentScene(Object*);
         static void checkAndRemoveIfOutOfBounds(Object*);
-        static void startPreparingScene();
         static Object* instantiate(Object*);
         static Object* instantiate(Object*, Scene*);
         static void destroy(Object*);
@@ -51,13 +49,14 @@ class Engine {
         static void backToPrevScene();
         static Scene* getPrevScene();
         static void moveObjectToAnotherScene(Object*, Scene*);
-        static void moveObjectsToAnotherScene(vector<Object*>, Scene*);
+        // static void moveObjectsToAnotherScene(vector<Object*>, Scene*);
         static void setCurrentSceneKeepingObject(Scene*, Object*);
         static void backToPrevSceneKeepingObject(Object*);
         static float getDeltaTime();
         static Game* getGame();
-        static vector<Info*> getInfos();
+        static vector<Info*> getInfo();
         static void addInfo(Info*);
+        static Info* livesInfo;
 };
 
 #endif

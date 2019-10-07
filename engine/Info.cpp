@@ -7,9 +7,9 @@ Info::Info(Object* obj, Point position) {
     text = NULL;
 }
 
-Info::Info(Text* text, Point position) {
+Info::Info(Text* txt, Point position) {
     type = "TextInfo";
-    this->text = text;
+    this->text = txt;
     this->text->setPosition(position);
     object = NULL;
 }
@@ -23,7 +23,7 @@ Object* Info::getObject() {
 }
 
 Text* Info::getText() {
-    return text;
+    return this->text;
 }
 
 void Info::update() { }

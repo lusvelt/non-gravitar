@@ -9,7 +9,7 @@ class Lives: public Info{
     private:
 
     public:
-    Lives(float);
+    Lives(int);
     void update();
 
 };

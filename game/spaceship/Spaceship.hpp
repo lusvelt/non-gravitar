@@ -19,22 +19,17 @@ class Spaceship : public Object {
         bool isOutOfRadius();
         void backToPrevScene();
         int totalFuel;
-        int lifes;
+        int lives;
         
 
     public:
         Spaceship();
         void update();
         void onCollisionEnter(Object*);
-<<<<<<< HEAD
-        void addFuel(int);
-        int getLife();
-=======
         void getFuel(int);
-        int getLife();
-        int getScore(int);
-        int scores;
->>>>>>> 1f196095beb8198f2bf91bfc7cc4bc8bfa09a343
+        void addFuel(int);
+        int getLives();
+        void die();
 };
 
 #endif

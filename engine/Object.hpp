@@ -23,7 +23,7 @@ class Object {
         vector<Object*> children;
         bool visible;
         Scene* currentScene;
-        String type;
+        string type;
 
     public:
         Object(Point position, float rotation);
@@ -40,11 +40,11 @@ class Object {
         float getRotation();
         Object* getPrevPointer();
         virtual Shape* buildShape() = 0;
-        virtual void updateTransform();
+        void updateTransform();
         virtual void onCollisionEnter(Object*);
         virtual void onBoundHit(Bound);
-        virtual void update();
         virtual bool collidesWith(Object*);
+        virtual void update();
         bool isAClone();
         void setPosition(Point position);
         void setSpeed(Point speed);
@@ -58,7 +58,7 @@ class Object {
         Scene* getCurrentScene();
         void setCurrentScene(Scene*);
         void moveOf(Vector);
-        bool instanceOf(String);
+        bool instanceOf(string);
         
 };
 

@@ -17,10 +17,12 @@
 
 Shape* Planet::buildShape() {
     CircleShape* shape = new CircleShape(radius / PLANET_SCALE);
-
-    shape->setFillColor(Color(rand()%255, rand()%255, rand()%255));
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(0, 255);
+    shape->setFillColor(Color(dis(gen), dis(gen), dis(gen)));
     shape->setOutlineThickness((rand()%2)+1);
-    shape->setOutlineColor(Color(rand()%255, rand()%255, rand()%255));
+    shape->setOutlineColor(Color(dis(gen), dis(gen), dis(gen)));
     return shape;
 };
 
@@ -34,13 +36,18 @@ float Planet::getRadius() {
 }
 
 void Planet::buildSurface() {
-    srand(time(NULL));
     int nPoints = 2 * M_PI * (float)radius / PIXELS_PER_POINT;
     int rangeX = PIXELS_PER_POINT / 2 * PLANET_POINT_RANGE_SCALE_X;
     int rangeY = PIXELS_PER_POINT / 2 * PLANET_POINT_RANGE_SCALE_Y;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> disX(-rangeX / 2, rangeX / 2);
+    uniform_int_distribution<> disY(-rangeY / 2, rangeY / 2);
+    uniform_int_distribution<> disB(1, 100);
+    uniform_int_distribution<> disT(0, 4);
     for (int i = 0; i < nPoints; i++) {
-        int offsetX = rand() % rangeX - rangeX / 2;
-        int offsetY = rand() % rangeY - rangeY / 2;
+        int offsetX = disX(gen);
+        int offsetY = disY(gen);
         float offsetAngle = offsetX / radius;
         float offsetDistance = offsetY;
         float currentAngle = (float)i * 2 * M_PI / nPoints;
@@ -59,24 +66,22 @@ void Planet::buildSurface() {
     }
     for (int i = 0; i < nPoints; i++) {
         Segment* segment = surfaces.at(i)->getSegment();
-        populateSegment(segment);
+        populateSegment(segment, disB(gen), disT(gen));
     }
 }
 
-void Planet::populateSegment(Segment* segment) {
-    int r = rand() % 100 + 1;
+void Planet::populateSegment(Segment* segment, int rand, int type) {
     Bunker* bunker = NULL;
     Fuel* fuel = NULL;
-    if (r < SMALL_FUEL_LIKELYHOOD) {
+    if (rand < SMALL_FUEL_LIKELYHOOD) {
         fuel = new SmallFuel();
-    } else if (r < SMALL_FUEL_LIKELYHOOD + BIG_FUEL_LIKELYHOOD) {
+    } else if (rand < SMALL_FUEL_LIKELYHOOD + BIG_FUEL_LIKELYHOOD) {
         fuel = new BigFuel();
-    } else if (r < SMALL_FUEL_LIKELYHOOD + BIG_FUEL_LIKELYHOOD + BUNKER_LIKELYHOOD) {
-        int t = rand() % 5;
-        if (t == 0) bunker = new TankBunker();
-        else if (t == 1) bunker = new DoubleShootBunker();
-        else if (t == 2) bunker = new CleverBunker();
-        else if (t == 3) bunker = new TwoDirectionBunker();
+    } else if (rand < SMALL_FUEL_LIKELYHOOD + BIG_FUEL_LIKELYHOOD + BUNKER_LIKELYHOOD) {
+        if (type == 0) bunker = new TankBunker();
+        else if (type == 1) bunker = new DoubleShootBunker();
+        else if (type == 2) bunker = new CleverBunker();
+        else if (type == 3) bunker = new TwoDirectionBunker();
         else bunker = new ThreeDirectionBunker();
     }
     if (bunker != NULL) {
@@ -89,10 +94,10 @@ void Planet::populateSegment(Segment* segment) {
     }
 }
 
-Planet::Planet(Point position) : Object(position, 0.f),
+Planet::Planet(Point position, int radius) : Object(position, 0.f),
                                  Scene(new FollowCamera()) {
         this->sceneType = this->tag = "Planet";
-        this->radius = rand() % PLANET_RANGE_RADIUS + PLANET_MIN_RADIUS;
+        this->radius = radius;
         this->entryPoint = Point(0.f, -(radius + SPACESHIP_DISTANCE_FROM_FLOOR));
         this->shape = buildShape();
         buildSurface();

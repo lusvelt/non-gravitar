@@ -5,11 +5,10 @@
 Clock Engine::clock;
 RenderWindow *Engine::window;
 Scene *Engine::currentScene = NULL;
-queue<Object*> Engine::objectsQueue;
 Game *Engine::game;
 vector<Object*> Engine::potentialColliders;
 vector<Object*> Engine::removedObjects;
-vector<Info*> Engine::info;
+vector<Info*> Engine::infoVector;
 Scene* Engine::preparingScene = NULL;
 Scene* Engine::prevScene = NULL;
 float Engine::deltaTime = 0;
@@ -36,8 +35,7 @@ void Engine::draw(Info* info) {
         objShape->setPosition(info->getObject()->getPosition());
         window->draw(*objShape);
     } else if (info->getType() == "TextInfo") {
-        Text* text = info->getText();
-        window->draw(*text);
+        window->draw(*(info->getText()));
     }
 }
 
@@ -94,8 +92,8 @@ void Engine::scanAndProcessObjects(vector<Object*> objects) {
 }
 
 void Engine::scanAndProcessInfo() {
-    for (int i = 0; i < info.size(); i++) {
-        Info* info = Engine::info.at(i);
+    for (int i = 0; i < infoVector.size(); i++) {
+        Info* info = infoVector.at(i);
         info->update();
         draw(info);
     }
@@ -112,11 +110,11 @@ void Engine::run() {
         Engine::deltaTime = clock.restart().asSeconds();
         
         currentScene->getCamera()->update();
-
         window->clear(Color::Black);
+
+        scanAndProcessInfo();
         vector<Object*> *objects = currentScene->getObjects();
         scanAndProcessObjects(*objects);
-        scanAndProcessInfo();
         
         potentialColliders.clear();
         window->display();
@@ -126,11 +124,6 @@ void Engine::run() {
 void Engine::setCurrentScene(Scene* currentScene) {
     Engine::prevScene = Engine::currentScene;
     Engine::currentScene = currentScene;
-
-    while (!objectsQueue.empty()) {
-        currentScene->addObject(objectsQueue.front());
-        objectsQueue.pop();
-    }
 }
 
 Scene* Engine::getCurrentScene() {
@@ -221,10 +214,10 @@ void Engine::moveObjectToAnotherScene(Object* obj, Scene* scene) {
     obj->setCurrentScene(scene);
 }
 
-void Engine::moveObjectsToAnotherScene(vector<Object *> objects, Scene *scene) {
+/* void Engine::moveObjectsToAnotherScene(vector<Object *> objects, Scene *scene) {
     for (int i = 0; i < objects.size(); i++)
         moveObjectToAnotherScene(objects.at(i), scene);
-}
+}*/
 
 void Engine::setCurrentSceneKeepingObject(Scene* scene, Object* obj) {
     Engine::moveObjectToAnotherScene(obj, scene);
@@ -239,10 +232,10 @@ Game* Engine::getGame() {
     return game;
 }
 
-vector<Info *> Engine::getInfos() {
-    return info;
+vector<Info*> Engine::getInfo() {
+    return infoVector;
 }
 
-void Engine::addInfo(Info* info) {
-    Engine::info.push_back(info);
+void Engine::addInfo(Info* i) {
+    infoVector.push_back(i);
 }

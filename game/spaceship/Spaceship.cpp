@@ -24,8 +24,7 @@ Shape* Spaceship::buildShape() {
 
 Spaceship::Spaceship():
     Object(Spaceship::buildShape()) {
-    this->scores=0;
-    this->lifes = 5;
+    this->lives = 5;
     this->shootCd = 0;
     this->tag = "Spaceship";
 }
@@ -56,7 +55,7 @@ void Spaceship::rotateRight() {
 
 void Spaceship::update() {
     resetAccelerationAndAngularSpeed();
-    if(this->lifes > 0){
+    if(this->lives > 0){
         if (Keyboard::isKeyPressed(Keyboard::Up))
             accelerateForward();
         if (Keyboard::isKeyPressed(Keyboard::Down))
@@ -100,33 +99,26 @@ void Spaceship::backToPrevScene() {
 }
 
 void Spaceship::onCollisionEnter(Object* obj) {
-    if (obj->instanceOf("Bunker") || obj->compareTag("BunkerBullet") || obj->compareTag("Surface")) {
-        if(this->lifes > 0){
-            this->lifes--;
-            Engine::moveObjectToAnotherScene(this, Engine::getCurrentScene());
-        }
+    if (obj->instanceOf("Bunker") || obj->compareTag("BunkerBullet") || obj->compareTag("Surface"))
+        die();
         // TODO diminuire una vita e ripartire dall'entryPoint del pianeta, se le vite sono finite rendere invisibile e immanovrabile la spaceship
-    }
 }
 
-<<<<<<< HEAD
 void Spaceship::addFuel(int newFuel){
     this->totalFuel += newFuel;
 }
 
-int Spaceship::getLife(){
-    return this->lifes;
-=======
-int Spaceship::getLife(){
-    return this->lifes;
+int Spaceship::getLives(){
+    return this->lives;
+}
+
+void Spaceship::die() {
+    if (this->lives > 0) {
+        this->lives--;
+        Engine::moveObjectToAnotherScene(this, Engine::getCurrentScene());
+    }
 }
 
 void Spaceship::getFuel(int newFuel){
     this->totalFuel += newFuel;
-}
-
-int Spaceship::getScore(int s){
-    scores=scores+s;
-    return this->scores;
->>>>>>> 1f196095beb8198f2bf91bfc7cc4bc8bfa09a343
 }

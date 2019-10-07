@@ -7,6 +7,7 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 using namespace sf;

@@ -27,7 +27,7 @@ Shape* ThreeDirectionBunker::buildShape() {
 }
 
 void ThreeDirectionBunker::studyFireAngle() {
-    int direction = rand()%3;
+    int direction = rand() % 3;
     if(direction == 0) this->fireAngle = STANDARD_BUNKER_ANGLE;
     else if(direction == 1) this->fireAngle = -STANDARD_BUNKER_ANGLE;
     else this->fireAngle = 0.f;

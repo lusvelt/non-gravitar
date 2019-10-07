@@ -7,13 +7,12 @@
 
 class NonGravitar : public Game {
     private:
-        unsigned int score;
-        unsigned int fuel;
-        unsigned int lives;
-        int lifes;
+        int score;
 
     public:
         NonGravitar();
+        void addScore(int);
+        int getScore();
 };
 
 #endif

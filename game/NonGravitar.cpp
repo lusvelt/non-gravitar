@@ -11,9 +11,6 @@
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     score = 0;
-    fuel = FUEL_START_VALUE;
-    lives = LIVES_START_VALUE;
-
     Scene* solarSystem = new SolarSystem();
     Spaceship* spaceship = new Spaceship();
     TractorBeam* tractorBeam = new TractorBeam();
@@ -25,11 +22,16 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     Engine::setCurrentScene(solarSystem);
     this->scenes.push_back(solarSystem);
 
-    lifes=((Spaceship*) Engine::getObjectByTag("Spaceship"))->getLife();
-    score=((Spaceship*)Engine::getObjectByTag("Spaceship"))->getScore(score);
+    int lives = ((Spaceship*) Engine::getObjectByTag("Spaceship"))->getLives();
     Engine::addInfo(new FuelInfo());
     Engine::addInfo(new Score(score));
-    Engine::addInfo(new Lives(lifes));
+    Engine::addInfo(new Lives(lives));
+}
 
+void NonGravitar::addScore(int score) {
+    this->score += score;
+}
 
+int NonGravitar::getScore() {
+    return score;
 }

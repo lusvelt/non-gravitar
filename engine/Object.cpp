@@ -51,7 +51,13 @@ Object::Object(Shape* shape) {
     this->deleteIfOutOfBounds = false;
 }
 
-Object::~Object() { }
+Object::~Object() {
+    while (!children.empty()) {
+        Object* child = children.at(0);
+        children.erase(remove(children.begin(), children.end(), child), children.end());
+        delete child;
+    }      
+}
 
 Shape* Object::getShape() {
     return this->shape;
@@ -175,6 +181,6 @@ void Object::moveOf(Vector vector) {
         children.at(i)->moveOf(vector);
 }
 
-bool Object::instanceOf(String type) {
+bool Object::instanceOf(string type) {
     return this->type == type;
 }

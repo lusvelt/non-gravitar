@@ -3,6 +3,7 @@
 #include "../bullets/BunkerBullet.hpp"
 #include "../../engine/Engine.hpp"
 #include "../../engine/geometry/Segment.hpp"
+#include "../NonGravitar.hpp"
 
 Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown) :
     Object(shape, Point(250.f, 250.f), 0.f) {
@@ -24,7 +25,7 @@ void Bunker::onCollisionEnter(Object* collider) {
                 life->decreasePoints();
         
         if (life->hasEnded()){
-            ((Spaceship*) Engine::getObjectByTag("Spaceschip"))->getScore(this->bunkerPoints);
+            ((NonGravitar*) Engine::getGame())->addScore(bunkerPoints);
             Engine::destroy(this);
         }
 }
@@ -60,7 +61,7 @@ void Bunker::setPosition(Segment* s) {
     if (ym >= 0)
         sg = 1;
 
-    if ((m >= 0 && (xm < 0 && ym < 0 || xm >= 0 && ym >= 0) || m < 0 && (xm < 0 && ym >= 0 || xm >= 0 && ym < 0)) && abs(xm) >= norm - 50.f)
+    if (((m >= 0 && ((xm < 0 && ym < 0) || (xm >= 0 && ym >= 0))) || (m < 0 && ((xm < 0 && ym >= 0) || (xm >= 0 && ym < 0)))) && abs(xm) >= norm - 50.f)
        sg *= -1;
     
     float k = (sg > 0 ? 1 : 0);

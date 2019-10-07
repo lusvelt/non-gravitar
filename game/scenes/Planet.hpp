@@ -14,13 +14,13 @@ class Planet : public Scene, public Object {
         vector<Surface*> surfaces;
         Shape* buildShape();
         void buildSurface();
-        void populateSegment(Segment*);
+        void populateSegment(Segment*, int, int);
 
     protected:
 
     public:
         void onCollisionEnter(Object*);
-        Planet(Point);
+        Planet(Point, int);
         float getRadius();
         void update();
 };

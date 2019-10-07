@@ -6,8 +6,8 @@
 #include "Object.hpp"
 
 class Info {
-    private:
-        String type;
+    protected:
+        string type;
         Object* object;
         Text* text;
     

@@ -1,15 +1,17 @@
 #include "Lives.hpp"
-#include <sstream>
 #include "../spaceship/Spaceship.hpp"
+#include "../../engine/Engine.hpp"
 
 
-Lives::Lives(float lifes): Info(new Text(), Point(50,80)){
-
-    ostringstream ss;
-    ss<<lifes;
-    this->getText()->setColor(Color::White);
-    this->getText()->setCharacterSize(100);
-    this->getText()->setString(ss.str());
+Lives::Lives(int lives): Info(new Text(), Point(50, 80)){
+    Font* font = new Font();
+    font->loadFromFile("game/info/Hyperspace.otf");
+    text->setFont(*font);
+    text->setFillColor(Color::White);
+    text->setCharacterSize(20);
+    text->setString(to_string(lives));
 }
 
-void Lives::update(){}
+void Lives::update() {
+    text->setString(to_string(((Spaceship*)Engine::getObjectByTag("Spaceship"))->getLives()));
+}

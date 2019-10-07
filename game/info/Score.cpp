@@ -1,15 +1,18 @@
 #include "Score.hpp"
-#include <sstream>
 #include "../../engine/Info.hpp"
+#include "../../engine/Engine.hpp"
+#include "../NonGravitar.hpp"
 
 
 Score::Score(int score) : Info(new Text(), Point(50, 50)){
-
-    ostringstream ss;
-    ss<<score;   
-    this->getText()->setColor(Color::White);
-    this->getText()->setCharacterSize(30);
-    this->getText()->setString(ss.str());
+    Font *font = new Font();
+    font->loadFromFile("game/info/Hyperspace.otf");
+    text->setFont(*font);
+    text->setFillColor(Color::White);
+    text->setCharacterSize(20);
+    text->setString(to_string(score));
 }
 
-void Score::update(){}
+void Score::update(){
+    text->setString(to_string(((NonGravitar*) Engine::getGame())->getScore()));
+}
