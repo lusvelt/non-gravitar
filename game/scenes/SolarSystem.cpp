@@ -20,7 +20,8 @@ const void SolarSystem::generatePlanets() {
             xStart = (j * sizeBlockx) + MARGIN;
             yStart = (i * sizeBlocky) + MARGIN;
             bool emptyBlock = rand() % 2;
-            Point position = Point(rand() % (sizeBlockx - MARGIN)+ xStart, rand() % (sizeBlocky - MARGIN) + yStart);
+
+            Point position = Point(rand() % sizeBlockx + xStart, rand() % sizeBlocky + yStart);
             if ((i == 1 && j == 1) || !emptyBlock) { 
                 count++;
                 if (count > 5)

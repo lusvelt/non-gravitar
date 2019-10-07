@@ -24,6 +24,7 @@ Shape* Spaceship::buildShape() {
 
 Spaceship::Spaceship():
     Object(Spaceship::buildShape()) {
+    this->scores=0;
     this->lifes = 5;
     this->shootCd = 0;
     this->tag = "Spaceship";
@@ -108,10 +109,24 @@ void Spaceship::onCollisionEnter(Object* obj) {
     }
 }
 
+<<<<<<< HEAD
 void Spaceship::addFuel(int newFuel){
     this->totalFuel += newFuel;
 }
 
 int Spaceship::getLife(){
     return this->lifes;
+=======
+int Spaceship::getLife(){
+    return this->lifes;
+}
+
+void Spaceship::getFuel(int newFuel){
+    this->totalFuel += newFuel;
+}
+
+int Spaceship::getScore(int s){
+    scores=scores+s;
+    return this->scores;
+>>>>>>> 1f196095beb8198f2bf91bfc7cc4bc8bfa09a343
 }

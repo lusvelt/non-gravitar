@@ -25,9 +25,11 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     Engine::setCurrentScene(solarSystem);
     this->scenes.push_back(solarSystem);
 
+    lifes=((Spaceship*) Engine::getObjectByTag("Spaceship"))->getLife();
+    score=((Spaceship*)Engine::getObjectByTag("Spaceship"))->getScore(score);
     Engine::addInfo(new FuelInfo());
-    Engine::addInfo(new Score());
-    Engine::addInfo(new Lives());
+    Engine::addInfo(new Score(score));
+    Engine::addInfo(new Lives(lifes));
 
 
 }

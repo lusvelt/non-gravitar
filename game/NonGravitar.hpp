@@ -10,6 +10,7 @@ class NonGravitar : public Game {
         unsigned int score;
         unsigned int fuel;
         unsigned int lives;
+        int lifes;
 
     public:
         NonGravitar();
