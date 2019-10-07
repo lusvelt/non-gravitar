@@ -1,6 +1,7 @@
 #include "TractorBeam.hpp"
 #include "../../engine/Object.hpp"
 #include "../../engine/Engine.hpp"
+#include "../fuel/Fuel.hpp"
 #include "Spaceship.hpp"
 
 Shape* TractorBeam::buildShape() {
@@ -29,6 +30,7 @@ void TractorBeam::update() {
 void TractorBeam::onCollisionEnter(Object* obj) {
     if (obj->compareTag("SmallFuel") || obj->compareTag("BigFuel")) {
         Spaceship* spaceship = (Spaceship*) Engine::getObjectByTag("Spaceship");
+        spaceship->addFuel(((Fuel*)obj)->getFuelAmount());
         // TODO: implementare addFuel(int) in Spaceship e getFuelAmount() in Fuel, ovviamente aggiungendo il campo fuelAmount
         // spaceship->addFuel(((Fuel*) obj)->getFuelAmount());
         Engine::destroy(obj);

@@ -1,4 +1,5 @@
 #include "MovingLight.hpp"
+#include "Spaceship.hpp"
 
 Shape* MovingLight::buildShape() {
     CircleShape* shape = new CircleShape(2, 12);
@@ -11,9 +12,11 @@ MovingLight::MovingLight() : Object(buildShape()) {
 }
 
 void MovingLight::update() {
-    if (Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::Down))
-        this->visible = true;
-    else
-        this->visible = false;
+    if(Spaceship::getLife() > 0){
+        if (Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::Down))
+            this->visible = true;
+        else
+            this->visible = false;
+    }
     
 }

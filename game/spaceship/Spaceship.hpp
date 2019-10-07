@@ -26,7 +26,8 @@ class Spaceship : public Object {
         Spaceship();
         void update();
         void onCollisionEnter(Object*);
-        void getFuel(int);
+        void addFuel(int);
+        int getLife();
 };
 
 #endif
