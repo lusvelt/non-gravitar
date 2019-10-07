@@ -11,10 +11,13 @@ class Scene;
 class SolarSystem : public Scene {
     private:
         vector<Planet*> planets;
+        void addPlanet(Planet*);
+        int planetCount;
     public:
         SolarSystem();
         const void generatePlanets();
         virtual void update();
+        void onLoad();
 };
 
 #endif

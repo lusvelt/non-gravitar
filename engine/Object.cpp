@@ -55,7 +55,6 @@ Object::~Object() {
     while (!children.empty()) {
         Object* child = children.at(0);
         children.erase(remove(children.begin(), children.end(), child), children.end());
-        delete child;
     }      
 }
 

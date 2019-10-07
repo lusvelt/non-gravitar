@@ -2,11 +2,18 @@
 
 #include "../../engine/Engine.hpp"
 #include "../cameras/FixedCamera.hpp"
+#include "../NonGravitar.hpp"
 
 SolarSystem::SolarSystem() : Scene(new FixedCamera(), Point(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)) {
     this->sceneType = "SolarSystem";
     srand(time(NULL));
+    planetCount = 0;
     this->generatePlanets();
+}
+
+void SolarSystem::addPlanet(Planet* planet) {
+    planetCount++;
+    planets.push_back(planet);
 }
 
 const void SolarSystem::generatePlanets() {
@@ -31,12 +38,24 @@ const void SolarSystem::generatePlanets() {
             if ((i == 1 && j == 1) || !emptyBlock) { 
                 count++;
                 if (count > 5)
-                   planets.push_back((Planet*) Engine::instantiate(new Planet(position, disR(gen)), this));
-            } else
-                planets.push_back((Planet*) Engine::instantiate(new Planet(position, disR(gen)), this));
+                    addPlanet((Planet *)Engine::instantiate(new Planet(position, disR(gen)), this));
+                } else
+                addPlanet((Planet*) Engine::instantiate(new Planet(position, disR(gen)), this));
         }
     }
 } 
+
+void SolarSystem::onLoad() {
+    for (int i = 0; i < planets.size(); i++) {
+        Planet* planet = planets.at(i);
+        if (planet->hasNoBunkers()) {
+            planets.erase(remove(planets.begin(), planets.end(), planet), planets.end());
+            planetCount--;
+        }
+    }
+    if (planetCount <= 0)
+        ((NonGravitar*) Engine::getGame())->generateSolarSystem();
+}
 
 void SolarSystem::update() { }
  

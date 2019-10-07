@@ -4,7 +4,7 @@
 #include "../NonGravitar.hpp"
 
 
-Score::Score(int score) : Info(new Text(), Point(50, 50)){
+Score::Score(int score) : Info(new Text(), Point(10, 10)){
     Font *font = new Font();
     font->loadFromFile("game/info/Hyperspace.otf");
     text->setFont(*font);
@@ -14,5 +14,7 @@ Score::Score(int score) : Info(new Text(), Point(50, 50)){
 }
 
 void Score::update(){
-    text->setString(to_string(((NonGravitar*) Engine::getGame())->getScore()));
+    string s = "Score: ";
+    s += to_string(((NonGravitar *)Engine::getGame())->getScore());
+    text->setString(s);
 }

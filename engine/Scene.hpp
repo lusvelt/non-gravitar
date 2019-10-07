@@ -30,6 +30,7 @@ class Scene {
         bool compareType(string);
         const void update();
         Point getEntryPoint();
+        virtual void onLoad();
 };
 
 #endif

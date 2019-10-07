@@ -28,7 +28,7 @@ void TractorBeam::update() {
 }
 
 void TractorBeam::onCollisionEnter(Object* obj) {
-    if (obj->compareTag("SmallFuel") || obj->compareTag("BigFuel")) {
+    if (obj->compareTag("Fuel")) {
         Spaceship* spaceship = (Spaceship*) Engine::getObjectByTag("Spaceship");
         spaceship->addFuel(((Fuel*)obj)->getFuelAmount());
         // TODO: implementare addFuel(int) in Spaceship e getFuelAmount() in Fuel, ovviamente aggiungendo il campo fuelAmount

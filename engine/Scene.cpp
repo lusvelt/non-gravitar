@@ -49,3 +49,5 @@ bool Scene::compareType(string type) {
 Point Scene::getEntryPoint() {
     return entryPoint;
 }
+
+void Scene::onLoad() {}

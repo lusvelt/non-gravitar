@@ -45,6 +45,8 @@
 #define BIG_FUEL_LIKELYHOOD 10
 #define BUNKER_LIKELYHOOD 30
 #define SPACESHIP_COLLISION_RADIUS 8
+#define MAX_FUEL 10000
+#define FUEL_SCALE_COEFFICIENT 100
 
 using namespace sf;
 using namespace std;

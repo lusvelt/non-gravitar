@@ -35,3 +35,7 @@ void NonGravitar::addScore(int score) {
 int NonGravitar::getScore() {
     return score;
 }
+
+void NonGravitar::generateSolarSystem() {
+    // TODO
+}

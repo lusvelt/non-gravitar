@@ -44,7 +44,7 @@ void Planet::buildSurface() {
     uniform_int_distribution<> disX(-rangeX / 2, rangeX / 2);
     uniform_int_distribution<> disY(-rangeY / 2, rangeY / 2);
     uniform_int_distribution<> disB(1, 100);
-    uniform_int_distribution<> disT(0, 4);
+    uniform_int_distribution<> disT(0, 3);
     for (int i = 0; i < nPoints; i++) {
         int offsetX = disX(gen);
         int offsetY = disY(gen);
@@ -80,12 +80,13 @@ void Planet::populateSegment(Segment* segment, int rand, int type) {
     } else if (rand < SMALL_FUEL_LIKELYHOOD + BIG_FUEL_LIKELYHOOD + BUNKER_LIKELYHOOD) {
         if (type == 0) bunker = new TankBunker();
         else if (type == 1) bunker = new DoubleShootBunker();
-        else if (type == 2) bunker = new CleverBunker();
-        else if (type == 3) bunker = new TwoDirectionBunker();
+        else if (type == 2) bunker = new TwoDirectionBunker();
         else bunker = new ThreeDirectionBunker();
+        bunkerCount++;
     }
     if (bunker != NULL) {
         bunker->setPosition(segment);
+        bunker->setPlanet(this);
         Engine::instantiate(bunker, this);
     }
     if (fuel != NULL) {
@@ -100,7 +101,16 @@ Planet::Planet(Point position, int radius) : Object(position, 0.f),
         this->radius = radius;
         this->entryPoint = Point(0.f, -(radius + SPACESHIP_DISTANCE_FROM_FLOOR));
         this->shape = buildShape();
+        bunkerCount = 0;
         buildSurface();
     }
 
 void Planet::update() { }
+
+void Planet::bunkerDestroyed() {
+    bunkerCount--;
+}
+
+bool Planet::hasNoBunkers() {
+    return bunkerCount == 0;
+}

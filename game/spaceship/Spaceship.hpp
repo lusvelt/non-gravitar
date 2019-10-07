@@ -18,18 +18,20 @@ class Spaceship : public Object {
         void onBoundHit(Bound);
         bool isOutOfRadius();
         void backToPrevScene();
-        int totalFuel;
+        int fuel;
         int lives;
-        
+        float fuelCd;
+        void scaleFuel();
 
     public:
         Spaceship();
         void update();
         void onCollisionEnter(Object*);
-        void getFuel(int);
+        int getFuel();
         void addFuel(int);
         int getLives();
         void die();
+        bool collidesWith(Object*);
 };
 
 #endif

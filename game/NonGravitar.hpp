@@ -13,6 +13,7 @@ class NonGravitar : public Game {
         NonGravitar();
         void addScore(int);
         int getScore();
+        void generateSolarSystem();
 };
 
 #endif

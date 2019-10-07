@@ -26,6 +26,7 @@ void Bunker::onCollisionEnter(Object* collider) {
         
         if (life->hasEnded()){
             ((NonGravitar*) Engine::getGame())->addScore(bunkerPoints);
+            this->planet->bunkerDestroyed();
             Engine::destroy(this);
         }
 }
@@ -75,4 +76,8 @@ void Bunker::setPosition(Segment* s) {
     this->life->setRotation(this->rotation);
     Vector versor = Point(xm, ym) / norm;
     this->shootPoint = Point(xm, ym) + versor * 25.f;
+}
+
+void Bunker::setPlanet(Planet* planet) {
+    this->planet = planet;
 }

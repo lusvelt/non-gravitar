@@ -4,7 +4,7 @@
 #include "../../engine/Object.hpp"
 
 SmallFuel::SmallFuel(): Fuel(buildShape()){ 
-    this->fuelAmount = 250;
+    this->fuelAmount = 750;
 }
 
 Shape* SmallFuel::buildShape(){

@@ -26,7 +26,9 @@ Spaceship::Spaceship():
     Object(Spaceship::buildShape()) {
     this->lives = 5;
     this->shootCd = 0;
+    this->fuelCd = 0.f;
     this->tag = "Spaceship";
+    this->fuel = MAX_FUEL;
 }
 
 void Spaceship::resetAccelerationAndAngularSpeed() {
@@ -38,11 +40,13 @@ void Spaceship::resetAccelerationAndAngularSpeed() {
 void Spaceship::accelerateForward() {
     acceleration.x = ACCELERATION_MODULE * cos(rotation * M_PI / 180);
     acceleration.y = ACCELERATION_MODULE * sin(rotation * M_PI / 180);
+    scaleFuel();
 }
 
 void Spaceship::accelerateBackward() {
     acceleration.x = -ACCELERATION_MODULE * cos(rotation * M_PI / 180);
     acceleration.y = -ACCELERATION_MODULE * sin(rotation * M_PI / 180);
+    scaleFuel();
 }
 
 void Spaceship::rotateLeft() {
@@ -51,6 +55,10 @@ void Spaceship::rotateLeft() {
 
 void Spaceship::rotateRight() {
     angularSpeed = ANGULAR_SPEED_MODULE;
+}
+
+void Spaceship::scaleFuel() {
+    fuel -= FUEL_SCALE_COEFFICIENT * Engine::getDeltaTime();
 }
 
 void Spaceship::update() {
@@ -105,7 +113,10 @@ void Spaceship::onCollisionEnter(Object* obj) {
 }
 
 void Spaceship::addFuel(int newFuel){
-    this->totalFuel += newFuel;
+    if (fuel + newFuel > MAX_FUEL)
+        fuel = MAX_FUEL;
+    else
+        fuel += newFuel;
 }
 
 int Spaceship::getLives(){
@@ -119,6 +130,12 @@ void Spaceship::die() {
     }
 }
 
-void Spaceship::getFuel(int newFuel){
-    this->totalFuel += newFuel;
+int Spaceship::getFuel(){
+    return fuel;
+}
+
+bool Spaceship::collidesWith(Object* obj) {
+    if (obj->compareTag("Surface"))
+        return ((Surface*) obj)->collidesWith(this);
+    else return obj->collidesWith(this);
 }

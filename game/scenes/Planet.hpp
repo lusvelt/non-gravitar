@@ -15,6 +15,7 @@ class Planet : public Scene, public Object {
         Shape* buildShape();
         void buildSurface();
         void populateSegment(Segment*, int, int);
+        int bunkerCount;
 
     protected:
 
@@ -23,6 +24,8 @@ class Planet : public Scene, public Object {
         Planet(Point, int);
         float getRadius();
         void update();
+        bool hasNoBunkers();
+        void bunkerDestroyed();
 };
 
 #endif

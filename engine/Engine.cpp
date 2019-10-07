@@ -124,6 +124,7 @@ void Engine::run() {
 void Engine::setCurrentScene(Scene* currentScene) {
     Engine::prevScene = Engine::currentScene;
     Engine::currentScene = currentScene;
+    currentScene->onLoad();
 }
 
 Scene* Engine::getCurrentScene() {

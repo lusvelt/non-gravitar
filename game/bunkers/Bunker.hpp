@@ -6,6 +6,7 @@
 #include "../../engine/geometry/Segment.hpp"
 
 #include "LifePointsBar.hpp"
+#include "../scenes/Planet.hpp"
 
 class Bunker : public Object {
     protected:
@@ -19,6 +20,7 @@ class Bunker : public Object {
         Point shootPoint;
         float bulletSpeed;
         int bunkerPoints;
+        Planet* planet;
 
     public:
         Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, float bunkerCoolDown);
@@ -27,6 +29,7 @@ class Bunker : public Object {
         void onCollisionEnter(Object*);
         virtual void studyFireAngle();
         void setPosition(Segment*);
+        void setPlanet(Planet*);
 };
 
 

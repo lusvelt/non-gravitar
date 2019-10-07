@@ -19,6 +19,7 @@ Object(LifePointsBar::buildShape(), startingPosition, startingRotation){
 
 void LifePointsBar::decreasePoints(){
     this->shape->setScale(1-1/(float)(this->requiredHits)-hits/(float)(this->requiredHits),1.f);
+    this->shape->setFillColor(Color(255 * hits / requiredHits, 255 - 255 * hits / requiredHits, 0));
     this->hits++;
     if (this->hasEnded())
         Engine::destroy(this);
