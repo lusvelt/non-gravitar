@@ -8,6 +8,7 @@
 class NonGravitar : public Game {
     private:
         int score;
+        bool over;
 
     public:
         NonGravitar();
@@ -15,6 +16,7 @@ class NonGravitar : public Game {
         int getScore();
         void generateSolarSystem();
         void gameOver();
+        bool isOver();
 };
 
 #endif

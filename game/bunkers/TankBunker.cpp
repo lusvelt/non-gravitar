@@ -1,6 +1,6 @@
 #include "TankBunker.hpp"
 
-TankBunker::TankBunker() : Bunker(buildShape(), 20, 45.f, 45.f, 1.5f) {
+TankBunker::TankBunker() : Bunker(buildShape(), 10, 45.f, 45.f, 1.5f) {
     this->bunkerPoints = 250;
 }
 

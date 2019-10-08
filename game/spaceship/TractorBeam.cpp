@@ -2,6 +2,7 @@
 #include "../../engine/Object.hpp"
 #include "../../engine/Engine.hpp"
 #include "../fuel/Fuel.hpp"
+#include "../NonGravitar.hpp"
 #include "Spaceship.hpp"
 
 Shape* TractorBeam::buildShape() {
@@ -23,7 +24,7 @@ TractorBeam::TractorBeam():
     }
 
 void TractorBeam::update() {
-    if (Keyboard::isKeyPressed(Keyboard::X)) this->show();
+    if (Keyboard::isKeyPressed(Keyboard::X) && !((NonGravitar*)Engine::getGame())->isOver()) this->show();
     else this->hide();
 }
 

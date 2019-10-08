@@ -22,6 +22,7 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     Engine::instantiate(spaceship, solarSystem);
     Engine::setCurrentScene(solarSystem);
     this->scenes.push_back(solarSystem);
+    this->over = false;
 
     int lives = ((Spaceship*) Engine::getObjectByTag("Spaceship"))->getLives();
     Engine::addInfo(new FuelInfo());
@@ -47,4 +48,9 @@ void NonGravitar::gameOver() {
     Spaceship* spaceship = (Spaceship *)Engine::getObjectByTag("Spaceship");
     spaceship->setSpeed(Vector(0, 0));
     spaceship->hide();
+    this->over = true;
+}
+
+bool NonGravitar::isOver(){
+    return this->over;
 }
