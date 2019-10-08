@@ -50,6 +50,8 @@ void SolarSystem::onLoad() {
         Planet* planet = planets.at(i);
         if (planet->hasNoBunkers()) {
             planets.erase(remove(planets.begin(), planets.end(), planet), planets.end());
+            ((NonGravitar*) Engine::getGame())->addScore(planet->getScore());
+            Engine::destroy(planet);
             planetCount--;
         }
     }

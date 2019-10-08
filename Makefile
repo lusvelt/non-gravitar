@@ -1,4 +1,4 @@
-non-gravitar: FuelBar.o FuelInfo.o Lives.o Score.o Main.o Bullet.o BunkerBullet.o SpaceshipBullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o FixedCamera.o FollowCamera.o Fuel.o BigFuel.o SmallFuel.o Game.o LifePointsBar.o Surface.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o ThreeDirectionBunker.o TwoDirectionBunker.o Line.o Segment.o TractorBeam.o MovingLight.o Info.o
+non-gravitar: GameOver.o FuelBar.o FuelInfo.o Lives.o Score.o Main.o Bullet.o BunkerBullet.o SpaceshipBullet.o Bunker.o Camera.o CleverBunker.o DoubleShootBunker.o Engine.o FixedCamera.o FollowCamera.o Fuel.o BigFuel.o SmallFuel.o Game.o LifePointsBar.o Surface.o NonGravitar.o Object.o Planet.o Scene.o SolarSystem.o Spaceship.o TankBunker.o ThreeDirectionBunker.o TwoDirectionBunker.o Line.o Segment.o TractorBeam.o MovingLight.o Info.o
 	g++ -o NonGravitar $^ -lsfml-graphics -lsfml-window -lsfml-system
 
 Main.o: Main.cpp
@@ -106,11 +106,14 @@ Score.o: game/info/Score.cpp
 FuelBar.o: game/info/FuelBar.cpp
 	g++ -c game/info/FuelBar.cpp
 
+GameOver.o: game/info/GameOver.cpp
+	g++ -c game/info/GameOver.cpp
+
 run:
 	make && ./NonGravitar
 
 debug:
-	g++ -g Main.cpp game/info/FuelBar.cpp game/info/Score.cpp game/info/Lives.cpp game/info/FuelInfo.cpp engine/Info.cpp game/bullets/Bullet.cpp game/bunkers/Bunker.cpp engine/Camera.cpp game/bunkers/CleverBunker.cpp game/bunkers/DoubleShootBunker.cpp engine/Engine.cpp game/cameras/FixedCamera.cpp game/cameras/FollowCamera.cpp engine/Game.cpp game/bunkers/LifePointsBar.cpp game/scenes/Surface.cpp game/NonGravitar.cpp engine/Object.cpp game/scenes/Planet.cpp engine/Scene.cpp game/scenes/SolarSystem.cpp game/spaceship/Spaceship.cpp game/bunkers/TankBunker.cpp game/bunkers/ThreeDirectionBunker.cpp game/bunkers/TwoDirectionBunker.cpp engine/geometry/Line.cpp engine/geometry/Segment.cpp game/spaceship/TractorBeam.cpp game/fuel/SmallFuel.cpp game/fuel/BigFuel.cpp game/fuel/Fuel.cpp game/bullets/BunkerBullet.cpp game/bullets/SpaceshipBullet.cpp game/spaceship/MovingLight.cpp -lsfml-graphics -lsfml-window -lsfml-system
+	g++ -g Main.cpp game/info/GameOver.cpp game/info/FuelBar.cpp game/info/Score.cpp game/info/Lives.cpp game/info/FuelInfo.cpp engine/Info.cpp game/bullets/Bullet.cpp game/bunkers/Bunker.cpp engine/Camera.cpp game/bunkers/CleverBunker.cpp game/bunkers/DoubleShootBunker.cpp engine/Engine.cpp game/cameras/FixedCamera.cpp game/cameras/FollowCamera.cpp engine/Game.cpp game/bunkers/LifePointsBar.cpp game/scenes/Surface.cpp game/NonGravitar.cpp engine/Object.cpp game/scenes/Planet.cpp engine/Scene.cpp game/scenes/SolarSystem.cpp game/spaceship/Spaceship.cpp game/bunkers/TankBunker.cpp game/bunkers/ThreeDirectionBunker.cpp game/bunkers/TwoDirectionBunker.cpp engine/geometry/Line.cpp engine/geometry/Segment.cpp game/spaceship/TractorBeam.cpp game/fuel/SmallFuel.cpp game/fuel/BigFuel.cpp game/fuel/Fuel.cpp game/bullets/BunkerBullet.cpp game/bullets/SpaceshipBullet.cpp game/spaceship/MovingLight.cpp -lsfml-graphics -lsfml-window -lsfml-system
 
 clean:
 	rm -rf *.o NonGravitar *.exe a.out a.out.dSYM non-gravitar

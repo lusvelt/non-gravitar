@@ -8,6 +8,7 @@
 #include "info/FuelInfo.hpp"
 #include "info/Lives.hpp"
 #include "info/Score.hpp"
+#include "info/GameOver.hpp"
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     score = 0;
@@ -37,5 +38,9 @@ int NonGravitar::getScore() {
 }
 
 void NonGravitar::generateSolarSystem() {
-    // TODO
+    
+}
+
+void NonGravitar::gameOver() {
+    Engine::addInfo(new GameOver());
 }

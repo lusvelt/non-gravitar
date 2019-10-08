@@ -3,6 +3,7 @@
 #include "../bullets/SpaceshipBullet.hpp"
 #include "../../engine/Engine.hpp"
 #include "../scenes/Planet.hpp"
+#include "../NonGravitar.hpp"
 
 Shape* Spaceship::buildShape() {
     ConvexShape* shape = new ConvexShape(6);
@@ -24,7 +25,7 @@ Shape* Spaceship::buildShape() {
 
 Spaceship::Spaceship():
     Object(Spaceship::buildShape()) {
-    this->lives = 5;
+    this->lives = STARTING_LIVES;
     this->shootCd = 0;
     this->fuelCd = 0.f;
     this->tag = "Spaceship";
@@ -63,7 +64,7 @@ void Spaceship::scaleFuel() {
 
 void Spaceship::update() {
     resetAccelerationAndAngularSpeed();
-    if(this->lives > 0){
+    if(this->lives > 0 && this->fuel > 0){
         if (Keyboard::isKeyPressed(Keyboard::Up))
             accelerateForward();
         if (Keyboard::isKeyPressed(Keyboard::Down))
@@ -77,7 +78,7 @@ void Spaceship::update() {
 
         if (this->isOutOfRadius())
             this->backToPrevScene();
-    }
+    } else ((NonGravitar*) Engine::getGame())->gameOver();
     if (shootCd > 0)
         shootCd -= Engine::getDeltaTime();
 }
@@ -109,7 +110,6 @@ void Spaceship::backToPrevScene() {
 void Spaceship::onCollisionEnter(Object* obj) {
     if (obj->instanceOf("Bunker") || obj->compareTag("BunkerBullet") || obj->compareTag("Surface"))
         die();
-        // TODO diminuire una vita e ripartire dall'entryPoint del pianeta, se le vite sono finite rendere invisibile e immanovrabile la spaceship
 }
 
 void Spaceship::addFuel(int newFuel){

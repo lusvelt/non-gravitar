@@ -16,6 +16,7 @@ class Planet : public Scene, public Object {
         void buildSurface();
         void populateSegment(Segment*, int, int);
         int bunkerCount;
+        int score;
 
     protected:
 
@@ -26,6 +27,7 @@ class Planet : public Scene, public Object {
         void update();
         bool hasNoBunkers();
         void bunkerDestroyed();
+        int getScore();
 };
 
 #endif

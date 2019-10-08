@@ -14,6 +14,7 @@ class NonGravitar : public Game {
         void addScore(int);
         int getScore();
         void generateSolarSystem();
+        void gameOver();
 };
 
 #endif

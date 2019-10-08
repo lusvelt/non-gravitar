@@ -1,6 +1,6 @@
 #include "DoubleShootBunker.hpp"
 
-DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 55.f, 10.f, .5f) {
+DoubleShootBunker::DoubleShootBunker() : Bunker(buildShape(), 5, 55.f, 10.f, 1.5f) {
     this->direction = 1;
     this->fireAngle = 10.f;
     this->absFireAngle = 0;

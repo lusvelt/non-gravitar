@@ -3,8 +3,6 @@
 #include "../../engine/Info.hpp"
 #include "../spaceship/Spaceship.hpp"
 
-
-
 class Lives: public Info{
     private:
 

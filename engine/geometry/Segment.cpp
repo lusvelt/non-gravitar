@@ -32,3 +32,6 @@ Point Segment::getP2(){
     return this->p2;
 }
 
+Point Segment::getPM() {
+    return Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+}

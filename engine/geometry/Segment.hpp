@@ -15,6 +15,7 @@ class Segment : public Line {
         float getLength();
         Point getP1();
         Point getP2();
+        Point getPM();
 };
 
 #endif

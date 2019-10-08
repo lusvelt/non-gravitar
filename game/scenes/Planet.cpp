@@ -66,7 +66,8 @@ void Planet::buildSurface() {
     }
     for (int i = 0; i < nPoints; i++) {
         Segment* segment = surfaces.at(i)->getSegment();
-        populateSegment(segment, disB(gen), disT(gen));
+        if (abs(segment->getPM().y) > 200.f)
+            populateSegment(segment, disB(gen), disT(gen));
     }
 }
 
@@ -99,6 +100,7 @@ Planet::Planet(Point position, int radius) : Object(position, 0.f),
                                  Scene(new FollowCamera()) {
         this->sceneType = this->tag = "Planet";
         this->radius = radius;
+        this->score = radius / 100 * 100;
         this->entryPoint = Point(0.f, -(radius + SPACESHIP_DISTANCE_FROM_FLOOR));
         this->shape = buildShape();
         bunkerCount = 0;
@@ -113,4 +115,8 @@ void Planet::bunkerDestroyed() {
 
 bool Planet::hasNoBunkers() {
     return bunkerCount == 0;
+}
+
+int Planet::getScore() {
+    return score;
 }

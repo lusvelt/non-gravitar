@@ -16,7 +16,7 @@ Bunker::Bunker(Shape* shape, int lifePoints, float maxRay, float angularFactor, 
     this->maxRay = maxRay;
     this->fireAngle = 0.f;
     this->angularFactor = angularFactor;
-    this->bulletSpeed = BULLET_BASE_SPEED;
+    this->bulletSpeed = BUNKER_BULLET_SPEED;
     this->shootPoint = Point(0,0);
 }
 
@@ -62,7 +62,7 @@ void Bunker::setPosition(Segment* s) {
     if (ym >= 0)
         sg = 1;
 
-    if (((m >= 0 && ((xm < 0 && ym < 0) || (xm >= 0 && ym >= 0))) || (m < 0 && ((xm < 0 && ym >= 0) || (xm >= 0 && ym < 0)))) && abs(xm) >= norm - 50.f)
+    if (((m >= 0 && ((xm < 0 && ym < 0) || (xm >= 0 && ym >= 0))) || (m < 0 && ((xm < 0 && ym >= 0) || (xm >= 0 && ym < 0)))) && abs(xm) >= norm - 100.f)
        sg *= -1;
     
     float k = (sg > 0 ? 1 : 0);
