@@ -47,6 +47,8 @@ void Bunker::shoot() {
 
 void Bunker::studyFireAngle(){ }
 
+// Posiziona il bunker mettendo la base sul segmento, in modo che il punto medio del bunker coincida col punto
+// medio del segmento, la formula deriva da un po' di calcoli di geometria analitica
 void Bunker::setPosition(Segment* s) {
     float l = s->getLength();
     float m = s->getM();
@@ -61,9 +63,6 @@ void Bunker::setPosition(Segment* s) {
     float sg = -1;
     if (ym >= 0)
         sg = 1;
-
-    if (((m >= 0 && ((xm < 0 && ym < 0) || (xm >= 0 && ym >= 0))) || (m < 0 && ((xm < 0 && ym >= 0) || (xm >= 0 && ym < 0)))) && abs(xm) >= norm - 100.f)
-       sg *= -1;
     
     float k = (sg > 0 ? 1 : 0);
     float xb = ((m2 + 1) * (x1 + x2) + sg * 50 * sqrt(m2 + 1)) / (2 * (m2 + 1));

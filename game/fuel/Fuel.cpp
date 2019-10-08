@@ -8,6 +8,7 @@ Object(shape){
     this->tag= "Fuel";
 }
 
+// Posiziona il fuel sul segmento s (vedi Bunker.cpp)
 void Fuel::setPosition(Segment* s){
     float l = s->getLength();
     float m = s->getM();
@@ -22,9 +23,6 @@ void Fuel::setPosition(Segment* s){
     float sg = -1;
     if (ym >= 0)
         sg = 1;
-
-    if (((m >= 0 && ((xm < 0 && ym < 0) || (xm >= 0 && ym >= 0))) || (m < 0 && ((xm < 0 && ym >= 0) || (xm >= 0 && ym < 0)))) && abs(xm) >= norm - 50.f)
-        sg *= -1;
 
     float k = (sg > 0 ? 1 : 0);
     float xb = ((m2 + 1) * (x1 + x2) + sg * 30 * sqrt(m2 + 1)) / (2 * (m2 + 1));
