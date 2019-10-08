@@ -38,9 +38,13 @@ int NonGravitar::getScore() {
 }
 
 void NonGravitar::generateSolarSystem() {
-    
+    Scene* solarSystem = new SolarSystem();
+    Engine::setCurrentSceneKeepingObject(solarSystem, Engine::getObjectByTag("Spaceship"));
 }
 
 void NonGravitar::gameOver() {
     Engine::addInfo(new GameOver());
+    Spaceship* spaceship = (Spaceship *)Engine::getObjectByTag("Spaceship");
+    spaceship->setSpeed(Vector(0, 0));
+    spaceship->hide();
 }

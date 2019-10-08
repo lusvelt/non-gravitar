@@ -149,6 +149,8 @@ void Object::addChild(Object* obj) {
 
 void Object::hide() {
     visible = false;
+    for (int i = 0; i < children.size(); i++)
+        children.at(i)->hide();
 }
 
 void Object::show() {
