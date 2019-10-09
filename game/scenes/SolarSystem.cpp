@@ -16,31 +16,32 @@ void SolarSystem::addPlanet(Planet* planet) {
     planets.push_back(planet);
 }
 
+// Divido la schermata in una griglia
 const void SolarSystem::generatePlanets() {
-    int sizeBlockx = (WINDOW_WIDTH / N_COLUMNS) - 2*MARGIN;
-    int sizeBlocky = (WINDOW_HEIGHT / N_COLUMNS) -2*MARGIN;
-    int xStart = 0;
-    int yStart = 0;
+    Vector sizeBlock = Vector(WINDOW_WIDTH / N_COLUMNS, WINDOW_HEIGHT / N_ROWS);
+    Point start;
+    Point end;
+
     int count = 0;
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> disE(0, 1);
-    uniform_int_distribution<> disX(0, sizeBlockx);
-    uniform_int_distribution<> disY(0, sizeBlocky);
     uniform_int_distribution<> disR(PLANET_MIN_RADIUS, PLANET_MAX_RADIUS);
-    for (int i = 0; i < N_BLOCKS / N_COLUMNS; i++) {
-        for(int j = 0; j < N_BLOCKS / N_COLUMNS; j++) {
-            xStart = (j * sizeBlockx) + MARGIN;
-            yStart = (i * sizeBlocky) + MARGIN;
-            bool emptyBlock = disE(gen);
+    for (int i = 0; i < N_ROWS; i++) {
+        for(int j = 0; j < N_COLUMNS; j++) {
+            start = Point(j * sizeBlock.x, i * sizeBlock.y);
+            end = start + sizeBlock;
+            bool emptyBlock = (disE(gen) || (i == (N_ROWS - 1) / 2 && j == (N_COLUMNS - 1) / 2) || (i == 0 && j == 0)) && !(i == 0 && j == 1);
 
-            Point position = Point(disX(gen) + xStart, disY(gen) + yStart);
-            if ((i == 1 && j == 1) || !emptyBlock) { 
-                count++;
-                if (count > 5)
-                    addPlanet((Planet *)Engine::instantiate(new Planet(position, disR(gen)), this));
-                } else
-                addPlanet((Planet*) Engine::instantiate(new Planet(position, disR(gen)), this));
+            if (!emptyBlock) {
+                int radius = disR(gen);
+                int scaledRadius = radius / PLANET_SCALE;
+                uniform_int_distribution<> disX(scaledRadius, sizeBlock.x - scaledRadius);
+                uniform_int_distribution<> disY(scaledRadius, sizeBlock.y - scaledRadius);
+                Point position = start + Vector(disX(gen), disY(gen));
+                
+                addPlanet((Planet *)Engine::instantiate(new Planet(position, radius), this));
+            }
         }
     }
 } 

@@ -9,6 +9,7 @@
 #include "info/Lives.hpp"
 #include "info/Score.hpp"
 #include "info/GameOver.hpp"
+#include "info/Bonus.hpp"
 
 NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     score = 0;
@@ -28,6 +29,7 @@ NonGravitar::NonGravitar() : Game("Non-Gravitar", WINDOW_WIDTH, WINDOW_HEIGHT) {
     Engine::addInfo(new FuelInfo());
     Engine::addInfo(new Score(score));
     Engine::addInfo(new Lives(lives));
+    Engine::addInfo(new Bonus());
 }
 
 void NonGravitar::addScore(int score) {

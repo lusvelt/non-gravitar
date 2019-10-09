@@ -66,7 +66,7 @@ void Planet::buildSurface() {
     }
     for (int i = 0; i < nPoints; i++) {
         Segment* segment = surfaces.at(i)->getSegment();
-        if (abs(segment->getPM().y) > 200.f)
+        if (abs(segment->getPM().y) > RANGE_NO_BUNKERS)
             populateSegment(segment, disB(gen), disT(gen));
     }
 }
