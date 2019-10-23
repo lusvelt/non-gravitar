@@ -28,7 +28,7 @@ class Bunker : public Object {
         void update();
         void onCollisionEnter(Object*);
         virtual void studyFireAngle(); // Come evolve l'angolo di shoot in base al tempo
-        void setPosition(Segment*);
+        void setPosition(Segment*, int);
         void setPlanet(Planet*);
 };
 

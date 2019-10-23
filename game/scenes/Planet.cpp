@@ -86,12 +86,12 @@ void Planet::populateSegment(Segment* segment, int rand, int type) {
         bunkerCount++;
     }
     if (bunker != NULL) {
-        bunker->setPosition(segment);
+        bunker->setPosition(segment, radius);
         bunker->setPlanet(this);
         Engine::instantiate(bunker, this);
     }
     if (fuel != NULL) {
-        fuel->setPosition(segment);
+        fuel->setPosition(segment, radius);
         Engine::instantiate(fuel, this);
     }
 }

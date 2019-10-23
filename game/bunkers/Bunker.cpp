@@ -49,7 +49,7 @@ void Bunker::studyFireAngle(){ }
 
 // Posiziona il bunker mettendo la base sul segmento, in modo che il punto medio del bunker coincida col punto
 // medio del segmento, la formula deriva da un po' di calcoli di geometria analitica
-void Bunker::setPosition(Segment* s) {
+void Bunker::setPosition(Segment* s, int radius) {
     float l = s->getLength();
     float m = s->getM();
     float m2 = m * m;
@@ -69,6 +69,15 @@ void Bunker::setPosition(Segment* s) {
     float yb = s->evaluateY(xb);
     this->position = Point(xb, yb);
     this->rotation = atan(m) * 180 / M_PI + 180 * k;
+    if (this->rotation < 0)
+        this->rotation += 360;
+    if (this->rotation >= 180 && xb >= radius * 3/5) {
+        this->rotation -= 180;
+        sg *= -1;
+    } else if (this->rotation < 180 && xb < -radius * 3/5) {
+        this->rotation += 180;
+        sg *= -1;
+    }
     float xl = sg * 20.f * m / sqrt(m2 + 1);
     float yl = - xl / m;
     this->life->setPosition(Point(position.x + xl, position.y + yl));

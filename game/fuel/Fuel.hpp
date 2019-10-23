@@ -11,7 +11,7 @@ class Fuel: public Object{
     public:
          void update();
          Fuel(Shape* shape);
-         void setPosition(Segment*);
+         void setPosition(Segment*, int);
          int getFuelAmount();
 };
 

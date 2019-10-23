@@ -9,7 +9,7 @@ Object(shape){
 }
 
 // Posiziona il fuel sul segmento s (vedi Bunker.cpp)
-void Fuel::setPosition(Segment* s){
+void Fuel::setPosition(Segment* s, int radius){
     float l = s->getLength();
     float m = s->getM();
     float m2 = m * m;
@@ -29,6 +29,9 @@ void Fuel::setPosition(Segment* s){
     float yb = s->evaluateY(xb);
     this->position = Point(xb, yb);
     this->rotation = atan(m) * 180 / M_PI + 180 * k;
+    if (this->rotation < 0) this->rotation += 360;
+    if (this->rotation >= 180 && xb >= radius / 2) this->rotation -= 180;
+    else if (this->rotation < 180 && xb < -radius / 2) this->rotation += 180;
 }
 
 void Fuel::update(){ }
